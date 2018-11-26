@@ -1,0 +1,61 @@
+﻿@using ChartJSCore.Models;
+@{
+    ViewData["Title"] = "Index";
+
+    Chart barChart = (Chart)ViewData["BarChart"];
+    //Chart lineChart = (Chart)ViewData["LineChart"];
+    //Chart lineScatterChart = (Chart)ViewData["LineScatterChart"];
+    //Chart radarChart = (Chart)ViewData["RadarChart"];
+    //Chart polarChart = (Chart)ViewData["PolarChart"];
+    //Chart pieChart = (Chart)ViewData["PieChart"];
+    //Chart liveLineChart = (Chart)ViewData["LineChart"];
+    //Chart nestedDoughnutChart = (Chart)ViewData["NestedDoughnutChart"];
+}
+
+
+<h2>Charts</h2>
+<div class="row">
+    <div class="col">
+        &nbsp;
+    </div>
+</div>
+<div class="row">
+    <div class="card col-md-6">
+        <div class="card-body">
+            <canvas id="barChart"></canvas>
+          
+        </div>
+    </div>
+    <div class="card col-md-6">
+        <div class="card-body">
+            <canvas id="lineChart"></canvas>
+           
+        </div>
+    </div>
+</div>
+
+@section Scripts {
+    
+    <script type="text/javascript">
+        @Html.Raw(barChart.CreateChartCode("barChart"));
+    </script>
+   
+    <script type="text/javascript">
+         @Html.Raw(barChart.CreateChartCode("barChart"));
+
+        setInterval(function () {
+            // Get chart data - DataService/
+            $.get('@Url.Action("/", "Chart", new { id = 7 })', function (data) {
+                barChart.data.datasets[0].data = data;
+            });
+
+            barChart.update();
+        }, 5000);
+    </script>
+    <script type="text/javascript">
+     
+    </script>
+}
+
+
+
