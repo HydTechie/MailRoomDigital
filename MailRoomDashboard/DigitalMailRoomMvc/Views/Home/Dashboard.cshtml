@@ -1,0 +1,116 @@
+﻿@{
+    ViewData["Title"] = "Dashboard";
+}
+
+<div class="container-fluid">
+    <div class="col-xs-12 dashBoardContent">
+        <div class="col-xs-12 col-sm-12 col-md-12 col-lg-8">
+            <div class="col-xs-12">
+                <h5>OVERALL PROGRESS</h5>
+            </div>
+            <div class="col-xs-12">
+                <div id="overallVerificationRequiredContainer" class="col-xs-12 col-sm-4 dashboardRow">
+                    <script type="text/javascript">
+                        loadChartsInDashboard('1', $(window).height())
+                    </script>
+                </div>
+                <div id="overallRollBackContainer" class="col-xs-12 col-sm-4 dashboardRow">
+                    <script>
+                        loadChartsInDashboard('2', $(window).height())
+                    </script>
+                </div>
+                <div id="overallOptionalVerificationContainer" class="col-xs-12 col-sm-4 dashboardRow">
+                    <script>
+                        loadChartsInDashboard('3', $(window).height())
+                    </script>
+                </div>
+            </div>
+
+            <div class="col-xs-12">
+                <h6>CMS 1500</h6>
+            </div>
+            <div class="col-xs-12">
+                <div id="cmsVerificationRequiredContainer" style="cursor:pointer;" class="col-xs-12 col-sm-4 dashboardRow" onclick="location.href='@Url.Action("FullList", "Home")'">
+                    <script>
+                        loadChartsInDashboard('4', $(window).height())
+                    </script>
+                </div>
+                <div id="cmsRollBackContainer" class="col-xs-12 col-sm-4 dashboardRow">
+                    <script>
+                        loadChartsInDashboard('5', $(window).height())
+                    </script>
+                </div>
+                <div id="cmsOptionalVerificationContainer" class="col-xs-12 col-sm-4 dashboardRow">
+                    <script>
+                        loadChartsInDashboard('6', $(window).height())
+                    </script>
+                </div>
+            </div>
+            <div class="col-xs-12">
+
+                <h6>UB-04</h6>
+
+            </div>
+            <div class="col-xs-12">
+                <div id="ub04VerificationRequiredContainer" class="col-xs-12 col-sm-4 dashboardRow">
+                    <script>
+                        loadChartsInDashboard('7', $(window).height())
+                    </script>
+                </div>
+                <div id="ub04RollBackContainer" class="col-xs-12 col-sm-4 dashboardRow">
+                    <script>
+                        loadChartsInDashboard('8', $(window).height())
+                    </script>
+                </div>
+                <div id="ub04OptionalVerificationContainer" class="col-xs-12 col-sm-4 dashboardRow">
+                    <script>
+                        loadChartsInDashboard('9', $(window).height())
+                    </script>
+                </div>
+            </div>
+            <div class="col-xs-12">
+
+                <h6>DENTAL CLAIMS</h6>
+
+            </div>
+            <div class="col-xs-12">
+                <div id="dcVerificationRequiredContainer" class="col-xs-12 col-sm-4 dashboardRow">
+                    <script>
+                        loadChartsInDashboard('10', $(window).height())
+                    </script>
+                </div>
+                <div id="dcRollBackContainer" class="col-xs-12 col-sm-4 dashboardRow">
+                    <script>
+                        loadChartsInDashboard('11', $(window).height())
+                    </script>
+                </div>
+                <div id="dcOptionalVerificationContainer" class="col-xs-12 col-sm-4 dashboardRow">
+                    <script>
+                        loadChartsInDashboard('12', $(window).height())
+                    </script>
+                </div>
+            </div>
+        </div>
+        <div class="col-xs-12 col-sm-12 col-md-12 col-lg-4">
+            <div class="col-xs-12">
+                <h6 class="centerAlignmentForText">MY PERFORMANCE</h6>
+            </div>
+
+            <div id="allocatedVsCompletedContainer" class="col-xs-12 metricChartRow">
+                <script>
+                    loadChartsInDashboard('13', $(window).height())
+                </script>
+            </div>
+
+            <div class="col-xs-12">
+                <h4 class="centerAlignmentForText">Important Links</h4>
+            </div>
+            <div class="col-xs-12">
+                <div id="importantLinksContainer" class="col-xs-12 metricLinkRow" style="border-radius:10px;background-color:#F0F0F0;height:100%;">
+                    <br />https://www.unitedstateszipcodes.org/
+                </div>
+            </div>
+
+        </div>
+    </div>
+</div>

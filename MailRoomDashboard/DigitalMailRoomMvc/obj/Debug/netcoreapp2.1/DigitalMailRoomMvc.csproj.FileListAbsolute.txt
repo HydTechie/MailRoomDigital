@@ -1,0 +1,68 @@
+D:\Ravi Kiran\Projects\HLS Solution\Digital Mail Room\DigitalMailRoomProject\DigitalMailRoomMvc\bin\Debug\netcoreapp2.1\DigitalMailRoomMvc.deps.json
+D:\Ravi Kiran\Projects\HLS Solution\Digital Mail Room\DigitalMailRoomProject\DigitalMailRoomMvc\bin\Debug\netcoreapp2.1\DigitalMailRoomMvc.runtimeconfig.json
+D:\Ravi Kiran\Projects\HLS Solution\Digital Mail Room\DigitalMailRoomProject\DigitalMailRoomMvc\bin\Debug\netcoreapp2.1\DigitalMailRoomMvc.runtimeconfig.dev.json
+D:\Ravi Kiran\Projects\HLS Solution\Digital Mail Room\DigitalMailRoomProject\DigitalMailRoomMvc\bin\Debug\netcoreapp2.1\DigitalMailRoomMvc.dll
+D:\Ravi Kiran\Projects\HLS Solution\Digital Mail Room\DigitalMailRoomProject\DigitalMailRoomMvc\bin\Debug\netcoreapp2.1\DigitalMailRoomMvc.pdb
+D:\Ravi Kiran\Projects\HLS Solution\Digital Mail Room\DigitalMailRoomProject\DigitalMailRoomMvc\bin\Debug\netcoreapp2.1\DigitalMailRoomMvc.Views.dll
+D:\Ravi Kiran\Projects\HLS Solution\Digital Mail Room\DigitalMailRoomProject\DigitalMailRoomMvc\bin\Debug\netcoreapp2.1\DigitalMailRoomMvc.Views.pdb
+D:\Ravi Kiran\Projects\HLS Solution\Digital Mail Room\DigitalMailRoomProject\DigitalMailRoomMvc\obj\Debug\netcoreapp2.1\DigitalMailRoomMvc.csprojAssemblyReference.cache
+D:\Ravi Kiran\Projects\HLS Solution\Digital Mail Room\DigitalMailRoomProject\DigitalMailRoomMvc\obj\Debug\netcoreapp2.1\DigitalMailRoomMvc.csproj.CoreCompileInputs.cache
+D:\Ravi Kiran\Projects\HLS Solution\Digital Mail Room\DigitalMailRoomProject\DigitalMailRoomMvc\obj\Debug\netcoreapp2.1\DigitalMailRoomMvc.RazorAssemblyInfo.cache
+D:\Ravi Kiran\Projects\HLS Solution\Digital Mail Room\DigitalMailRoomProject\DigitalMailRoomMvc\obj\Debug\netcoreapp2.1\DigitalMailRoomMvc.RazorAssemblyInfo.cs
+D:\Ravi Kiran\Projects\HLS Solution\Digital Mail Room\DigitalMailRoomProject\DigitalMailRoomMvc\obj\Debug\netcoreapp2.1\DigitalMailRoomMvc.AssemblyInfoInputs.cache
+D:\Ravi Kiran\Projects\HLS Solution\Digital Mail Room\DigitalMailRoomProject\DigitalMailRoomMvc\obj\Debug\netcoreapp2.1\DigitalMailRoomMvc.AssemblyInfo.cs
+D:\Ravi Kiran\Projects\HLS Solution\Digital Mail Room\DigitalMailRoomProject\DigitalMailRoomMvc\obj\Debug\netcoreapp2.1\DigitalMailRoomMvc.TagHelpers.input.cache
+D:\Ravi Kiran\Projects\HLS Solution\Digital Mail Room\DigitalMailRoomProject\DigitalMailRoomMvc\obj\Debug\netcoreapp2.1\DigitalMailRoomMvc.TagHelpers.output.cache
+D:\Ravi Kiran\Projects\HLS Solution\Digital Mail Room\DigitalMailRoomProject\DigitalMailRoomMvc\obj\Debug\netcoreapp2.1\DigitalMailRoomMvc.RazorCoreGenerate.cache
+D:\Ravi Kiran\Projects\HLS Solution\Digital Mail Room\DigitalMailRoomProject\DigitalMailRoomMvc\obj\Debug\netcoreapp2.1\Razor\Views\Home\About.g.cshtml.cs
+D:\Ravi Kiran\Projects\HLS Solution\Digital Mail Room\DigitalMailRoomProject\DigitalMailRoomMvc\obj\Debug\netcoreapp2.1\Razor\Views\Home\Contact.g.cshtml.cs
+D:\Ravi Kiran\Projects\HLS Solution\Digital Mail Room\DigitalMailRoomProject\DigitalMailRoomMvc\obj\Debug\netcoreapp2.1\Razor\Views\Home\Index.g.cshtml.cs
+D:\Ravi Kiran\Projects\HLS Solution\Digital Mail Room\DigitalMailRoomProject\DigitalMailRoomMvc\obj\Debug\netcoreapp2.1\Razor\Views\Home\Privacy.g.cshtml.cs
+D:\Ravi Kiran\Projects\HLS Solution\Digital Mail Room\DigitalMailRoomProject\DigitalMailRoomMvc\obj\Debug\netcoreapp2.1\Razor\Views\Shared\Error.g.cshtml.cs
+D:\Ravi Kiran\Projects\HLS Solution\Digital Mail Room\DigitalMailRoomProject\DigitalMailRoomMvc\obj\Debug\netcoreapp2.1\Razor\Views\Shared\_CookieConsentPartial.g.cshtml.cs
+D:\Ravi Kiran\Projects\HLS Solution\Digital Mail Room\DigitalMailRoomProject\DigitalMailRoomMvc\obj\Debug\netcoreapp2.1\Razor\Views\Shared\_Layout.g.cshtml.cs
+D:\Ravi Kiran\Projects\HLS Solution\Digital Mail Room\DigitalMailRoomProject\DigitalMailRoomMvc\obj\Debug\netcoreapp2.1\Razor\Views\Shared\_ValidationScriptsPartial.g.cshtml.cs
+D:\Ravi Kiran\Projects\HLS Solution\Digital Mail Room\DigitalMailRoomProject\DigitalMailRoomMvc\obj\Debug\netcoreapp2.1\Razor\Views\_ViewImports.g.cshtml.cs
+D:\Ravi Kiran\Projects\HLS Solution\Digital Mail Room\DigitalMailRoomProject\DigitalMailRoomMvc\obj\Debug\netcoreapp2.1\Razor\Views\_ViewStart.g.cshtml.cs
+D:\Ravi Kiran\Projects\HLS Solution\Digital Mail Room\DigitalMailRoomProject\DigitalMailRoomMvc\obj\Debug\netcoreapp2.1\DigitalMailRoomMvc.RazorTargetAssemblyInfo.cache
+D:\Ravi Kiran\Projects\HLS Solution\Digital Mail Room\DigitalMailRoomProject\DigitalMailRoomMvc\obj\Debug\netcoreapp2.1\DigitalMailRoomMvc.RazorTargetAssemblyInfo.cs
+D:\Ravi Kiran\Projects\HLS Solution\Digital Mail Room\DigitalMailRoomProject\DigitalMailRoomMvc\obj\Debug\netcoreapp2.1\DigitalMailRoomMvc.Views.pdb
+D:\Ravi Kiran\Projects\HLS Solution\Digital Mail Room\DigitalMailRoomProject\DigitalMailRoomMvc\obj\Debug\netcoreapp2.1\DigitalMailRoomMvc.dll
+D:\Ravi Kiran\Projects\HLS Solution\Digital Mail Room\DigitalMailRoomProject\DigitalMailRoomMvc\obj\Debug\netcoreapp2.1\DigitalMailRoomMvc.pdb
+D:\Ravi Kiran\Projects\HLS Solution\Digital Mail Room\DigitalMailRoomProject\DigitalMailRoomMvc\obj\Debug\netcoreapp2.1\DigitalMailRoomMvc.csproj.CopyComplete
+D:\Ravi Kiran_1\SVN\digitalmailroomportal\trunk\DigitalMailRoomDashboard\DigitalMailRoomMvc\bin\Debug\netcoreapp2.1\DigitalMailRoomMvc.deps.json
+D:\Ravi Kiran_1\SVN\digitalmailroomportal\trunk\DigitalMailRoomDashboard\DigitalMailRoomMvc\bin\Debug\netcoreapp2.1\DigitalMailRoomMvc.runtimeconfig.json
+D:\Ravi Kiran_1\SVN\digitalmailroomportal\trunk\DigitalMailRoomDashboard\DigitalMailRoomMvc\bin\Debug\netcoreapp2.1\DigitalMailRoomMvc.runtimeconfig.dev.json
+D:\Ravi Kiran_1\SVN\digitalmailroomportal\trunk\DigitalMailRoomDashboard\DigitalMailRoomMvc\bin\Debug\netcoreapp2.1\DigitalMailRoomMvc.dll
+D:\Ravi Kiran_1\SVN\digitalmailroomportal\trunk\DigitalMailRoomDashboard\DigitalMailRoomMvc\bin\Debug\netcoreapp2.1\DigitalMailRoomMvc.pdb
+D:\Ravi Kiran_1\SVN\digitalmailroomportal\trunk\DigitalMailRoomDashboard\DigitalMailRoomMvc\bin\Debug\netcoreapp2.1\DigitalMailRoomMvc.Views.dll
+D:\Ravi Kiran_1\SVN\digitalmailroomportal\trunk\DigitalMailRoomDashboard\DigitalMailRoomMvc\bin\Debug\netcoreapp2.1\DigitalMailRoomMvc.Views.pdb
+D:\Ravi Kiran_1\SVN\digitalmailroomportal\trunk\DigitalMailRoomDashboard\DigitalMailRoomMvc\obj\Debug\netcoreapp2.1\DigitalMailRoomMvc.csproj.CoreCompileInputs.cache
+D:\Ravi Kiran_1\SVN\digitalmailroomportal\trunk\DigitalMailRoomDashboard\DigitalMailRoomMvc\obj\Debug\netcoreapp2.1\DigitalMailRoomMvc.RazorAssemblyInfo.cache
+D:\Ravi Kiran_1\SVN\digitalmailroomportal\trunk\DigitalMailRoomDashboard\DigitalMailRoomMvc\obj\Debug\netcoreapp2.1\DigitalMailRoomMvc.RazorAssemblyInfo.cs
+D:\Ravi Kiran_1\SVN\digitalmailroomportal\trunk\DigitalMailRoomDashboard\DigitalMailRoomMvc\obj\Debug\netcoreapp2.1\DigitalMailRoomMvc.AssemblyInfoInputs.cache
+D:\Ravi Kiran_1\SVN\digitalmailroomportal\trunk\DigitalMailRoomDashboard\DigitalMailRoomMvc\obj\Debug\netcoreapp2.1\DigitalMailRoomMvc.AssemblyInfo.cs
+D:\Ravi Kiran_1\SVN\digitalmailroomportal\trunk\DigitalMailRoomDashboard\DigitalMailRoomMvc\obj\Debug\netcoreapp2.1\DigitalMailRoomMvc.TagHelpers.input.cache
+D:\Ravi Kiran_1\SVN\digitalmailroomportal\trunk\DigitalMailRoomDashboard\DigitalMailRoomMvc\obj\Debug\netcoreapp2.1\DigitalMailRoomMvc.TagHelpers.output.cache
+D:\Ravi Kiran_1\SVN\digitalmailroomportal\trunk\DigitalMailRoomDashboard\DigitalMailRoomMvc\obj\Debug\netcoreapp2.1\DigitalMailRoomMvc.RazorCoreGenerate.cache
+D:\Ravi Kiran_1\SVN\digitalmailroomportal\trunk\DigitalMailRoomDashboard\DigitalMailRoomMvc\obj\Debug\netcoreapp2.1\Razor\Views\Home\About.g.cshtml.cs
+D:\Ravi Kiran_1\SVN\digitalmailroomportal\trunk\DigitalMailRoomDashboard\DigitalMailRoomMvc\obj\Debug\netcoreapp2.1\Razor\Views\Home\Contact.g.cshtml.cs
+D:\Ravi Kiran_1\SVN\digitalmailroomportal\trunk\DigitalMailRoomDashboard\DigitalMailRoomMvc\obj\Debug\netcoreapp2.1\Razor\Views\Home\Index.g.cshtml.cs
+D:\Ravi Kiran_1\SVN\digitalmailroomportal\trunk\DigitalMailRoomDashboard\DigitalMailRoomMvc\obj\Debug\netcoreapp2.1\Razor\Views\Home\Privacy.g.cshtml.cs
+D:\Ravi Kiran_1\SVN\digitalmailroomportal\trunk\DigitalMailRoomDashboard\DigitalMailRoomMvc\obj\Debug\netcoreapp2.1\Razor\Views\Shared\Error.g.cshtml.cs
+D:\Ravi Kiran_1\SVN\digitalmailroomportal\trunk\DigitalMailRoomDashboard\DigitalMailRoomMvc\obj\Debug\netcoreapp2.1\Razor\Views\Shared\_CookieConsentPartial.g.cshtml.cs
+D:\Ravi Kiran_1\SVN\digitalmailroomportal\trunk\DigitalMailRoomDashboard\DigitalMailRoomMvc\obj\Debug\netcoreapp2.1\Razor\Views\Shared\_Layout.g.cshtml.cs
+D:\Ravi Kiran_1\SVN\digitalmailroomportal\trunk\DigitalMailRoomDashboard\DigitalMailRoomMvc\obj\Debug\netcoreapp2.1\Razor\Views\Shared\_ValidationScriptsPartial.g.cshtml.cs
+D:\Ravi Kiran_1\SVN\digitalmailroomportal\trunk\DigitalMailRoomDashboard\DigitalMailRoomMvc\obj\Debug\netcoreapp2.1\Razor\Views\_ViewImports.g.cshtml.cs
+D:\Ravi Kiran_1\SVN\digitalmailroomportal\trunk\DigitalMailRoomDashboard\DigitalMailRoomMvc\obj\Debug\netcoreapp2.1\Razor\Views\_ViewStart.g.cshtml.cs
+D:\Ravi Kiran_1\SVN\digitalmailroomportal\trunk\DigitalMailRoomDashboard\DigitalMailRoomMvc\obj\Debug\netcoreapp2.1\DigitalMailRoomMvc.RazorTargetAssemblyInfo.cache
+D:\Ravi Kiran_1\SVN\digitalmailroomportal\trunk\DigitalMailRoomDashboard\DigitalMailRoomMvc\obj\Debug\netcoreapp2.1\DigitalMailRoomMvc.RazorTargetAssemblyInfo.cs
+D:\Ravi Kiran_1\SVN\digitalmailroomportal\trunk\DigitalMailRoomDashboard\DigitalMailRoomMvc\obj\Debug\netcoreapp2.1\DigitalMailRoomMvc.Views.pdb
+D:\Ravi Kiran_1\SVN\digitalmailroomportal\trunk\DigitalMailRoomDashboard\DigitalMailRoomMvc\obj\Debug\netcoreapp2.1\DigitalMailRoomMvc.dll
+D:\Ravi Kiran_1\SVN\digitalmailroomportal\trunk\DigitalMailRoomDashboard\DigitalMailRoomMvc\obj\Debug\netcoreapp2.1\DigitalMailRoomMvc.pdb
+D:\Ravi Kiran_1\SVN\digitalmailroomportal\trunk\DigitalMailRoomDashboard\DigitalMailRoomMvc\obj\Debug\netcoreapp2.1\DigitalMailRoomMvc.csproj.CopyComplete
+D:\Ravi Kiran_1\SVN\digitalmailroomportal\trunk\DigitalMailRoomDashboard\DigitalMailRoomMvc\obj\Debug\netcoreapp2.1\Razor\Views\Home\FullList.g.cshtml.cs
+D:\Ravi Kiran_1\SVN\digitalmailroomportal\trunk\DigitalMailRoomDashboard\DigitalMailRoomMvc\obj\Debug\netcoreapp2.1\Razor\Views\Home\Validation.g.cshtml.cs
+D:\Ravi Kiran_1\SVN\digitalmailroomportal\trunk\DigitalMailRoomDashboard\DigitalMailRoomMvc\obj\Debug\netcoreapp2.1\Razor\Views\Shared\MasterLayout.g.cshtml.cs
+D:\Ravi Kiran_1\SVN\digitalmailroomportal\trunk\DigitalMailRoomDashboard\DigitalMailRoomMvc\obj\Debug\netcoreapp2.1\Razor\Views\Home\Dashboard.g.cshtml.cs
+D:\Ravi Kiran_1\SVN\digitalmailroomportal\trunk\DigitalMailRoomDashboard\DigitalMailRoomMvc\obj\Debug\netcoreapp2.1\DigitalMailRoomMvc.csprojAssemblyReference.cache

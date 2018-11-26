@@ -1,0 +1,32 @@
+﻿@{
+    ViewData["Title"] = "About";
+}
+<div class="container-fluid">
+    <div class="col-xs-12">
+        <div class="row">
+            <div class="col-sm-12 col-md-3">
+                <h2>Verification Required</h2>
+            </div>
+            <div class="col-sm-12 col-md-3">
+                @Html.TextBox("myTextBox", "This is value", new { @class = "form-control" })
+            </div>
+        </div>
+        <div class="row">
+            <table id="example" data-unique-id="Code" data-sort-name="Code" data-sort-order="asc" data-classes="table table-condensed table-hover table-striped" data-toggle="table" data-side-pagination="server" data-url="Load" data-pagination="true" data-search="true" data-show-refresh="true" data-toolbar="#toolbar" data-page-size="20" data-page-list="[5,10,20,50,100,All]" cellspacing="0">
+                <thead>
+                    <tr>
+                        <th data-field="PatientId" data-sortable="false"
+                            data-halign="center" data-align="center"
+                            data-formatter="flagFormatter">Patient Id</th>
+                        <th data-field="ClaimId" data-sortable="true"
+                            data-halign="center" data-align="center">Claim Id</th>
+                        <th data-field="ColumnsToVerify" data-sortable="true">Columns to verify</th>
+                        <th data-field="ConfidenceScore" data-sortable="true">Confidence Score</th>
+                        <th data-field="SubmissionDate" data-sortable="true">Submitted Date</th>
+                        <th data-field="ExtractedDate" data-sortable="true">Extracted Date</th>
+                    </tr>
+                </thead>
+            </table>
+        </div>
+    </div>
+</div>
