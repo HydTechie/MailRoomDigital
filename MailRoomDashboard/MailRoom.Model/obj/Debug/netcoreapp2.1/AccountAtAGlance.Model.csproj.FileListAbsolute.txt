@@ -1,0 +1,9 @@
+D:\work\POCs\AccountAtAGlance-ASPCore-master\src\AccountAtAGlance.Model\bin\Debug\netcoreapp2.1\AccountAtAGlance.Model.deps.json
+D:\work\POCs\AccountAtAGlance-ASPCore-master\src\AccountAtAGlance.Model\bin\Debug\netcoreapp2.1\AccountAtAGlance.Model.dll
+D:\work\POCs\AccountAtAGlance-ASPCore-master\src\AccountAtAGlance.Model\bin\Debug\netcoreapp2.1\AccountAtAGlance.Model.pdb
+D:\work\POCs\AccountAtAGlance-ASPCore-master\src\AccountAtAGlance.Model\obj\Debug\netcoreapp2.1\AccountAtAGlance.Model.csprojAssemblyReference.cache
+D:\work\POCs\AccountAtAGlance-ASPCore-master\src\AccountAtAGlance.Model\obj\Debug\netcoreapp2.1\AccountAtAGlance.Model.csproj.CoreCompileInputs.cache
+D:\work\POCs\AccountAtAGlance-ASPCore-master\src\AccountAtAGlance.Model\obj\Debug\netcoreapp2.1\AccountAtAGlance.Model.AssemblyInfoInputs.cache
+D:\work\POCs\AccountAtAGlance-ASPCore-master\src\AccountAtAGlance.Model\obj\Debug\netcoreapp2.1\AccountAtAGlance.Model.AssemblyInfo.cs
+D:\work\POCs\AccountAtAGlance-ASPCore-master\src\AccountAtAGlance.Model\obj\Debug\netcoreapp2.1\AccountAtAGlance.Model.dll
+D:\work\POCs\AccountAtAGlance-ASPCore-master\src\AccountAtAGlance.Model\obj\Debug\netcoreapp2.1\AccountAtAGlance.Model.pdb

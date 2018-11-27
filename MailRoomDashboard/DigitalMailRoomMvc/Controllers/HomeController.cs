@@ -9,23 +9,106 @@ using System.Collections;
 using System.Reflection;
 using Newtonsoft.Json;
 using System.Text;
+using MailRoom.Repository.Interfaces;
+using MailRoom.Model;
 
 namespace DigitalMailRoomMvc.Controllers
 {
     public class HomeController : Controller
     {
-        public IActionResult Dashboard()
+        IStagingClaimRepository _StagingClaimRepository;
+
+        public HomeController(IStagingClaimRepository stagingClaimsRepo
+             
+            )
         {
-            return View();
+            _StagingClaimRepository = stagingClaimsRepo;
+       
         }
 
-        public IActionResult Index()
+        [HttpGet("Claim/{insureId}")]
+        public async Task<IActionResult> StagingclaimCms1500(string insureId)
         {
-            return View();
+            var stagingClaim = await _StagingClaimRepository.GetStagingClaimAsync(insureId);
+            if (stagingClaim == null)
+            {
+                return NotFound();
+            }
+            return Ok(stagingClaim);
+
         }
+
+        [ActionName("Index")]
+        public async Task<IActionResult> Index()
+        {
+            Dashboard dashboard = await _StagingClaimRepository.GetDashboardAsync("reviewerid1");
+            if (dashboard == null)
+            {
+                return NotFound();
+            }
+            // return Ok(stagingClaim);
+
+            //Chart barChart = GenerateBarChart(dweek.DateOnXaxis, dweek.ClaimCountOnYaxis);
+            ////Chart lineChart = GenerateLineChart();
+            ////Chart lineScatterChart = GenerateLineScatterChart();
+            ////Chart radarChart = GenerateRadarChart();
+            ////Chart polarChart = GeneratePolarChart();
+            ////Chart pieChart = GeneratePieChart();
+            ////Chart nestedDoughnutChart = GenerateNestedDoughnutChart();
+            //ViewData["BarChart"] = barChart;
+            ////ViewData["LineChart"] = lineChart;
+            ////ViewData["LineScatterChart"] = lineScatterChart;
+            ////ViewData["RadarChart"] = radarChart;
+            ////ViewData["PolarChart"] = polarChart;
+            ////ViewData["PieChart"] = pieChart;
+            ////ViewData["NestedDoughnutChart"] = nestedDoughnutChart;
+
+            return View("~/Views/Home/Index.cshtml");
+            //return View();
+        }
+
+        [HttpGet("DashboardWeek/{reviewerId}")]
+        public async Task<IActionResult> GetDashboard(string reviewerId)
+        {
+            //  
+            // var Dashboard = await _StagingClaimRepository.GetDashboardAsync(reviewerId);
+
+            var Dashboard = await _StagingClaimRepository.GetDashboardByWeekAsync(reviewerId);
+            if (Dashboard == null)
+            {
+                return NotFound();
+            }
+            return Ok(Dashboard);
+
+        }
+
+        [HttpPost("Claim")]
+        public async Task<IActionResult> UpdatestagingClaimCms1500Async([FromBody]StagingClaimCms1500 stagingClaimCms1500)
+        {
+            OperationStatus operationStatus = await _StagingClaimRepository.UpdatestagingClaimCms1500Async(stagingClaimCms1500);
+            if (operationStatus.Status != true)
+            {
+                return NotFound(operationStatus.ExceptionMessage);
+            }
+            return Ok(stagingClaimCms1500);
+
+        }
+
+        public async Task<IActionResult> Dashboard()
+        {
+            var Dashboard = await _StagingClaimRepository.GetDashboardAsync("reviewerId1");
+           
+            return View("Dashboard", Dashboard);
+        } 
+
+        //public IActionResult Index()
+        //{
+        //    return View();
+        //}
 
         public IActionResult FullList()
         {
+
             return View(claimList);
         }
 

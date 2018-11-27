@@ -102,3 +102,7 @@ D:\work\POCs\DigitalMailRoom\MailRoomDashboard\DigitalMailRoomMvc\obj\Debug\netc
 D:\work\POCs\DigitalMailRoom\MailRoomDashboard\DigitalMailRoomMvc\obj\Debug\netcoreapp2.1\DigitalMailRoomMvc.RazorTargetAssemblyInfo.cs
 D:\work\POCs\DigitalMailRoom\MailRoomDashboard\DigitalMailRoomMvc\obj\Debug\netcoreapp2.1\DigitalMailRoomMvc.Views.pdb
 D:\work\POCs\DigitalMailRoom\MailRoomDashboard\DigitalMailRoomMvc\obj\Debug\netcoreapp2.1\DigitalMailRoomMvc.csproj.CopyComplete
+D:\work\POCs\DigitalMailRoom\MailRoomDashboard\DigitalMailRoomMvc\bin\Debug\netcoreapp2.1\MailRoom.Model.dll
+D:\work\POCs\DigitalMailRoom\MailRoomDashboard\DigitalMailRoomMvc\bin\Debug\netcoreapp2.1\MailRoom.Repository.dll
+D:\work\POCs\DigitalMailRoom\MailRoomDashboard\DigitalMailRoomMvc\bin\Debug\netcoreapp2.1\MailRoom.Model.pdb
+D:\work\POCs\DigitalMailRoom\MailRoomDashboard\DigitalMailRoomMvc\bin\Debug\netcoreapp2.1\MailRoom.Repository.pdb

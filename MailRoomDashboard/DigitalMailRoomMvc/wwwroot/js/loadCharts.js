@@ -36,13 +36,17 @@
         $('.metricChartRow').css("height", (newHeight * 0.43) + "px");
         $('.metricLinkRow').css("height", (newHeight * 0.37) + "px");
     }
+
+
+    
+
 });
 
-function loadChartsInDashboard(number, newHeight) {
+function loadChartsInDashboard(number, dashboardData, newHeight) {
     //$('.totalSummary').css("height", (newHeight * 0.8) + "px");
 
-    if (number == '1') {
-        var gaugeOptions = {
+    if (number === '1') {
+        var gaugeOptions = { 
             chart: {
                 type: 'gauge',
                 borderRadius: '10px', backgroundColor: '#E1F4FB'
@@ -144,7 +148,7 @@ function loadChartsInDashboard(number, newHeight) {
 
                 series: [{
                     name: 'Speed',
-                    data: [40],
+                    data: [dashboardData.TodoTotalCount],
                     dataLabels: {
                         format: '<div style="text-align:center"><span style="font-size:15px;color:' +
                             ((Highcharts.theme && Highcharts.theme.contrastTextColor) || 'black') + '">{y}</span><br/>' +
@@ -260,7 +264,7 @@ function loadChartsInDashboard(number, newHeight) {
 
                 series: [{
                     name: 'Speed',
-                    data: [15],
+                    data: [dashboardData.RollbackTotalCount],
                     dataLabels: {
                         format: '<div style="text-align:center"><span style="font-size:15px;color:' +
                             ((Highcharts.theme && Highcharts.theme.contrastTextColor) || 'black') + '">{y}</span><br/>' +
@@ -377,7 +381,7 @@ function loadChartsInDashboard(number, newHeight) {
 
                 series: [{
                     name: 'Speed',
-                    data: [80],
+                    data: [dashboardData.CompletedTotalCount],
                     dataLabels: {
                         format: '<div style="text-align:center"><span style="font-size:15px;color:' +
                             ((Highcharts.theme && Highcharts.theme.contrastTextColor) || 'black') + '">{y}</span><br/>' +

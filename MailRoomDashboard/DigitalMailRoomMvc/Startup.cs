@@ -9,6 +9,11 @@ using Microsoft.AspNetCore.HttpsPolicy;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
+using Microsoft.EntityFrameworkCore;
+using MailRoom.Repository;
+using MailRoom.Repository.Interfaces;
+using MailRoom.Repository.Helpers;
+using MailRoom.Repository.Seeding;
 
 namespace DigitalMailRoomMvc
 {
@@ -31,15 +36,30 @@ namespace DigitalMailRoomMvc
                 options.MinimumSameSitePolicy = SameSiteMode.None;
             });
 
+            // Add Entity Framework services to the services container
+            services.AddDbContext<MailRoomContext>(options =>
+            {
+                options.UseMySql(Configuration.GetConnectionString("MailRoom"));
+                //options.UseSqlServer(Configuration.GetConnectionString("MailRoom"));
+                //options.UseSqlite(Configuration.GetConnectionString("MailRoomSqlite"));
+            });
 
             services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_1);
+
+            //Add data repository mappings
+            services.AddTransient<IStagingClaimRepository, StagingClaimRepository>();
+            
+            services.AddTransient<IStagingEngine, StagingEngine>();
+            services.AddTransient<DatabaseInitializer>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
-        public void Configure(IApplicationBuilder app, IHostingEnvironment env)
+        public void Configure(IApplicationBuilder app, IHostingEnvironment env, DatabaseInitializer dbInitializer)
         {
             if (env.IsDevelopment())
             {
+                // Seed the database here
+                dbInitializer.SeedAsync().Wait();
                 app.UseDeveloperExceptionPage();
             }
             else

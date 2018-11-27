@@ -1,0 +1,12 @@
+D:\work\POCs\AccountAtAGlance-ASPCore-master\src\AccountAtAGlance.Repository\bin\Debug\netcoreapp2.1\AccountAtAGlance.Repository.deps.json
+D:\work\POCs\AccountAtAGlance-ASPCore-master\src\AccountAtAGlance.Repository\bin\Debug\netcoreapp2.1\AccountAtAGlance.Repository.dll
+D:\work\POCs\AccountAtAGlance-ASPCore-master\src\AccountAtAGlance.Repository\bin\Debug\netcoreapp2.1\AccountAtAGlance.Repository.pdb
+D:\work\POCs\AccountAtAGlance-ASPCore-master\src\AccountAtAGlance.Repository\bin\Debug\netcoreapp2.1\AccountAtAGlance.Model.dll
+D:\work\POCs\AccountAtAGlance-ASPCore-master\src\AccountAtAGlance.Repository\bin\Debug\netcoreapp2.1\AccountAtAGlance.Model.pdb
+D:\work\POCs\AccountAtAGlance-ASPCore-master\src\AccountAtAGlance.Repository\obj\Debug\netcoreapp2.1\AccountAtAGlance.Repository.csprojAssemblyReference.cache
+D:\work\POCs\AccountAtAGlance-ASPCore-master\src\AccountAtAGlance.Repository\obj\Debug\netcoreapp2.1\AccountAtAGlance.Repository.csproj.CoreCompileInputs.cache
+D:\work\POCs\AccountAtAGlance-ASPCore-master\src\AccountAtAGlance.Repository\obj\Debug\netcoreapp2.1\AccountAtAGlance.Repository.AssemblyInfoInputs.cache
+D:\work\POCs\AccountAtAGlance-ASPCore-master\src\AccountAtAGlance.Repository\obj\Debug\netcoreapp2.1\AccountAtAGlance.Repository.AssemblyInfo.cs
+D:\work\POCs\AccountAtAGlance-ASPCore-master\src\AccountAtAGlance.Repository\obj\Debug\netcoreapp2.1\AccountAtAGlance.Repository.csproj.CopyComplete
+D:\work\POCs\AccountAtAGlance-ASPCore-master\src\AccountAtAGlance.Repository\obj\Debug\netcoreapp2.1\AccountAtAGlance.Repository.dll
+D:\work\POCs\AccountAtAGlance-ASPCore-master\src\AccountAtAGlance.Repository\obj\Debug\netcoreapp2.1\AccountAtAGlance.Repository.pdb

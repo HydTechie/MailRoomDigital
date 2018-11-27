@@ -5,6 +5,10 @@ VisualStudioVersion = 15.0.27703.2042
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "DigitalMailRoomMvc", "DigitalMailRoomMvc\DigitalMailRoomMvc.csproj", "{7B2AC582-D2D0-4DCC-A0A5-CC19D3152590}"
 EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MailRoom.Repository", "MailRoom.Repository\MailRoom.Repository.csproj", "{A41FD7B0-2670-4958-9033-8D4C5607281A}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MailRoom.Model", "MailRoom.Model\MailRoom.Model.csproj", "{89555CCC-3816-4F06-A43F-F1EAEFB71EB3}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -15,6 +19,14 @@ Global
 		{7B2AC582-D2D0-4DCC-A0A5-CC19D3152590}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{7B2AC582-D2D0-4DCC-A0A5-CC19D3152590}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{7B2AC582-D2D0-4DCC-A0A5-CC19D3152590}.Release|Any CPU.Build.0 = Release|Any CPU
+		{A41FD7B0-2670-4958-9033-8D4C5607281A}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{A41FD7B0-2670-4958-9033-8D4C5607281A}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{A41FD7B0-2670-4958-9033-8D4C5607281A}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{A41FD7B0-2670-4958-9033-8D4C5607281A}.Release|Any CPU.Build.0 = Release|Any CPU
+		{89555CCC-3816-4F06-A43F-F1EAEFB71EB3}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{89555CCC-3816-4F06-A43F-F1EAEFB71EB3}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{89555CCC-3816-4F06-A43F-F1EAEFB71EB3}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{89555CCC-3816-4F06-A43F-F1EAEFB71EB3}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

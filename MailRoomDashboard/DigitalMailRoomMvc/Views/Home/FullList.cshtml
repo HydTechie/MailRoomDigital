@@ -1,5 +1,13 @@
-﻿@{
+﻿
+@{
     ViewData["Title"] = "About";
+}
+
+@{
+    var format = "dd-MM-yyyy"; // your datetime format
+    var dateTimeConverter = new Newtonsoft.Json.Converters.IsoDateTimeConverter { DateTimeFormat = format };
+    var claimList = Newtonsoft.Json.JsonConvert
+        .DeserializeObject<List<ClaimEntity>>("[{\"PatientId\":403264,\"ClaimId\":7918,\"ColumnsToVerify\":5,\"ConfidenceScore\":90,\"SubmissionDate\":\"25-11-2018\",\"ExtractedDate\":\"27-11-2018\"},{\"PatientId\":403265,\"ClaimId\":7919,\"ColumnsToVerify\":6,\"ConfidenceScore\":80,\"SubmissionDate\":\"24-11-2018\",\"ExtractedDate\":\"27-11-2018\"},{\"PatientId\":403266,\"ClaimId\":7920,\"ColumnsToVerify\":2,\"ConfidenceScore\":75,\"SubmissionDate\":\"23-11-2018\",\"ExtractedDate\":\"27-11-2018\"},{\"PatientId\":403267,\"ClaimId\":7921,\"ColumnsToVerify\":1,\"ConfidenceScore\":82,\"SubmissionDate\":\"22-11-2018\",\"ExtractedDate\":\"27-11-2018\"},{\"PatientId\":403268,\"ClaimId\":7922,\"ColumnsToVerify\":7,\"ConfidenceScore\":83,\"SubmissionDate\":\"21-11-2018\",\"ExtractedDate\":\"27-11-2018\"}]", dateTimeConverter);
 }
 <div class="container-fluid">
     <div class="col-xs-12">
@@ -8,25 +16,55 @@
                 <h2>Verification Required</h2>
             </div>
             <div class="col-sm-12 col-md-3">
-                @Html.TextBox("myTextBox", "This is value", new { @class = "form-control" })
+                <input type="text" id="searchField" placeholder=" Search Patient ID" style="margin-top:20px;height:30px;border-radius:8px;border-width:thin;" />
+            </div>
+            <div class="col-md-3">
+            </div>
+            <div class="col-sm-12 col-md-3" style="margin-top:20px;text-align:right">
+                <a href='@Url.Action("FullList", "Home")' style="cursor:pointer" title="Refresh">
+                    <img src="~/images/RefreshIcon.png" style="height:20px;width:20px;" />
+                </a>
             </div>
         </div>
         <div class="row">
-            <table id="example" data-unique-id="Code" data-sort-name="Code" data-sort-order="asc" data-classes="table table-condensed table-hover table-striped" data-toggle="table" data-side-pagination="server" data-url="Load" data-pagination="true" data-search="true" data-show-refresh="true" data-toolbar="#toolbar" data-page-size="20" data-page-list="[5,10,20,50,100,All]" cellspacing="0">
+            <table id="example" class="table table-striped table-bordered" style="width:100%">
                 <thead>
                     <tr>
-                        <th data-field="PatientId" data-sortable="false"
-                            data-halign="center" data-align="center"
-                            data-formatter="flagFormatter">Patient Id</th>
-                        <th data-field="ClaimId" data-sortable="true"
-                            data-halign="center" data-align="center">Claim Id</th>
-                        <th data-field="ColumnsToVerify" data-sortable="true">Columns to verify</th>
-                        <th data-field="ConfidenceScore" data-sortable="true">Confidence Score</th>
-                        <th data-field="SubmissionDate" data-sortable="true">Submitted Date</th>
-                        <th data-field="ExtractedDate" data-sortable="true">Extracted Date</th>
+                        <th>Patient Id</th>
+                        <th>Claim Id</th>
+                        <th>Columns to verify</th>
+                        <th>Confidence Score</th>
+                        <th>Submitted Date</th>
+                        <th>Extracted Date</th>
                     </tr>
                 </thead>
+                <tbody>
+                    @foreach (var claimItem in claimList)
+                    {
+                        <tr>
+                            <td>@claimItem.PatientId</td>
+                            <td>@claimItem.ClaimId</td>
+                            <td>@claimItem.ColumnsToVerify</td>
+                            <td>@claimItem.ConfidenceScore</td>
+                            <td>@claimItem.SubmissionDate</td>
+                            <td>@claimItem.ExtractedDate</td>
+                        </tr>
+                    }
+                </tbody>
             </table>
+            <script>
+                var table = $('#example').DataTable({ "dom": 'rt<"bottom"ip><"clear">' });
+                table.column(0).every(function () {
+                    var that = this;
+                    $('#searchField').on('keyup change', function () {
+                        if (that.search() !== this.value) {
+                            that
+                                .search(this.value)
+                                .draw();
+                        }
+                    });
+                });
+            </script>
         </div>
     </div>
 </div>

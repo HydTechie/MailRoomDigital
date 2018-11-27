@@ -7,6 +7,12 @@
   <ItemGroup>
     <PackageReference Include="jQuery.DataTables.Net" Version="1.10.5" />
     <PackageReference Include="Microsoft.AspNetCore.App" />
+    <PackageReference Include="Pomelo.EntityFrameworkCore.MySql" Version="2.1.2" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\MailRoom.Model\MailRoom.Model.csproj" />
+    <ProjectReference Include="..\MailRoom.Repository\MailRoom.Repository.csproj" />
   </ItemGroup>
 
   <ItemGroup>
