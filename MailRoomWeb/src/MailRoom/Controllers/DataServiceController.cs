@@ -29,7 +29,7 @@ namespace MailRoom.Controllers
 
 
         [HttpGet("Claim/{insureId}")]
-        public async Task<IActionResult> StagingClaim(string insureId)
+        public async Task<IActionResult> StagingclaimCms1500(string insureId)
         {
             var stagingClaim = await _StagingClaimRepository.GetStagingClaimAsync(insureId);
             if (stagingClaim == null)
@@ -531,7 +531,7 @@ namespace MailRoom.Controllers
         //}
 
         //[HttpPost("stagingClaim")]
-        //public async Task<IActionResult> StagingClaim(StagingClaim stagingClaim)
+        //public async Task<IActionResult> StagingclaimCms1500(StagingclaimCms1500 stagingClaim)
         //{
         //    var opStatus = await _StagingClaimRepository.InsertStagingClaimAsync(stagingClaim);
 

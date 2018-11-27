@@ -65,82 +65,82 @@ namespace DigitalMailRoomMvc.Controllers
             new ClaimEntity{ ClaimId=457898,PatientId=54443,ColumnsToVerify=6,ConfidenceScore=80,SubmissionDate=new DateTime(2018,06,15),ExtractedDate=DateTime.Today}
         };
 
-        [HttpGet]
-        public ActionResult Load(String sort, String order, String search, Int32 limit, Int32 offset)
-        {
-            // Get entity fieldnames
-            List<String> columnNames = typeof(ClaimEntity).GetProperties(BindingFlags.Public |
-                                       BindingFlags.Instance).Select(p => p.Name).ToList();
+        //[HttpGet]
+        //public ActionResult Load(String sort, String order, String search, Int32 limit, Int32 offset)
+        //{
+        //    // Get entity fieldnames
+        //    List<String> columnNames = typeof(ClaimEntity).GetProperties(BindingFlags.Public |
+        //                               BindingFlags.Instance).Select(p => p.Name).ToList();
 
-            // Create a separate list for searchable field names   
-            List<String> searchFields = new List<String>(columnNames);
+        //    // Create a separate list for searchable field names   
+        //    List<String> searchFields = new List<String>(columnNames);
 
-            // Exclude field Iso2 for filtering 
-            searchFields.Remove("ISO2");
+        //    // Exclude field Iso2 for filtering 
+        //    searchFields.Remove("ISO2");
 
-            // Perform filtering
-            IQueryable<ClaimEntity> items = SearchItems(claimList.AsQueryable<ClaimEntity>, search, searchFields);
+        //    // Perform filtering
+        //    IQueryable<ClaimEntity> items = SearchItems(claimList.AsQueryable<ClaimEntity>, search, searchFields);
 
-            // Sort the filtered items and apply paging
-            return Content(ItemsToJson
-            (items, columnNames, sort, order, limit, offset), "application/json");
-        }
+        //    // Sort the filtered items and apply paging
+        //    return Content(ItemsToJson
+        //    (items, columnNames, sort, order, limit, offset), "application/json");
+        //}
 
-        protected String ItemsToJson(IQueryable items, List<String> columnNames, String sort, String order, Int32 limit, Int32 offset)
-        {
-            try
-            {
-                // where clause is set, count total records
-                Int32 count = items.Count();
+        //protected String ItemsToJson(IQueryable items, List<String> columnNames, String sort, String order, Int32 limit, Int32 offset)
+        //{
+        //    try
+        //    {
+        //        // where clause is set, count total records
+        //        Int32 count = items.Count();
 
-                // Skip requires sorting, so make sure there is always sorting
-                String sortExpression = "";
+        //        // Skip requires sorting, so make sure there is always sorting
+        //        String sortExpression = "";
 
-                if (sort != null && sort.Length > 0)
-                    sortExpression += String.Format("{0} {1}", sort, order);
+        //        if (sort != null && sort.Length > 0)
+        //            sortExpression += String.Format("{0} {1}", sort, order);
 
-                // show all records if limit is not set
-                if (limit == 0)
-                    limit = count;
+        //        // show all records if limit is not set
+        //        if (limit == 0)
+        //            limit = count;
 
-                // Prepare json structure
-                var result = new
-                {
-                    total = count,
-                    rows = items.OrderBy(sortExpression).Skip(offset).Take(limit).Select("new (" + String.Join(",", columnNames) + ")")
-                };
+        //        // Prepare json structure
+        //        var result = new
+        //        {
+        //            total = count,
+        //            rows = items.OrderBy(sortExpression).Skip(offset).Take(limit).Select("new (" + String.Join(",", columnNames) + ")")
+        //        };
 
-                return JsonConvert.SerializeObject(result, Formatting.None, new JsonSerializerSettings() { MetadataPropertyHandling = MetadataPropertyHandling.Ignore });
-            }
-            catch (Exception ex)
-            {
-                Console.WriteLine(ex.Message);
-                return null;
-            }
-        }
+        //        return JsonConvert.SerializeObject(result, Formatting.None, new JsonSerializerSettings() { MetadataPropertyHandling = MetadataPropertyHandling.Ignore });
+        //    }
+        //    catch (Exception ex)
+        //    {
+        //        Console.WriteLine(ex.Message);
+        //        return null;
+        //    }
+        //}
 
 
-        // needs System.Linq.Dynamic.Core
-        protected IQueryable SearchItems(IQueryable<ClaimEntity> items, String search, List<String> columnNames)
-        {
-            // Apply filtering to all visible column names
-            if (search != null && search.Length > 0)
-            {
-                StringBuilder sb = new StringBuilder();
+        //// needs System.Linq.Dynamic.Core
+        //protected IQueryable SearchItems(IQueryable<ClaimEntity> items, String search, List<String> columnNames)
+        //{
+        //    // Apply filtering to all visible column names
+        //    if (search != null && search.Length > 0)
+        //    {
+        //        StringBuilder sb = new StringBuilder();
 
-                // create dynamic Linq expression
-                foreach (String fieldName in columnNames)
-                    sb.AppendFormat("({0} == null ? false : {0}.ToString().IndexOf(@0, @1) >=0) or {1}", fieldName, Environment.NewLine);
+        //        // create dynamic Linq expression
+        //        foreach (String fieldName in columnNames)
+        //            sb.AppendFormat("({0} == null ? false : {0}.ToString().IndexOf(@0, @1) >=0) or {1}", fieldName, Environment.NewLine);
 
-                String searchExpression = sb.ToString();
-                // remove last "or" occurrence
-                searchExpression = searchExpression.Substring(0, searchExpression.LastIndexOf("or"));
+        //        String searchExpression = sb.ToString();
+        //        // remove last "or" occurrence
+        //        searchExpression = searchExpression.Substring(0, searchExpression.LastIndexOf("or"));
 
-                // Apply filtering, 
-                items = items.Where(searchExpression, search, StringComparison.OrdinalIgnoreCase);
-            }
+        //        // Apply filtering, 
+        //        items = items.Where(searchExpression, search, StringComparison.OrdinalIgnoreCase);
+        //    }
 
-            return items;
-        }
+        //    return items;
+        //}
     }
 }

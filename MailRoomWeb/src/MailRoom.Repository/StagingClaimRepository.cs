@@ -32,13 +32,13 @@ namespace MailRoom.Repository
         //        .SingleOrDefaultAsync(c => c.CustomerCode == custId);
         //}
 
-        //public async Task<OperationStatus> InsertStagingClaimAsync(StagingClaim stagingClaim)
+        //public async Task<OperationStatus> InsertStagingClaimAsync(StagingclaimCms1500 stagingClaim)
         //{
         //    //simulate insert operation success
         //    return await Task.Run(() => new OperationStatus { Status = true });
         //}
 
-        //public async Task<StagingClaim> GetStagingClaimAsync(string insureId)
+        //public async Task<StagingclaimCms1500> GetStagingClaimAsync(string insureId)
         //{
         //    if (String.IsNullOrEmpty(insureId)) return null;
         //    return await UpdateStagingClaimAsync(insureId);
@@ -84,11 +84,11 @@ namespace MailRoom.Repository
         }
 
 
-        //public async Task<StagingClaim> GetDashboardAsync(string reviewerId)
+        //public async Task<StagingclaimCms1500> GetDashboardAsync(string reviewerId)
         //{
         //    throw NotImplementedException();
         //    ////if (String.IsNullOrEmpty(insuredId)) return null;
-        //    //return await DataContext.StagingClaim
+        //    //return await DataContext.StagingclaimCms1500
         //    //    //.Include(ba => ba.Orders)
         //    //    //.Include(ba => ba.Positions)
         //    //    .SingleOrDefaultAsync(c => c.ReviewerId == reviewerId);
@@ -131,13 +131,13 @@ namespace MailRoom.Repository
         //    return opStatus;
         //}
 
-        //private List<StagingClaim> CreateStagingClaims(Customer cust)
+        //private List<StagingclaimCms1500> CreateStagingClaims(Customer cust)
         //{
-        //    List<StagingClaim> stagingClaims = new List<StagingClaim>();
-        //    string[] stagingClaimTitles = { "IRA", "Joint Brokerage", "Brokerage StagingClaim" };
+        //    List<StagingclaimCms1500> stagingClaims = new List<StagingclaimCms1500>();
+        //    string[] stagingClaimTitles = { "IRA", "Joint Brokerage", "Brokerage StagingclaimCms1500" };
         //    for (int i = 0; i < stagingClaimTitles.Length; i++)
         //    {
-        //        var stagingClaim = new StagingClaim
+        //        var stagingClaim = new StagingclaimCms1500
         //        {
         //            StagingClaimNumber = "Z48573988" + i.ToString(),
         //            StagingClaimTitle = stagingClaimTitles[i],
@@ -173,162 +173,265 @@ namespace MailRoom.Repository
 
                     var detail1 = new StagingClaimCms1500Detail
                     {
-                         _24aServiceStartDate = new DateTime(rdm.Next(1900, 2000), rdm.Next(1, 12), rdm.Next(1, 28)),
-                        _24aServiceEndDate = new DateTime(rdm.Next(1900, 2000), rdm.Next(1, 12), rdm.Next(1, 28)),
-                         _24bPlaceofService = "place of service" + rdm.Next(1900, 2000),
+                         _24aServiceStartMm = rdm.Next(1, 12),
+                        _24aServiceStartDd = rdm.Next(1, 28), 
+                        _24aServiceStartYyyy =  rdm.Next(1900, 2000),
 
-                        _24cEmg = "EMG" + rdm.Next(1, 9),
-                        _24dCpthcpcs = "_24dCpthcpcs" + rdm.Next(1, 9),
-                        _24dModifier = "_24dModifier" + rdm.Next(1, 9),
+                        _24aServiceEndMm = rdm.Next(1, 12),
+                        _24aServiceEndDd = rdm.Next(1, 28),
+                        _24aServiceEndYyyy = rdm.Next(1900, 2000),
+
+                        _24bPlaceofService =  rdm.Next(10, 99),
+                      
+                        _24cEmg = "Y" ,
+                        _24dCpthcpcs = rdm.Next(1, 9),
+                        _24dModifier = rdm.Next(1, 9),
 
                         _24eDiagnosisPointer = "DP " + rdm.Next(1, 9),
-                        _24fCharges = Convert.ToDecimal(rdm.Next(1900, 2000)),
+                        _24fChargesDollar =  rdm.Next(1900, 2000) ,
+                        _24fChargesCents = rdm.Next(0, 99),
                         _24gDaysOrUnits = rdm.Next(1, 20).ToString(),
 
-                        _24hEpsdt = "" + rdm.Next(1, 20).ToString(),
-                        _24iQual = "" + rdm.Next(1, 20).ToString(),
-                        _24jRenderingProviderId = rdm.Next(1000, 2000)
- 
+                        _24hEpsdtcode = "AV",
+                        _24hEpsdtyn = "Y",
+                        _24iQual = "QQ",
+                        _24jRenderingProviderNpiid = rdm.Next(1000, 2000),
+                        _24jRenderingProviderId = rdm.Next(1000, 2000),
+
+                        
+
                     };
                     var detail2 = new StagingClaimCms1500Detail
                     {
-                        _24aServiceStartDate = new DateTime(rdm.Next(1900, 2000), rdm.Next(1, 12), rdm.Next(1, 28)),
-                        _24aServiceEndDate = new DateTime(rdm.Next(1900, 2000), rdm.Next(1, 12), rdm.Next(1, 28)),
-                        _24bPlaceofService = "place of service" + rdm.Next(1900, 2000),
+                        _24aServiceStartMm = rdm.Next(1, 12),
+                        _24aServiceStartDd = rdm.Next(1, 28),
+                        _24aServiceStartYyyy = rdm.Next(1900, 2000),
 
-                        _24cEmg = "EMG" + rdm.Next(1, 9),
-                        _24dCpthcpcs = "_24dCpthcpcs" + rdm.Next(1, 9),
-                        _24dModifier = "_24dModifier" + rdm.Next(1, 9),
+                        _24aServiceEndMm = rdm.Next(1, 12),
+                        _24aServiceEndDd = rdm.Next(1, 28),
+                        _24aServiceEndYyyy = rdm.Next(1900, 2000),
+
+                        _24bPlaceofService = rdm.Next(10, 99),
+
+                        _24cEmg = "Y",
+                        _24dCpthcpcs = rdm.Next(1, 9),
+                        _24dModifier = rdm.Next(1, 9),
 
                         _24eDiagnosisPointer = "DP " + rdm.Next(1, 9),
-                        _24fCharges = Convert.ToDecimal(rdm.Next(1900, 2000)),
+                        _24fChargesDollar = rdm.Next(1900, 2000),
+                        _24fChargesCents = rdm.Next(0, 99),
                         _24gDaysOrUnits = rdm.Next(1, 20).ToString(),
 
-                        _24hEpsdt = "" + rdm.Next(1, 20).ToString(),
+                        _24hEpsdtcode = "AV",
+                        _24hEpsdtyn = "Y",
                         _24iQual = "" + rdm.Next(1, 20).ToString(),
-                        _24jRenderingProviderId = rdm.Next(1000, 2000)
+                        _24jRenderingProviderNpiid = rdm.Next(1000, 2000),
+                        _24jRenderingProviderId = rdm.Next(1000, 2000),
+
+
 
                     };
                     var detail3 = new StagingClaimCms1500Detail
                     {
-                        _24aServiceStartDate = new DateTime(rdm.Next(1900, 2000), rdm.Next(1, 12), rdm.Next(1, 28)),
-                        _24aServiceEndDate = new DateTime(rdm.Next(1900, 2000), rdm.Next(1, 12), rdm.Next(1, 28)),
-                        _24bPlaceofService = "place of service" + rdm.Next(1900, 2000),
+                        _24aServiceStartMm = rdm.Next(1, 12),
+                        _24aServiceStartDd = rdm.Next(1, 28),
+                        _24aServiceStartYyyy = rdm.Next(1900, 2000),
 
-                        _24cEmg = "EMG" + rdm.Next(1, 9),
-                        _24dCpthcpcs = "_24dCpthcpcs" + rdm.Next(1, 9),
-                        _24dModifier = "_24dModifier" + rdm.Next(1, 9),
+                        _24aServiceEndMm = rdm.Next(1, 12),
+                        _24aServiceEndDd = rdm.Next(1, 28),
+                        _24aServiceEndYyyy = rdm.Next(1900, 2000),
+
+                        _24bPlaceofService = rdm.Next(10, 99),
+
+                        _24cEmg = "Y",
+                        _24dCpthcpcs = rdm.Next(1, 9),
+                        _24dModifier = rdm.Next(1, 9),
 
                         _24eDiagnosisPointer = "DP " + rdm.Next(1, 9),
-                        _24fCharges = Convert.ToDecimal(rdm.Next(1900, 2000)),
+                        _24fChargesDollar = rdm.Next(1900, 2000),
+                        _24fChargesCents = rdm.Next(0, 99),
                         _24gDaysOrUnits = rdm.Next(1, 20).ToString(),
 
-                        _24hEpsdt = "" + rdm.Next(1, 20).ToString(),
+                        _24hEpsdtcode = "AV",
+                        _24hEpsdtyn = "Y",
                         _24iQual = "" + rdm.Next(1, 20).ToString(),
-                        _24jRenderingProviderId = rdm.Next(1000, 2000)
+                        _24jRenderingProviderNpiid = rdm.Next(1000, 2000),
+                        _24jRenderingProviderId = rdm.Next(1000, 2000),
+
+
 
                     };
                     var detail4 = new StagingClaimCms1500Detail
                     {
-                        _24aServiceStartDate = new DateTime(rdm.Next(1900, 2000), rdm.Next(1, 12), rdm.Next(1, 28)),
-                        _24aServiceEndDate = new DateTime(rdm.Next(1900, 2000), rdm.Next(1, 12), rdm.Next(1, 28)),
-                        _24bPlaceofService = "place of service" + rdm.Next(1900, 2000),
+                        _24aServiceStartMm = rdm.Next(1, 12),
+                        _24aServiceStartDd = rdm.Next(1, 28),
+                        _24aServiceStartYyyy = rdm.Next(1900, 2000),
 
-                        _24cEmg = "EMG" + rdm.Next(1, 9),
-                        _24dCpthcpcs = "_24dCpthcpcs" + rdm.Next(1, 9),
-                        _24dModifier = "_24dModifier" + rdm.Next(1, 9),
+                        _24aServiceEndMm = rdm.Next(1, 12),
+                        _24aServiceEndDd = rdm.Next(1, 28),
+                        _24aServiceEndYyyy = rdm.Next(1900, 2000),
+
+                        _24bPlaceofService = rdm.Next(10, 99),
+
+                        _24cEmg = "Y",
+                        _24dCpthcpcs = rdm.Next(1, 9),
+                        _24dModifier = rdm.Next(1, 9),
 
                         _24eDiagnosisPointer = "DP " + rdm.Next(1, 9),
-                        _24fCharges = Convert.ToDecimal(rdm.Next(1900, 2000)),
+                        _24fChargesDollar = rdm.Next(1900, 2000),
+                        _24fChargesCents = rdm.Next(0, 99),
                         _24gDaysOrUnits = rdm.Next(1, 20).ToString(),
 
-                        _24hEpsdt = "" + rdm.Next(1, 20).ToString(),
+                        _24hEpsdtcode = "AV",
+                        _24hEpsdtyn = "Y",
                         _24iQual = "" + rdm.Next(1, 20).ToString(),
-                        _24jRenderingProviderId = rdm.Next(1000, 2000)
+                        _24jRenderingProviderNpiid = rdm.Next(1000, 2000),
+                        _24jRenderingProviderId = rdm.Next(1000, 2000),
+
+
 
                     };
-
                     var StagingclaimCms1500Item = new
                         StagingClaimCms1500
                     {
-                         
+
                         //alpha order
-                         _1PayerType = "PayerType" + rdm.Next(99, 1000),
-                        
-                        _1aPatientInsuredId= " " + rdm.Next(99, 1000),
+                        IaPayerName = "IaPayerName" + rdm.Next(99, 1000),
+                        IbPayerAddress1 = "IbPayerAddress1" + rdm.Next(99, 1000),
+                        IcPayerAddress2 = "IcPayerAddress2" + rdm.Next(99, 1000),
+                        IdPayerCity = "NY",
+                        IdPayerState = "NY",
+                        IdPayerZipcode = "07304",
 
-                        _2PatientName = "_2PatientName" + rdm.Next(99, 1000),
-                        _3PatientBirthDate= new DateTime(rdm.Next(1900, 2000), rdm.Next(1, 12), rdm.Next(1, 28)),
-                        _3aPatientGender = "M",
-                        _4InsuredName = "insured name" + rdm.Next(99, 1000),
+                        _1PayerType = "test" + rdm.Next(99, 1000),
 
-                        _5PatientAddressStreet= "_5PatientAddr " + rdm.Next(99, 1000),
-                        _5PatientAddressCity= "_5Patient City" + rdm.Next(99, 1000),
-                        _5PatientAddressState= "_5Patient State" + rdm.Next(99, 1000),
-                        _5PatientAddress= "_5PatientAddress" + rdm.Next(99, 1000),
+                        _1aPatientInsuredId = " " + rdm.Next(99, 1000),
+
+                        _2aPatientLastName = "_2PatientName" + rdm.Next(99, 1000),
+
+                        _2bSuffix = "_2bSuffix" + rdm.Next(99, 1000),
+                        _2dPatientMiddleName = "_2dPatientMiddleName" + rdm.Next(99, 1000),
+                        _2cPatientFirstName = "_2PatientName" + rdm.Next(99, 1000),
+
+                        _3PatientBirthMm = rdm.Next(1, 12),
+                        _3PatientBirthDd = rdm.Next(1, 12),
+                        _3PatientBirthYyyy = rdm.Next(1, 12),
+
+                        _3PatientGender = "M",
+
+                        _4InsuredFirstName = "_4InsuredFirstName" + rdm.Next(99, 1000),
+                        _4InsuredMiddleName = "_4InsuredFirstName" + rdm.Next(99, 1000),
+                        _4InsuredLastName = "_4InsuredFirstName" + rdm.Next(99, 1000),
+                        _4InsuredSuffix = "MR",
+
+
+                        _5PatientAddressStreet = "_5PatientAddr " + rdm.Next(99, 1000),
+                        _5PatientAddressCity = "NYC" + rdm.Next(99, 1000),
+                        _5PatientAddressState = "NY" ,
+                        _5PatientAreaCode = rdm.Next(99, 1000).ToString(),
+                        _5PatientTelePhone = rdm.Next(99, 1000).ToString(),
+                        _5PatientZipCode = rdm.Next(99, 1000).ToString(),
 
                         _6PatientRelationToInsured = "rel " + rdm.Next(99, 1000),
-                        _7InsuredAddressStreet= "_7InsuredAddressStreet" + rdm.Next(99, 1000),
-                        _7InsuredAddressCity= "_7InsuredAddressCity" + rdm.Next(99, 1000),
-                        _7InsuredAddressState= "_7InsuredAddressState" + rdm.Next(99, 1000),
-                        _7InsuredAddressZip = "_7" + rdm.Next(99, 1000),
-                        _7InsuredAddressTelephone= " " + rdm.Next(99, 1000),
-
-                        _8ReservedNucc= "_8ReservedNucc" + rdm.Next(99, 1000),
-
+                        _7InsuredAddressStreet = "_7InsuredAddressStreet" + rdm.Next(99, 1000),
+                        _7InsuredAddressCity = "NYC" ,
+                        _7InsuredAddressState = "NY" ,
+                        _7InsuredAreaCode = rdm.Next(99, 1000).ToString(),
+                        _7InsuredTelephone = rdm.Next(99, 1000).ToString(),
+                        _7InsuredZipCode = rdm.Next(99, 1000).ToString(),
 
 
-                        _9OtherPayerInsuredName = "_9 Name" + rdm.Next(99, 1000),
-                        _9aOtherPayerGroup = "_9aOtherPayerGroup" + rdm.Next(99, 1000),
+                        _8ReservedNucc = "_8ReservedNucc" + rdm.Next(99, 1000),
+
+
+
+                        _9aOtherPolicyGroup = "_9 Name" + rdm.Next(99, 1000),
+                        _9OtherInsuredFirstName = "_9OtherInsuredFirstName" + rdm.Next(99, 1000),
                         _9bOtherReservedNucc = "_9bOtherReservedNucc" + rdm.Next(99, 1000),
                         _9cOtherReservedNucc = "_9cOtherReservedNucc" + rdm.Next(99, 1000),
                         _9cOtherInsuranceName = "_9cOtherInsuranceName" + rdm.Next(99, 1000),
+                        _9OtherInsuredLastName = "_9OtherInsuredFirstName" + rdm.Next(99, 1000),
+                        _9OtherInsuredMiddleName = "_9OtherInsuredFirstName" + rdm.Next(99, 1000),
+                        _9OtherInsuredSuffix = "Mrs",
+
                         //Y,                       N,                        NULL
-  _10aPatientConditionEmployment = "N",
+                        _10aPatientConditionEmployment = "N",
                         _10bPatientConditionAuto = "Y",
+                        _10bPatientConditionPlace = "NY",
+                        _10cPatientConditionOther = "N",
+                        _10dClaimCodes = "_10dClaimCodes" + rdm.Next(99, 1000),
                         //Y - NY,                    N,                        NULL
 
 
-   _10cPatientConditionOther = "N",
-                       // --Y,                         N,                         NULL
-  _10dClaimCodes = "_10dClaimCodes" + rdm.Next(99, 1000),
 
-                        _11InsuredPolicyGroup = rdm.Next(1111, 9999),
+                        // --Y,                         N,                         NULL
 
-                        _11aInsuredBirthDate= new DateTime(rdm.Next(1900, 2000), rdm.Next(1, 12), rdm.Next(1, 28)),
+
+                        _11InsuredPolicyGroup = rdm.Next(1111, 9999).ToString(),
+
+                        _11aInsuredBirthMm = rdm.Next(1, 12),
+                        _11aInsuredBirthDd = rdm.Next(1, 28),
+                        _11aInsuredBirthYyyy = rdm.Next(1900, 2000),
+
                         _11aInsuredGender = "M",
-                        _11bOtherClaimId = "_11bOtherClaimId" + rdm.Next(99, 1000),
-                        _11cInsurancePlanName= "_11cInsurancePlanName" + rdm.Next(99, 1000),
-                        _11cOtherClaimIdNucc= "_11cOtherClaimIdNUCC" + rdm.Next(99, 1000),
+                        _11bOtherClaimIdQual = "QA",
+                        _11bOtherClaimId = "_11c" + rdm.Next(99, 1000),
+                        _11cInsurancePlanName = "_11cOtherClaimIdNUCC" + rdm.Next(99, 1000),
                         _11dIsAnotherHealthPlan = "Y",
 
-                        _12PatientAuthorizedSignatureImageUrl= "PayerType" + rdm.Next(99, 1000),
-                        _12PatientAuthorizedSignatureDate= new DateTime(rdm.Next(1900, 2000), rdm.Next(1, 12), rdm.Next(1, 28)),
+                        _12PatientAuthorizedSignatureImageUrl = "test" + rdm.Next(99, 1000),
+                        _12PatientAuthorizedSignatureMm = rdm.Next(1, 12),
+                        _12PatientAuthorizedSignatureDd = rdm.Next(1, 28),
+                        _12PatientAuthorizedSignatureYyyy = rdm.Next(1900, 2000),
 
-                        _13InsuredAuthorizedSignatureImageUrl= "PayerType" + rdm.Next(99, 1000),
-
-
-
-                        _14DateOfCurrentIllness= new DateTime(rdm.Next(1900, 2000), rdm.Next(1, 12), rdm.Next(1, 28)),
-                        _14DateOfCurrentIllnessQual= new DateTime(rdm.Next(1900, 2000), rdm.Next(1, 12), rdm.Next(1, 28)),
-
-                        _15OtherDate= new DateTime(rdm.Next(1900, 2000), rdm.Next(1, 12), rdm.Next(1, 28)),
-                        _15OtherQual= "Q" + rdm.Next(99, 1000),
+                        _13InsuredAuthorizedSignatureImageUrl = "test" + rdm.Next(99, 1000),
 
 
-                        _16PatientUnableToWorkStartDate = new DateTime(rdm.Next(1900, 2000), rdm.Next(1, 12), rdm.Next(1, 28)),
-                        _16PatientUnableToWorkEndDate= new DateTime(rdm.Next(1900, 2000), rdm.Next(1, 12), rdm.Next(1, 28)),
 
-                        _17ReferringProvider= "PayerType" + rdm.Next(99, 1000),
+                        _14CurrentIllnessDd = rdm.Next(1, 28),
+                        _14CurrentIllnessMm = rdm.Next(1, 12),
+                        _14CurrentIllnessYyyy = rdm.Next(1900, 2000),
 
-                        _17aNonNpireferringProvider= "PayerType" + rdm.Next(99, 1000),
+                        _14DateOfCurrentIllnessQual = "IND",
 
-                        _18HospitalizationStartDate= new DateTime(rdm.Next(1900, 2000), rdm.Next(1, 12), rdm.Next(1, 28)),
-                        _18HospitalizationEndDate= new DateTime(rdm.Next(1900, 2000), rdm.Next(1, 12), rdm.Next(1, 28)),
-                        _19AdditionalClaimInfo= "PayerType" + rdm.Next(99, 1000),
+                        _15OtherDateMm = rdm.Next(1, 12),
+                        _15OtherDateDd = rdm.Next(1, 28),
+                        _15OtherDateYyyy = rdm.Next(1900, 2000),
 
-                        _20OutsideLab ="Y",
-                        // --TODO: should it be bool or string
+                        _15OtherQual = "QP" ,
+
+
+                        _16PatientUnableToWorkStartMm = rdm.Next(1, 12),
+                        _16PatientUnableToWorkStartDd = rdm.Next(1, 28),
+                        _16PatientUnableToWorkStartYyyy = rdm.Next(1900, 2000),
+
+                        _16PatientUnableToWorkEndMm = rdm.Next(1, 12),
+                        _16PatientUnableToWorkEndDd = rdm.Next(1, 28),
+                        _16PatientUnableToWorkEndYyyy = rdm.Next(1900, 2000),
+
+                        _17ReferringProviderName = "test" + rdm.Next(99, 1000),
+
+                        _17aNonNpireferringProviderQual = "QA" ,
+                        _17aNonNpireferringProvider = "NPI" + rdm.Next(99, 1000),
+                        _17aNpireferringProvider = "PR" + rdm.Next(99, 1000),
+                        _17aNpireferringProviderQual = "QA",
+                        _17ReferringProviderQual = "QA",
+
+
+                        _18HospitalizationStartMm = rdm.Next(1, 12),
+                        _18HospitalizationStartDd = rdm.Next(1, 28),
+                        _18HospitalizationStartYyyy = rdm.Next(1900, 2000),
+
+                        _18HospitalizationEndMm = rdm.Next(1, 12),
+                        _18HospitalizationEndDd = rdm.Next(1, 28),
+                        _18HospitalizationEndYyyy = rdm.Next(1900, 2000),
+
+                        _19AdditionalClaimInfo = "test" + rdm.Next(99, 1000),
+
+                        _20OutsideLab = "Y",
+                        _20ChargesCents = "00",
+                        _20ChargesDollars = "130",
+                      
 
 
     _21NatureOfIllnessA= "NatureOfIllnessA" + rdm.Next(99, 1000),
@@ -360,39 +463,52 @@ namespace MailRoom.Repository
     _21NatureOfIllnessL= "_21NatureOfIllnessL" + rdm.Next(99, 1000),
 
 
-    _21Icdind= "_21Icdind" + rdm.Next(99, 1000),
+    _21IcdindQual = "Q",
+    _21IcdindValue = "ind" +rdm.Next(99, 1000),
     //--TODO: Deep / Adharsh
 
-
-
-   _22ResubmissionCode= "PayerType" + rdm.Next(99, 1000),
-   _22OriginalRefNo= "PayerType" + rdm.Next(99, 1000),
-   _23PriorAuthorizationNumber = rdm.Next(99, 1000),
+   _22ResubmissionCodeQual = "QA" ,
+   _22OriginalRefNo= "test" + rdm.Next(99, 1000),
+   _23PriorAuthorizationNumber = rdm.Next(99, 1000).ToString(),
 
                         // --24_ colums move to Child table
 
 
-                        _25FederalTaxId = rdm.Next(99, 1000),
-                        _25IsSsnorEin = "Y" ,
+                        _25FederalTaxId = rdm.Next(99, 1000).ToString(),
+                        _25FederalTaxType = "FA",
+	                  
 	
-	
-	_26PatientAccountNumber= "_26PatientAccountNumber" + rdm.Next(99, 1000) ,
+	_26PatientAccountNumber=  rdm.Next(99, 1000) ,
 	_27AcceptAssignment ="N" ,
-	_28TotalCharge = "PayerType" + rdm.Next(99, 1000) ,
-		_29AmountPaid = "PayerType" + rdm.Next(99, 1000) ,
-			_30Nuccuse = "PayerType" + rdm.Next(99, 1000) ,
+	_28TotalCharges =  rdm.Next(99, 1000) ,
+		_29AmountPaid =  rdm.Next(99, 1000) ,
+        
+			_30NuccuseCode = "AVC" ,
+            _30NuccuseQualifier ="AB",
 			_31PhysicianSignatureImageUrl = "_31 Signature ImageUrl" + rdm.Next(99, 1000) ,
-			_32ServiceFacilityLocationInfo = "_32ServiceFacilityLocationInfo" + rdm.Next(99, 1000) ,
-			_32aServiceFacilityLocationInfo = "_32aServiceFacilityLocationInfo" + rdm.Next(99, 1000) ,
-			_32bServiceFacilityLocationInfo = "_32bServiceFacilityLocationInfo" + rdm.Next(99, 1000) ,
-			
-			_33BillingProviderInfo = "_33BillingProviderInfo" + rdm.Next(99, 1000) ,
-			_33BillingProviderInfoPhone = "_33BillingProviderInfoPhone" + rdm.Next(99, 1000) ,
-			_33aBillingProviderInfo = "_33aBillingProviderInfo" + rdm.Next(99, 1000) ,
-			_33bBillingProviderInfo = "PayerType" + rdm.Next(99, 1000) ,
 
+                        _31PhysicianSignatureDd = rdm.Next(1, 28),
+                        _31PhysicianSignatureMm = rdm.Next(1, 12),
+                        _31PhysicianSignatureYyyy = rdm.Next(1900, 2000),
+                        
 
-                         ConfidenceLevel =  rdm.Next(50, 99),
+                        _32aServiceFacilityProviderId = "_32_" + rdm.Next(99, 1000) ,
+			_32bServiceFacilityBillingProviderId = "_32a_" + rdm.Next(99, 1000) ,
+			_32ServiceFacilityCityStateZipCode = rdm.Next(99, 1000).ToString() ,
+                        _32ServiceFacilityProviderAddress = rdm.Next(99, 1000).ToString(),
+                        _32ServiceFacilityProviderName = rdm.Next(99, 1000).ToString(),
+                        
+
+                        _33aBillingProviderNpi = "_33 " + rdm.Next(99, 1000) ,
+			_33bBillingProviderIdentifier = "MPI" + rdm.Next(99, 1000) ,
+			_33BillingProviderAddress = "_33aBillingProviderInfo" + rdm.Next(99, 1000) ,
+			_33BillingProviderAreaCode = "401" ,
+            _33BillingProviderCityStateZipCode = "NY, 07304",
+            _33BillingProviderName = "_33BillingProviderName" + rdm.Next(99, 1000),
+            _33BillingProviderPhone = "1234567890",
+           
+
+                        ConfidenceLevel =  rdm.Next(50, 99),
                         ParserErrorCsv = "error list" + rdm.Next(99, 1000),
                         ReviewerId = "reviewerId" + rdm.Next(1, 2),
                         ReviewStatus = rdm.Next(0, 3),
@@ -400,75 +516,7 @@ namespace MailRoom.Repository
 
                         CreatedDate = new DateTime(rdm.Next(1900, 2000), rdm.Next(1, 12), rdm.Next(1, 28)),
                         ModifiedDate = new DateTime(rdm.Next(1900, 2000), rdm.Next(1, 12), rdm.Next(1, 28)),
-                       
-                        //    stagingClaimCms1500Details = new StagingClaimCms1500Detail()
-                        //    _27AcceptAssignment = ((rdm.Next(0, 1) == 0) ? "F" : "T"), // T, F
-                        //    _19AdditionalClaimInfo = "_19Additional ClaimInfo " + rdm.Next(99, 1000),
-                        //    //AnotherHealthBenefitPlan = bool.Parse((rdm.Next(0, 1) == 0) ? "False" : "True"),
-
-                        //_33bBillingProviderInfo = "_33bBillingProviderInfo " + rdm.Next(99, 1000),
-                        //    BirthDate = new= new DateTime(rdm.Next(1900, 2000), rdm.Next(1, 12), rdm.Next(1, 28)),Time(rdm.Next(1900, 2000), rdm.Next(1, 12), rdm.Next(1, 28)),
-                        //   = new DateTime(rdm.Next(1900, 2000), rdm.Next(1, 12), rdm.Next(1, 28)),OfIllness = new= new DateTime(rdm.Next(1900, 2000), rdm.Next(1, 12), rdm.Next(1, 28)),Time(rdm.Next(1900, 2000), rdm.Next(1, 12), rdm.Next(1, 28)),
-
-                        //   = new DateTime(rdm.Next(1900, 2000), rdm.Next(1, 12), rdm.Next(1, 28)),OfService = rdm.Next(1, 100),
-                        //    DaysOrUnits = rdm.Next(1, 100),
-                        //    Emg = bool.Parse((rdm.Next(0, 1) == 0) ? "False" : "True"),
-
-                        //    EpsdtfamilyPlan = "FamilyPlan",
-                        //    FacilityNameAddress = "Facility, Name, Adress",
-                        //    FederalTaxId = rdm.Next(99, 1000),
-
-                        //    HospitalizationDates = rdm.Next(99, 1000),
-                        //    //Id = -1,
-                        //    InsurancePlan = "InsurancePlan" + rdm.Next(99, 1000),
-                        //    InsurancePlanName = "InsurancePlanName" + rdm.Next(99, 1000),
-                        //    InsuredAddress = "InsuredAddress" + rdm.Next(99, 1000),
-
-                        //    InsuredAuthorizedSignature = "InsuredAuthorizedSignature" + rdm.Next(99, 1000),
-                        //    InsuredDateOfBirth = (new= new DateTime(rdm.Next(1900, 2000), rdm.Next(1, 12), rdm.Next(1, 28)),Time(rdm.Next(1900, 2000), rdm.Next(1, 12), rdm.Next(1, 28))).ToShortDateString(),
-                        //    InsuredId = rdm.Next(99, 1000).ToString(),
-
-                        //    InsuredName = "InsuredName" + rdm.Next(99, 1000),
-                        //    InsuredPolicyGroup = rdm.Next(99, 1000),
-                        //    NatureOfIllness = "NatureOfIllness" + rdm.Next(99, 1000),
-
-                        //    NoWorkDays = rdm.Next(1, 100),
-                        //    OtherClaimId = "OtherClaimId" + rdm.Next(99, 1000),
-                        //    OtherDate = new= new DateTime(rdm.Next(1900, 2000), rdm.Next(1, 12), rdm.Next(1, 28)),Time(rdm.Next(1900, 2000), rdm.Next(1, 12), rdm.Next(1, 28)),
-
-                        //    OtherInsurance = "OtherInsurance" + rdm.Next(99, 1000),
-                        //    OtherInsuranceNumber = "OtherInsuranceNumber" + rdm.Next(99, 1000),
-                        //    OutsideLab = bool.Parse((rdm.Next(0, 1) == 0) ? "False" : "True"),
-
-                        //    PatientAddress = "PatientAddress" + rdm.Next(99, 1000),
-                        //    PatientAuthorizedSignature = "PatientAuthorizedSignature" + rdm.Next(99, 1000),
-                        //    PatientCondition = bool.Parse((rdm.Next(0, 1) == 0) ? "False" : "True"),
-
-                        //    PatientName = "PatientName" + rdm.Next(99, 1000),
-                        //    PatientStagingClaimNumber = "PatientStagingClaimNumber" + rdm.Next(99, 1000),
-                        //    PlaceOfService = "PlaceOfService" + rdm.Next(99, 1000),
-
-                        //    PriorAuthorizationNumber = rdm.Next(99, 1000),
-                        //    ProcedureCodes = rdm.Next(99, 1000),
-                        //    ProviderBillingNumber = "ProviderBillingNumber" + rdm.Next(99, 1000),
-
-                        //    ReferringProvider = "ReferringProvider" + rdm.Next(99, 1000),
-                        //    RelationToInsured = "RelationToInsured" + rdm.Next(99, 1000),
-                        //    RenderingProviderId = rdm.Next(99, 1000),
-
-                        //    SecondaryRenderingProviderId = rdm.Next(99, 1000),
-                        //    SignatureofProvider = "SignatureofProvider" + rdm.Next(99, 1000),
-                        //    TotalCharge = Convert.ToDecimal(rdm.Next(99, 1000)),
-                        //    TotalClaimAmount = Convert.ToDecimal(rdm.Next(99, 1000)),
-                        //    PatientAccountNumber = "PatientAccountNumber" + rdm.Next(99, 1000),
-
-
-
-
-
-
-
-
+           
                     };
 
                     StagingclaimCms1500Item.StagingclaimCms1500Detail.Add(detail1);
@@ -501,7 +549,7 @@ namespace MailRoom.Repository
 
             while (startOfWeekDate.DayOfWeek != weekStart)
                 startOfWeekDate = startOfWeekDate.AddDays(-1);
-            var claimsByReviewer0 = await DataContext.StagingClaim
+            var claimsByReviewer0 = await DataContext.StagingclaimCms1500
               
               .Where(c => c.ReviewerId == reviewerId && c.ReviewStatus == 0
               && c.ModifiedDate >= startOfWeekDate && c.ModifiedDate <= new DateTime(rdm.Next(1900, 2000), rdm.Next(1, 12), rdm.Next(1, 28))
@@ -516,7 +564,7 @@ namespace MailRoom.Repository
                 Claimcount = g.Count()
             }).FirstOrDefaultAsync();
 
-            var claimsByReviewer1 = await DataContext.StagingClaim
+            var claimsByReviewer1 = await DataContext.StagingclaimCms1500
 
               .Where(c => c.ReviewerId == reviewerId && c.ReviewStatus == 1
               //TODO: remove this !&& c.ModifiedDate >= startOfWeek && c.ModifiedDate <== new DateTime(rdm.Next(1900, 2000), rdm.Next(1, 12), rdm.Next(1, 28)),Time.Now
@@ -531,7 +579,7 @@ namespace MailRoom.Repository
                 Claimcount = g.Count()
             }).FirstOrDefaultAsync();
 
-            var claimsByReviewer2 = await DataContext.StagingClaim
+            var claimsByReviewer2 = await DataContext.StagingclaimCms1500
 
               .Where(c => c.ReviewerId == reviewerId && c.ReviewStatus == 2
               //TODO: remove this !&& c.ModifiedDate >= startOfWeek && c.ModifiedDate <== new DateTime(rdm.Next(1900, 2000), rdm.Next(1, 12), rdm.Next(1, 28)),Time.Now
@@ -574,7 +622,7 @@ namespace MailRoom.Repository
 
 
 
-            var claimsByReviewerWeek = await DataContext.StagingClaim
+            var claimsByReviewerWeek = await DataContext.StagingclaimCms1500
 
               .Where(c => c.ReviewerId == reviewerId && c.ReviewStatus == 0
               && c.ModifiedDate >= previousWeekStart && c.ModifiedDate <= previousWeekEnd

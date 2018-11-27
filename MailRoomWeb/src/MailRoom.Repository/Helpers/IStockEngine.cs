@@ -10,7 +10,7 @@ namespace MailRoom.Repository.Helpers
 {
     public interface IStagingEngine
     {
-         Task<List<StagingClaim>> GetStaginClaimsAsync(params string[] stagingClaims);
+         Task<List<StagingclaimCms1500>> GetStaginClaimsAsync(params string[] stagingClaims);
          
     }
 }

@@ -10,7 +10,7 @@ namespace MailRoom.Repository.Interfaces
         Task<Dashboard> GetDashboardAsync(string reviewerId);
 
         Task<DashboardWeek> GetDashboardByWeekAsync(string reviewerId);
-        ////StagingClaim GetStagingClaim(int id);
+        ////StagingclaimCms1500 GetStagingClaim(int id);
         //Task<Customer> GetCustomerAsync(string custId);
         //Task<OperationStatus> CreateCustomerAsync();
 

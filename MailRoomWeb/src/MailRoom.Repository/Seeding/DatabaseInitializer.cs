@@ -81,7 +81,7 @@ namespace MailRoom.Repository.Seeding
 		                    BEGIN TRANSACTION
 			                    BEGIN TRY
 				                    DELETE FROM Orders;                                              
-				                    DELETE FROM StagingClaim;
+				                    DELETE FROM StagingclaimCms1500;
 				                    DELETE FROM Customers;					
 				                    COMMIT TRANSACTION
 				                    SELECT 0				

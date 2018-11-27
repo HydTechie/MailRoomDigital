@@ -3,7 +3,7 @@ using System.Collections.Generic;
 
 namespace MailRoom.Model
 {
-    public partial class StagingClaim
+    public partial class StagingclaimCms1500
     {
         public int ClaimId { get; set; }
         public string InsuredId { get; set; }
