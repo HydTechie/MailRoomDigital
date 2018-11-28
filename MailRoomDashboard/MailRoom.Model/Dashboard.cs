@@ -12,9 +12,14 @@ namespace MailRoom.Model
         public IDictionary<string, int> ClaimsUB04;
         public IDictionary<string, int> ClaimsCMS100;
 
-        public int TodoTotalCount { get; set; }
-        public int RollbackTotalCount { get; set; }
-        public int CompletedTotalCount { get; set; }
+        public int TodoTotalCountByAllClaimTypes { get; set; }
+        public int RollbackTotalCountByAllClaimTypes { get; set; }
+        public int CompletedTotalCountByAllClaimTypes { get; set; }
+
+        public int TotalClaimsCountByCMS1500PerDay { get; set; }
+        public int TotalClaimsCountByUB04PerDay { get; set; }
+        public int TotalClaimsCountByPK83PerDay { get; set; }
+
         public Dashboard()
         {
             ClaimsPK83 = new Dictionary<string, int>();

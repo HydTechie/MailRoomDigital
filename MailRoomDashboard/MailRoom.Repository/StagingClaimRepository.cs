@@ -543,6 +543,7 @@ namespace MailRoom.Repository
         {
             
             var rdm = new Random((int)DateTime.Now.Ticks);
+            var queryDate = DateTime.Now.AddDays(-1).Date;
 
             //DayOfWeek weekStart = DayOfWeek.Monday; // or Sunday, or whenever
             //var startOfWeekDate = DateTime.Now;
@@ -554,7 +555,7 @@ namespace MailRoom.Repository
             var claimsByReviewer0 = await DataContext.StagingclaimCms1500
               
               .Where(c => c.ReviewerId == reviewerId && c.ReviewStatus == 0
-              && c.ModifiedDate.Value.Date == DateTime.Now.Date
+              && c.ModifiedDate.Value.Date == queryDate
               )
 
             .GroupBy(c => new { c.ReviewerId, c.ReviewStatus }) //
@@ -569,7 +570,7 @@ namespace MailRoom.Repository
             var claimsByReviewer1 = await DataContext.StagingclaimCms1500
 
               .Where(c => c.ReviewerId == reviewerId && c.ReviewStatus == 1
-                && c.ModifiedDate.Value.Date == DateTime.Now.Date
+                && c.ModifiedDate.Value.Date == queryDate
               )
 
             .GroupBy(c => new { c.ReviewerId, c.ReviewStatus }) //
@@ -584,7 +585,7 @@ namespace MailRoom.Repository
             var claimsByReviewer2 = await DataContext.StagingclaimCms1500
 
               .Where(c => c.ReviewerId == reviewerId && c.ReviewStatus == 2
-               && c.ModifiedDate.Value.Date == DateTime.Now.Date
+               && c.ModifiedDate.Value.Date == queryDate
               )
 
             .GroupBy(c => new { c.ReviewerId, c.ReviewStatus }) //
@@ -599,22 +600,37 @@ namespace MailRoom.Repository
 
             // "TODO"-0, "ROLLBACK"-2, "COMPLETED"-1
             Dashboard d = new Dashboard();
-            d.ClaimsCMS100["TODO"] = claimsByReviewer0.Claimcount;
-            d.ClaimsCMS100["COMPLETED"] = claimsByReviewer1.Claimcount;
-            d.ClaimsCMS100["ROLLBACK"] = claimsByReviewer2.Claimcount;
+            if(claimsByReviewer0 != null)
+                d.ClaimsCMS100["TODO"] = claimsByReviewer0.Claimcount;
+
+            if (claimsByReviewer1 != null)
+                d.ClaimsCMS100["COMPLETED"] = claimsByReviewer1.Claimcount;
+
+            if (claimsByReviewer2 != null)
+                d.ClaimsCMS100["ROLLBACK"] = claimsByReviewer2.Claimcount;
             
 
           
             // TODO: fill up other values once other claims types ready, Else carries 0!
 
-            d.CompletedTotalCount = d.ClaimsCMS100["COMPLETED"]
+            d.CompletedTotalCountByAllClaimTypes = d.ClaimsCMS100["COMPLETED"]
                     + d.ClaimsPK83["COMPLETED"] + d.ClaimsUB04["COMPLETED"];
 
-            d.TodoTotalCount = d.ClaimsCMS100["TODO"]
+            d.TodoTotalCountByAllClaimTypes = d.ClaimsCMS100["TODO"]
                   + d.ClaimsPK83["TODO"] + d.ClaimsUB04["TODO"];
 
-            d.RollbackTotalCount = d.ClaimsCMS100["ROLLBACK"]
+            d.RollbackTotalCountByAllClaimTypes = d.ClaimsCMS100["ROLLBACK"]
                   + d.ClaimsPK83["ROLLBACK"] + d.ClaimsUB04["ROLLBACK"];
+
+            // Totals per Day
+            d.TotalClaimsCountByCMS1500PerDay = d.ClaimsCMS100["TODO"]
+                  + d.ClaimsCMS100["ROLLBACK"] + d.ClaimsCMS100["COMPLETED"];
+
+            d.TotalClaimsCountByUB04PerDay = d.ClaimsUB04["TODO"]
+                  + d.ClaimsUB04["ROLLBACK"] + d.ClaimsUB04["COMPLETED"];
+
+            d.TotalClaimsCountByPK83PerDay = d.ClaimsPK83["TODO"]
+                  + d.ClaimsPK83["ROLLBACK"] + d.ClaimsPK83["COMPLETED"];
             return d;
         }
 

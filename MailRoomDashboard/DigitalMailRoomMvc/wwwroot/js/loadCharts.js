@@ -148,7 +148,7 @@ function loadChartsInDashboard(number, dashboardData, newHeight) {
 
                 series: [{
                     name: 'Speed',
-                    data: [dashboardData.TodoTotalCount],
+                    data: [dashboardData.TodoTotalCountByAllClaimTypes],
                     dataLabels: {
                         format: '<div style="text-align:center"><span style="font-size:15px;color:' +
                             ((Highcharts.theme && Highcharts.theme.contrastTextColor) || 'black') + '">{y}</span><br/>' +
@@ -264,7 +264,7 @@ function loadChartsInDashboard(number, dashboardData, newHeight) {
 
                 series: [{
                     name: 'Speed',
-                    data: [dashboardData.RollbackTotalCount],
+                    data: [dashboardData.RollbackTotalCountByAllClaimTypes],
                     dataLabels: {
                         format: '<div style="text-align:center"><span style="font-size:15px;color:' +
                             ((Highcharts.theme && Highcharts.theme.contrastTextColor) || 'black') + '">{y}</span><br/>' +
@@ -381,7 +381,7 @@ function loadChartsInDashboard(number, dashboardData, newHeight) {
 
                 series: [{
                     name: 'Speed',
-                    data: [dashboardData.CompletedTotalCount],
+                    data: [dashboardData.CompletedTotalCountByAllClaimTypes],
                     dataLabels: {
                         format: '<div style="text-align:center"><span style="font-size:15px;color:' +
                             ((Highcharts.theme && Highcharts.theme.contrastTextColor) || 'black') + '">{y}</span><br/>' +
@@ -392,1050 +392,1050 @@ function loadChartsInDashboard(number, dashboardData, newHeight) {
             }));
         });
     }
-    else if (number == '4') {
-        var gaugeOptions = {
-            chart: {
-                type: 'gauge',
-                borderRadius: '10px', backgroundColor: '#F0F0F0'
-
-            },
-            title: {
-                text: 'Verification Required',
-                style: {
-                    color: '#484b4f',
-                    font: "Segoe UI",
-                    fontSize: '14px',
-                    fontWeight: 'bold'
-                }
-            },
-
-            pane: {
-                center: ['50%', '70%'],
-                size: '170%',
-                startAngle: -90,
-                endAngle: 90,
-                background: {
-                    backgroundColor: (Highcharts.theme && Highcharts.theme.background2) || '#EEE',
-                    innerRadius: '60%',
-                    outerRadius: '100%',
-                    shape: 'arc'
-                }
-            },
-
-            tooltip: {
-                enabled: false
-            },
-
-            // the value axis
-            yAxis: {
-                plotBands: [{
-                    from: 0,
-                    to: 8,
-                    color: '#FF0000',
-                    innerRadius: '60%',
-                    outerRadius: '100%'
-                }, {
-                    from: 8,
-                    to: 20,
-                    color: '#FFFF00',
-                    innerRadius: '60%',
-                    outerRadius: '100%'
-                }, {
-                    from: 20,
-                    to: 40,
-                    color: '#008000',
-                    innerRadius: '60%',
-                    outerRadius: '100%'
-                }],
-                lineWidth: 0,
-                minorTickInterval: null,
-                tickAmount: 5,
-                title: {
-                    y: 0
-                },
-                labels: {
-                    y: 0,
-                    distance: -40,
-                    style: {
-                        color: '#484b4f',
-                        fontSize: '10px'
-                    },
-                    step: 1
-                }
-            },
-
-            plotOptions: {
-                gauge: {
-                    dataLabels: {
-                        y: 35,
-                        borderWidth: 0,
-                        useHTML: true
-                    }
-                }
-            }
-        };
-        var chart1;
-        $(function () {
-            //var newh = $("#cms1500").height();
-            //$(window).resize(function () {
-            //    newh = $("#cms1500").height();
-            //    chart1.redraw();
-            //    chart1.reflow();
-            //});
-            chart1 = new Highcharts.chart('cmsVerificationRequiredContainer', Highcharts.merge(gaugeOptions, {
-                yAxis: {
-                    min: 0,
-                    max: 40,
-                    title: {
-                        text: null
-                    }
-                },
-
-                credits: {
-                    enabled: false
-                },
-
-                series: [{
-                    name: 'Speed',
-                    data: [10],
-                    dataLabels: {
-                        format: '<div style="text-align:center"><span style="font-size:15px;color:' +
-                            ((Highcharts.theme && Highcharts.theme.contrastTextColor) || 'black') + '">{y}</span><br/>' +
-                            '</div>'
-                    }
-                }]
-
-            }));
-        });
-    }
-    else if (number == '5') {
-        var gaugeOptions = {
-            chart: {
-                type: 'gauge',
-                borderRadius: '10px', backgroundColor: '#F0F0F0'
-
-            },
-            title: {
-                text: 'Roll Back',
-                style: {
-                    color: '#484b4f',
-                    font: "Segoe UI",
-                    fontSize: '14px',
-                    fontWeight: 'bold'
-                }
-            },
-
-            pane: {
-                center: ['50%', '70%'],
-                size: '170%',
-                startAngle: -90,
-                endAngle: 90,
-                background: {
-                    backgroundColor: (Highcharts.theme && Highcharts.theme.background2) || '#EEE',
-                    innerRadius: '60%',
-                    outerRadius: '100%',
-                    shape: 'arc'
-                }
-            },
-
-            tooltip: {
-                enabled: false
-            },
-
-            // the value axis
-            yAxis: {
-                plotBands: [{
-                    from: 0,
-                    to: 2,
-                    color: '#FF0000',
-                    innerRadius: '60%',
-                    outerRadius: '100%'
-                }, {
-                    from: 2,
-                    to: 5,
-                    color: '#FFFF00',
-                    innerRadius: '60%',
-                    outerRadius: '100%'
-                }, {
-                    from: 5,
-                    to: 10,
-                    color: '#008000',
-                    innerRadius: '60%',
-                    outerRadius: '100%'
-                }],
-                lineWidth: 0,
-                minorTickInterval: null,
-                tickAmount: 6,
-                title: {
-                    y: 0
-                },
-                labels: {
-                    y: 0,
-                    distance: -40,
-                    style: {
-                        color: '#484b4f',
-                        fontSize: '10px'
-                    },
-                    step: 1
-                }
-            },
-
-            plotOptions: {
-                gauge: {
-                    dataLabels: {
-                        y: 35,
-                        borderWidth: 0,
-                        useHTML: true
-                    }
-                }
-            }
-        };
-        var chart1;
-        $(function () {
-            //var newh = $("#cms1500").height();
-            //$(window).resize(function () {
-            //    newh = $("#cms1500").height();
-            //    chart1.redraw();
-            //    chart1.reflow();
-            //});
-            chart1 = new Highcharts.chart('cmsRollBackContainer', Highcharts.merge(gaugeOptions, {
-                yAxis: {
-                    min: 0,
-                    max: 10,
-                    title: {
-                        text: null
-                    }
-                },
-
-                credits: {
-                    enabled: false
-                },
-
-                series: [{
-                    name: 'Speed',
-                    data: [0],
-                    dataLabels: {
-                        format: '<div style="text-align:center"><span style="font-size:15px;color:' +
-                            ((Highcharts.theme && Highcharts.theme.contrastTextColor) || 'black') + '">{y}</span><br/>' +
-                            '</div>'
-                    }
-                }]
-
-            }));
-        });
-    }
-    else if (number == '6') {
-        var gaugeOptions = {
-            chart: {
-                type: 'gauge',
-                borderRadius: '10px', backgroundColor: '#F0F0F0'
-
-            },
-            title: {
-                text: 'Optional Verification',
-                style: {
-                    color: '#484b4f',
-                    font: "Segoe UI",
-                    fontSize: '14px',
-                    fontWeight: 'bold'
-                }
-            },
-
-            pane: {
-                center: ['50%', '70%'],
-                size: '170%',
-                startAngle: -90,
-                endAngle: 90,
-                background: {
-                    backgroundColor: (Highcharts.theme && Highcharts.theme.background2) || '#EEE',
-                    innerRadius: '60%',
-                    outerRadius: '100%',
-                    shape: 'arc'
-                }
-            },
-
-            tooltip: {
-                enabled: false
-            },
-
-            // the value axis
-            yAxis: {
-                plotBands: [{
-                    from: 0,
-                    to: 8,
-                    color: '#FF0000',
-                    innerRadius: '60%',
-                    outerRadius: '100%'
-                }, {
-                    from: 8,
-                    to: 20,
-                    color: '#FFFF00',
-                    innerRadius: '60%',
-                    outerRadius: '100%'
-                }, {
-                    from: 20,
-                    to: 40,
-                    color: '#008000',
-                    innerRadius: '60%',
-                    outerRadius: '100%'
-                }],
-                lineWidth: 0,
-                minorTickInterval: null,
-                tickAmount: 5,
-                title: {
-                    y: 0
-                },
-                labels: {
-                    y: 0,
-                    distance: -40,
-                    style: {
-                        color: '#484b4f',
-                        fontSize: '10px'
-                    },
-                    step: 1
-                }
-            },
-
-            plotOptions: {
-                gauge: {
-                    dataLabels: {
-                        y: 35,
-                        borderWidth: 0,
-                        useHTML: true
-                    }
-                }
-            }
-        };
-        var chart1;
-        $(function () {
-            //var newh = $("#cms1500").height();
-            //$(window).resize(function () {
-            //    newh = $("#cms1500").height();
-            //    chart1.redraw();
-            //    chart1.reflow();
-            //});
-            chart1 = new Highcharts.chart('cmsOptionalVerificationContainer', Highcharts.merge(gaugeOptions, {
-                yAxis: {
-                    min: 0,
-                    max: 40,
-                    title: {
-                        text: null
-                    }
-                },
-
-                credits: {
-                    enabled: false
-                },
-
-                series: [{
-                    name: 'Speed',
-                    data: [30],
-                    dataLabels: {
-                        format: '<div style="text-align:center"><span style="font-size:15px;color:' +
-                            ((Highcharts.theme && Highcharts.theme.contrastTextColor) || 'black') + '">{y}</span><br/>' +
-                            '</div>'
-                    }
-                }]
-
-            }));
-        });
-    }
-    else if (number == '7') {
-        var gaugeOptions = {
-            chart: {
-                type: 'gauge',
-                borderRadius: '10px', backgroundColor: '#F0F0F0'
-
-            },
-            title: {
-                text: 'Verification Required',
-                style: {
-                    color: '#484b4f',
-                    font: "Segoe UI",
-                    fontSize: '14px',
-                    fontWeight: 'bold'
-                }
-            },
-
-            pane: {
-                center: ['50%', '70%'],
-                size: '170%',
-                startAngle: -90,
-                endAngle: 90,
-                background: {
-                    backgroundColor: (Highcharts.theme && Highcharts.theme.background2) || '#EEE',
-                    innerRadius: '60%',
-                    outerRadius: '100%',
-                    shape: 'arc'
-                }
-            },
-
-            tooltip: {
-                enabled: false
-            },
-
-            // the value axis
-            yAxis: {
-                plotBands: [{
-                    from: 0,
-                    to: 12,
-                    color: '#FF0000',
-                    innerRadius: '60%',
-                    outerRadius: '100%'
-                }, {
-                    from: 12,
-                    to: 30,
-                    color: '#FFFF00',
-                    innerRadius: '60%',
-                    outerRadius: '100%'
-                }, {
-                    from: 30,
-                    to: 60,
-                    color: '#008000',
-                    innerRadius: '60%',
-                    outerRadius: '100%'
-                }],
-                lineWidth: 0,
-                minorTickInterval: null,
-                tickAmount: 4,
-                title: {
-                    y: 0
-                },
-                labels: {
-                    y: 0,
-                    distance: -40,
-                    style: {
-                        color: '#484b4f',
-                        fontSize: '10px'
-                    },
-                    step: 1
-                }
-            },
-
-            plotOptions: {
-                gauge: {
-                    dataLabels: {
-                        y: 35,
-                        borderWidth: 0,
-                        useHTML: true
-                    }
-                }
-            }
-        };
-        var chart1;
-        $(function () {
-            //var newh = $("#ub04").height();
-            //$(window).resize(function () {
-            //    newh = $("#ub04").height();
-            //    chart1.redraw();
-            //    chart1.reflow();
-            //});
-            chart1 = new Highcharts.chart('ub04VerificationRequiredContainer', Highcharts.merge(gaugeOptions, {
-                yAxis: {
-                    min: 0,
-                    max: 60,
-                    title: {
-                        text: null
-                    }
-                },
-
-                credits: {
-                    enabled: false
-                },
-
-                series: [{
-                    name: 'Speed',
-                    data: [20],
-                    dataLabels: {
-                        format: '<div style="text-align:center"><span style="font-size:15px;color:' +
-                            ((Highcharts.theme && Highcharts.theme.contrastTextColor) || 'black') + '">{y}</span><br/>' +
-                            '</div>'
-                    }
-                }]
-
-            }));
-        });
-    }
-    else if (number == '8') {
-        var gaugeOptions = {
-            chart: {
-                type: 'gauge',
-                borderRadius: '10px', backgroundColor: '#F0F0F0'
-
-            },
-            title: {
-                text: 'Roll Back',
-                style: {
-                    color: '#484b4f',
-                    font: "Segoe UI",
-                    fontSize: '14px',
-                    fontWeight: 'bold'
-                }
-            },
-
-            pane: {
-                center: ['50%', '70%'],
-                size: '170%',
-                startAngle: -90,
-                endAngle: 90,
-                background: {
-                    backgroundColor: (Highcharts.theme && Highcharts.theme.background2) || '#EEE',
-                    innerRadius: '60%',
-                    outerRadius: '100%',
-                    shape: 'arc'
-                }
-            },
-
-            tooltip: {
-                enabled: false
-            },
-
-            // the value axis
-            yAxis: {
-                plotBands: [{
-                    from: 0,
-                    to: 4,
-                    color: '#FF0000',
-                    innerRadius: '60%',
-                    outerRadius: '100%'
-                }, {
-                    from: 4,
-                    to: 10,
-                    color: '#FFFF00',
-                    innerRadius: '60%',
-                    outerRadius: '100%'
-                }, {
-                    from: 10,
-                    to: 20,
-                    color: '#008000',
-                    innerRadius: '60%',
-                    outerRadius: '100%'
-                }],
-                lineWidth: 0,
-                minorTickInterval: null,
-                tickAmount: 6,
-                title: {
-                    y: 0
-                },
-                labels: {
-                    y: 0,
-                    distance: -40,
-                    style: {
-                        color: '#484b4f',
-                        fontSize: '10px'
-                    },
-                    step: 1
-                }
-            },
-
-            plotOptions: {
-                gauge: {
-                    dataLabels: {
-                        y: 35,
-                        borderWidth: 0,
-                        useHTML: true
-                    }
-                }
-            }
-        };
-        var chart1;
-        $(function () {
-            //var newh = $("#ub04").height();
-            //$(window).resize(function () {
-            //    newh = $("#ub04").height();
-            //    chart1.redraw();
-            //    chart1.reflow();
-            //});
-            chart1 = new Highcharts.chart('ub04RollBackContainer', Highcharts.merge(gaugeOptions, {
-                yAxis: {
-                    min: 0,
-                    max: 20,
-                    title: {
-                        text: null
-                    }
-                },
-
-                credits: {
-                    enabled: false
-                },
-
-                series: [{
-                    name: 'Speed',
-                    data: [5],
-                    dataLabels: {
-                        format: '<div style="text-align:center"><span style="font-size:15px;color:' +
-                            ((Highcharts.theme && Highcharts.theme.contrastTextColor) || 'black') + '">{y}</span><br/>' +
-                            '</div>'
-                    }
-                }]
-
-            }));
-        });
-    }
-    else if (number == '9') {
-        var gaugeOptions = {
-            chart: {
-                type: 'gauge',
-                borderRadius: '10px', backgroundColor: '#F0F0F0'
-
-            },
-            title: {
-                text: 'Optional Verification',
-                style: {
-                    color: '#484b4f',
-                    font: "Segoe UI",
-                    fontSize: '14px',
-                    fontWeight: 'bold'
-                }
-            },
-
-            pane: {
-                center: ['50%', '70%'],
-                size: '170%',
-                startAngle: -90,
-                endAngle: 90,
-                background: {
-                    backgroundColor: (Highcharts.theme && Highcharts.theme.background2) || '#EEE',
-                    innerRadius: '60%',
-                    outerRadius: '100%',
-                    shape: 'arc'
-                }
-            },
-
-            tooltip: {
-                enabled: false
-            },
-
-            // the value axis
-            yAxis: {
-                plotBands: [{
-                    from: 0,
-                    to: 8,
-                    color: '#FF0000',
-                    innerRadius: '60%',
-                    outerRadius: '100%'
-                }, {
-                    from: 8,
-                    to: 20,
-                    color: '#FFFF00',
-                    innerRadius: '60%',
-                    outerRadius: '100%'
-                }, {
-                    from: 20,
-                    to: 40,
-                    color: '#008000',
-                    innerRadius: '60%',
-                    outerRadius: '100%'
-                }],
-                lineWidth: 0,
-                minorTickInterval: null,
-                tickAmount: 5,
-                title: {
-                    y: 0
-                },
-                labels: {
-                    y: 0,
-                    distance: -40,
-                    style: {
-                        color: '#484b4f',
-                        fontSize: '10px'
-                    },
-                    step: 1
-                }
-            },
-
-            plotOptions: {
-                gauge: {
-                    dataLabels: {
-                        y: 35,
-                        borderWidth: 0,
-                        useHTML: true
-                    }
-                }
-            }
-        };
-        var chart1;
-        $(function () {
-            //var newh = $("#ub04").height();
-            //$(window).resize(function () {
-            //    newh = $("#ub04").height();
-            //    chart1.redraw();
-            //    chart1.reflow();
-            //});
-            chart1 = new Highcharts.chart('ub04OptionalVerificationContainer', Highcharts.merge(gaugeOptions, {
-                yAxis: {
-                    min: 0,
-                    max: 40,
-                    title: {
-                        text: null
-                    }
-                },
-
-                credits: {
-                    enabled: false
-                },
-
-                series: [{
-                    name: 'Speed',
-                    data: [30],
-                    dataLabels: {
-                        format: '<div style="text-align:center"><span style="font-size:15px;color:' +
-                            ((Highcharts.theme && Highcharts.theme.contrastTextColor) || 'black') + '">{y}</span><br/>' +
-                            '</div>'
-                    }
-                }]
-
-            }));
-        });
-    }
-    else if (number == '10') {
-        var gaugeOptions = {
-            chart: {
-                type: 'gauge',
-                borderRadius: '10px', backgroundColor: '#F0F0F0'
-
-            },
-            title: {
-                text: 'Verification Required',
-                style: {
-                    color: '#484b4f',
-                    font: "Segoe UI",
-                    fontSize: '14px',
-                    fontWeight: 'bold'
-                }
-            },
-
-            pane: {
-                center: ['50%', '70%'],
-                size: '170%',
-                startAngle: -90,
-                endAngle: 90,
-                background: {
-                    backgroundColor: (Highcharts.theme && Highcharts.theme.background2) || '#EEE',
-                    innerRadius: '60%',
-                    outerRadius: '100%',
-                    shape: 'arc'
-                }
-            },
-
-            tooltip: {
-                enabled: false
-            },
-
-            // the value axis
-            yAxis: {
-                plotBands: [{
-                    from: 0,
-                    to: 10,
-                    color: '#FF0000',
-                    innerRadius: '60%',
-                    outerRadius: '100%'
-                }, {
-                    from: 10,
-                    to: 25,
-                    color: '#FFFF00',
-                    innerRadius: '60%',
-                    outerRadius: '100%'
-                }, {
-                    from: 25,
-                    to: 50,
-                    color: '#008000',
-                    innerRadius: '60%',
-                    outerRadius: '100%'
-                }],
-                lineWidth: 0,
-                minorTickInterval: null,
-                tickAmount: 6,
-                title: {
-                    y: 0
-                },
-                labels: {
-                    y: 0,
-                    distance: -40,
-                    style: {
-                        color: '#484b4f',
-                        fontSize: '10px'
-                    },
-                    step: 1
-                }
-            },
-
-            plotOptions: {
-                gauge: {
-                    dataLabels: {
-                        y: 35,
-                        borderWidth: 0,
-                        useHTML: true
-                    }
-                }
-            }
-        };
-        var chart1;
-        $(function () {
-            //var newh = $("#dentalClaims").height();
-            //$(window).resize(function () {
-            //    newh = $("#dentalClaims").height();
-            //    chart1.redraw();
-            //    chart1.reflow();
-            //});
-            chart1 = new Highcharts.chart('dcVerificationRequiredContainer', Highcharts.merge(gaugeOptions, {
-                yAxis: {
-                    min: 0,
-                    max: 50,
-                    title: {
-                        text: null
-                    }
-                },
-
-                credits: {
-                    enabled: false
-                },
-
-                series: [{
-                    name: 'Speed',
-                    data: [20],
-                    dataLabels: {
-                        format: '<div style="text-align:center"><span style="font-size:15px;color:' +
-                            ((Highcharts.theme && Highcharts.theme.contrastTextColor) || 'black') + '">{y}</span><br/>' +
-                            '</div>'
-                    }
-                }]
-
-            }));
-        });
-    }
-    else if (number == '11') {
-        var gaugeOptions = {
-            chart: {
-                type: 'gauge',
-                borderRadius: '10px', backgroundColor: '#F0F0F0'
-
-            },
-            title: {
-                text: 'Roll Back',
-                style: {
-                    color: '#484b4f',
-                    font: "Segoe UI",
-                    fontSize: '14px',
-                    fontWeight: 'bold'
-                }
-            },
-
-            pane: {
-                center: ['50%', '70%'],
-                size: '170%',
-                startAngle: -90,
-                endAngle: 90,
-                background: {
-                    backgroundColor: (Highcharts.theme && Highcharts.theme.background2) || '#EEE',
-                    innerRadius: '60%',
-                    outerRadius: '100%',
-                    shape: 'arc'
-                }
-            },
-
-            tooltip: {
-                enabled: false
-            },
-
-            // the value axis
-            yAxis: {
-                plotBands: [{
-                    from: 0,
-                    to: 4,
-                    color: '#FF0000',
-                    innerRadius: '60%',
-                    outerRadius: '100%'
-                }, {
-                    from: 4,
-                    to: 10,
-                    color: '#FFFF00',
-                    innerRadius: '60%',
-                    outerRadius: '100%'
-                }, {
-                    from: 10,
-                    to: 20,
-                    color: '#008000',
-                    innerRadius: '60%',
-                    outerRadius: '100%'
-                }],
-                lineWidth: 0,
-                minorTickInterval: null,
-                tickAmount: 5,
-                title: {
-                    y: 0
-                },
-                labels: {
-                    y: 0,
-                    distance: -40,
-                    style: {
-                        color: '#484b4f',
-                        fontSize: '10px'
-                    },
-                    step: 1
-                }
-            },
-
-            plotOptions: {
-                gauge: {
-                    dataLabels: {
-                        y: 35,
-                        borderWidth: 0,
-                        useHTML: true
-                    }
-                }
-            }
-        };
-        var chart1;
-        $(function () {
-            //var newh = $("#dentalClaims").height();
-            //$(window).resize(function () {
-            //    newh = $("#dentalClaims").height();
-            //    chart1.redraw();
-            //    chart1.reflow();
-            //});
-            chart1 = new Highcharts.chart('dcRollBackContainer', Highcharts.merge(gaugeOptions, {
-                yAxis: {
-                    min: 0,
-                    max: 20,
-                    title: {
-                        text: null
-                    }
-                },
-
-                credits: {
-                    enabled: false
-                },
-
-                series: [{
-                    name: 'Speed',
-                    data: [10],
-                    dataLabels: {
-                        format: '<div style="text-align:center"><span style="font-size:15px;color:' +
-                            ((Highcharts.theme && Highcharts.theme.contrastTextColor) || 'black') + '">{y}</span><br/>' +
-                            '</div>'
-                    }
-                }]
-
-            }));
-        });
-    }
-    else if (number == '12') {
-        var gaugeOptions = {
-            chart: {
-                type: 'gauge',
-                borderRadius: '10px', backgroundColor: '#F0F0F0'
-
-            },
-            title: {
-                text: 'Optional Verification',
-                style: {
-                    color: '#484b4f',
-                    font: "Segoe UI",
-                    fontSize: '14px',
-                    fontWeight: 'bold'
-                }
-            },
-
-            pane: {
-                center: ['50%', '70%'],
-                size: '170%',
-                startAngle: -90,
-                endAngle: 90,
-                background: {
-                    backgroundColor: (Highcharts.theme && Highcharts.theme.background2) || '#EEE',
-                    innerRadius: '60%',
-                    outerRadius: '100%',
-                    shape: 'arc'
-                }
-            },
-
-            tooltip: {
-                enabled: false
-            },
-
-            // the value axis
-            yAxis: {
-                plotBands: [{
-                    from: 0,
-                    to: 4,
-                    color: '#FF0000',
-                    innerRadius: '60%',
-                    outerRadius: '100%'
-                }, {
-                    from: 4,
-                    to: 10,
-                    color: '#FFFF00',
-                    innerRadius: '60%',
-                    outerRadius: '100%'
-                }, {
-                    from: 10,
-                    to: 20,
-                    color: '#008000',
-                    innerRadius: '60%',
-                    outerRadius: '100%'
-                }],
-                lineWidth: 0,
-                minorTickInterval: null,
-                tickAmount: 5,
-                title: {
-                    y: 0
-                },
-                labels: {
-                    y: 0,
-                    distance: -40,
-                    style: {
-                        color: '#484b4f',
-                        fontSize: '10px'
-                    },
-                    step: 1
-                }
-            },
-
-            plotOptions: {
-                gauge: {
-                    dataLabels: {
-                        y: 35,
-                        borderWidth: 0,
-                        useHTML: true
-                    }
-                }
-            }
-        };
-        var chart1;
-        $(function () {
-            //var newh = $("#dentalClaims").height();
-            //$(window).resize(function () {
-            //    newh = $("#dentalClaims").height();
-            //    chart1.redraw();
-            //    chart1.reflow();
-            //});
-            chart1 = new Highcharts.chart('dcOptionalVerificationContainer', Highcharts.merge(gaugeOptions, {
-                yAxis: {
-                    min: 0,
-                    max: 20,
-                    title: {
-                        text: null
-                    }
-                },
-
-                credits: {
-                    enabled: false
-                },
-
-                series: [{
-                    name: 'Speed',
-                    data: [20],
-                    dataLabels: {
-                        format: '<div style="text-align:center"><span style="font-size:15px;color:' +
-                            ((Highcharts.theme && Highcharts.theme.contrastTextColor) || 'black') + '">{y}</span><br/>' +
-                            '</div>'
-                    }
-                }]
-
-            }));
-        });
-    }
+    //else if (number == '4') {
+    //    var gaugeOptions = {
+    //        chart: {
+    //            type: 'gauge',
+    //            borderRadius: '10px', backgroundColor: '#F0F0F0'
+
+    //        },
+    //        title: {
+    //            text: 'Verification Required',
+    //            style: {
+    //                color: '#484b4f',
+    //                font: "Segoe UI",
+    //                fontSize: '14px',
+    //                fontWeight: 'bold'
+    //            }
+    //        },
+
+    //        pane: {
+    //            center: ['50%', '70%'],
+    //            size: '170%',
+    //            startAngle: -90,
+    //            endAngle: 90,
+    //            background: {
+    //                backgroundColor: (Highcharts.theme && Highcharts.theme.background2) || '#EEE',
+    //                innerRadius: '60%',
+    //                outerRadius: '100%',
+    //                shape: 'arc'
+    //            }
+    //        },
+
+    //        tooltip: {
+    //            enabled: false
+    //        },
+
+    //        // the value axis
+    //        yAxis: {
+    //            plotBands: [{
+    //                from: 0,
+    //                to: 8,
+    //                color: '#FF0000',
+    //                innerRadius: '60%',
+    //                outerRadius: '100%'
+    //            }, {
+    //                from: 8,
+    //                to: 20,
+    //                color: '#FFFF00',
+    //                innerRadius: '60%',
+    //                outerRadius: '100%'
+    //            }, {
+    //                from: 20,
+    //                to: 40,
+    //                color: '#008000',
+    //                innerRadius: '60%',
+    //                outerRadius: '100%'
+    //            }],
+    //            lineWidth: 0,
+    //            minorTickInterval: null,
+    //            tickAmount: 5,
+    //            title: {
+    //                y: 0
+    //            },
+    //            labels: {
+    //                y: 0,
+    //                distance: -40,
+    //                style: {
+    //                    color: '#484b4f',
+    //                    fontSize: '10px'
+    //                },
+    //                step: 1
+    //            }
+    //        },
+
+    //        plotOptions: {
+    //            gauge: {
+    //                dataLabels: {
+    //                    y: 35,
+    //                    borderWidth: 0,
+    //                    useHTML: true
+    //                }
+    //            }
+    //        }
+    //    };
+    //    var chart1;
+    //    $(function () {
+    //        //var newh = $("#cms1500").height();
+    //        //$(window).resize(function () {
+    //        //    newh = $("#cms1500").height();
+    //        //    chart1.redraw();
+    //        //    chart1.reflow();
+    //        //});
+    //        chart1 = new Highcharts.chart('cmsVerificationRequiredContainer', Highcharts.merge(gaugeOptions, {
+    //            yAxis: {
+    //                min: 0,
+    //                max: 40,
+    //                title: {
+    //                    text: null
+    //                }
+    //            },
+
+    //            credits: {
+    //                enabled: false
+    //            },
+
+    //            series: [{
+    //                name: 'Speed',
+    //                data: [dashboardData.ClaimsCMS100["TODO"]],
+    //                dataLabels: {
+    //                    format: '<div style="text-align:center"><span style="font-size:15px;color:' +
+    //                        ((Highcharts.theme && Highcharts.theme.contrastTextColor) || 'black') + '">{y}</span><br/>' +
+    //                        '</div>'
+    //                }
+    //            }]
+
+    //        }));
+    //    });
+    //}
+    //else if (number == '5') {
+    //    var gaugeOptions = {
+    //        chart: {
+    //            type: 'gauge',
+    //            borderRadius: '10px', backgroundColor: '#F0F0F0'
+
+    //        },
+    //        title: {
+    //            text: 'Roll Back',
+    //            style: {
+    //                color: '#484b4f',
+    //                font: "Segoe UI",
+    //                fontSize: '14px',
+    //                fontWeight: 'bold'
+    //            }
+    //        },
+
+    //        pane: {
+    //            center: ['50%', '70%'],
+    //            size: '170%',
+    //            startAngle: -90,
+    //            endAngle: 90,
+    //            background: {
+    //                backgroundColor: (Highcharts.theme && Highcharts.theme.background2) || '#EEE',
+    //                innerRadius: '60%',
+    //                outerRadius: '100%',
+    //                shape: 'arc'
+    //            }
+    //        },
+
+    //        tooltip: {
+    //            enabled: false
+    //        },
+
+    //        // the value axis
+    //        yAxis: {
+    //            plotBands: [{
+    //                from: 0,
+    //                to: 2,
+    //                color: '#FF0000',
+    //                innerRadius: '60%',
+    //                outerRadius: '100%'
+    //            }, {
+    //                from: 2,
+    //                to: 5,
+    //                color: '#FFFF00',
+    //                innerRadius: '60%',
+    //                outerRadius: '100%'
+    //            }, {
+    //                from: 5,
+    //                to: 10,
+    //                color: '#008000',
+    //                innerRadius: '60%',
+    //                outerRadius: '100%'
+    //            }],
+    //            lineWidth: 0,
+    //            minorTickInterval: null,
+    //            tickAmount: 6,
+    //            title: {
+    //                y: 0
+    //            },
+    //            labels: {
+    //                y: 0,
+    //                distance: -40,
+    //                style: {
+    //                    color: '#484b4f',
+    //                    fontSize: '10px'
+    //                },
+    //                step: 1
+    //            }
+    //        },
+
+    //        plotOptions: {
+    //            gauge: {
+    //                dataLabels: {
+    //                    y: 35,
+    //                    borderWidth: 0,
+    //                    useHTML: true
+    //                }
+    //            }
+    //        }
+    //    };
+    //    var chart1;
+    //    $(function () {
+    //        //var newh = $("#cms1500").height();
+    //        //$(window).resize(function () {
+    //        //    newh = $("#cms1500").height();
+    //        //    chart1.redraw();
+    //        //    chart1.reflow();
+    //        //});
+    //        chart1 = new Highcharts.chart('cmsRollBackContainer', Highcharts.merge(gaugeOptions, {
+    //            yAxis: {
+    //                min: 0,
+    //                max: 10,
+    //                title: {
+    //                    text: null
+    //                }
+    //            },
+
+    //            credits: {
+    //                enabled: false
+    //            },
+
+    //            series: [{
+    //                name: 'Speed',
+    //                data: [dashboardData.ClaimsCMS100["ROLLBACK"]],
+    //                dataLabels: {
+    //                    format: '<div style="text-align:center"><span style="font-size:15px;color:' +
+    //                        ((Highcharts.theme && Highcharts.theme.contrastTextColor) || 'black') + '">{y}</span><br/>' +
+    //                        '</div>'
+    //                }
+    //            }]
+
+    //        }));
+    //    });
+    //}
+    //else if (number == '6') {
+    //    var gaugeOptions = {
+    //        chart: {
+    //            type: 'gauge',
+    //            borderRadius: '10px', backgroundColor: '#F0F0F0'
+
+    //        },
+    //        title: {
+    //            text: 'Optional Verification',
+    //            style: {
+    //                color: '#484b4f',
+    //                font: "Segoe UI",
+    //                fontSize: '14px',
+    //                fontWeight: 'bold'
+    //            }
+    //        },
+
+    //        pane: {
+    //            center: ['50%', '70%'],
+    //            size: '170%',
+    //            startAngle: -90,
+    //            endAngle: 90,
+    //            background: {
+    //                backgroundColor: (Highcharts.theme && Highcharts.theme.background2) || '#EEE',
+    //                innerRadius: '60%',
+    //                outerRadius: '100%',
+    //                shape: 'arc'
+    //            }
+    //        },
+
+    //        tooltip: {
+    //            enabled: false
+    //        },
+
+    //        // the value axis
+    //        yAxis: {
+    //            plotBands: [{
+    //                from: 0,
+    //                to: 8,
+    //                color: '#FF0000',
+    //                innerRadius: '60%',
+    //                outerRadius: '100%'
+    //            }, {
+    //                from: 8,
+    //                to: 20,
+    //                color: '#FFFF00',
+    //                innerRadius: '60%',
+    //                outerRadius: '100%'
+    //            }, {
+    //                from: 20,
+    //                to: 40,
+    //                color: '#008000',
+    //                innerRadius: '60%',
+    //                outerRadius: '100%'
+    //            }],
+    //            lineWidth: 0,
+    //            minorTickInterval: null,
+    //            tickAmount: 5,
+    //            title: {
+    //                y: 0
+    //            },
+    //            labels: {
+    //                y: 0,
+    //                distance: -40,
+    //                style: {
+    //                    color: '#484b4f',
+    //                    fontSize: '10px'
+    //                },
+    //                step: 1
+    //            }
+    //        },
+
+    //        plotOptions: {
+    //            gauge: {
+    //                dataLabels: {
+    //                    y: 35,
+    //                    borderWidth: 0,
+    //                    useHTML: true
+    //                }
+    //            }
+    //        }
+    //    };
+    //    var chart1;
+    //    $(function () {
+    //        //var newh = $("#cms1500").height();
+    //        //$(window).resize(function () {
+    //        //    newh = $("#cms1500").height();
+    //        //    chart1.redraw();
+    //        //    chart1.reflow();
+    //        //});
+    //        chart1 = new Highcharts.chart('cmsOptionalVerificationContainer', Highcharts.merge(gaugeOptions, {
+    //            yAxis: {
+    //                min: 0,
+    //                max: 40,
+    //                title: {
+    //                    text: null
+    //                }
+    //            },
+
+    //            credits: {
+    //                enabled: false
+    //            },
+
+    //            series: [{
+    //                name: 'Speed',
+    //                data: [dashboardData.ClaimsCMS100["COMPLETED"]],
+    //                dataLabels: {
+    //                    format: '<div style="text-align:center"><span style="font-size:15px;color:' +
+    //                        ((Highcharts.theme && Highcharts.theme.contrastTextColor) || 'black') + '">{y}</span><br/>' +
+    //                        '</div>'
+    //                }
+    //            }]
+
+    //        }));
+    //    });
+    //}
+    //else if (number == '7') {
+    //    var gaugeOptions = {
+    //        chart: {
+    //            type: 'gauge',
+    //            borderRadius: '10px', backgroundColor: '#F0F0F0'
+
+    //        },
+    //        title: {
+    //            text: 'Verification Required',
+    //            style: {
+    //                color: '#484b4f',
+    //                font: "Segoe UI",
+    //                fontSize: '14px',
+    //                fontWeight: 'bold'
+    //            }
+    //        },
+
+    //        pane: {
+    //            center: ['50%', '70%'],
+    //            size: '170%',
+    //            startAngle: -90,
+    //            endAngle: 90,
+    //            background: {
+    //                backgroundColor: (Highcharts.theme && Highcharts.theme.background2) || '#EEE',
+    //                innerRadius: '60%',
+    //                outerRadius: '100%',
+    //                shape: 'arc'
+    //            }
+    //        },
+
+    //        tooltip: {
+    //            enabled: false
+    //        },
+
+    //        // the value axis
+    //        yAxis: {
+    //            plotBands: [{
+    //                from: 0,
+    //                to: 12,
+    //                color: '#FF0000',
+    //                innerRadius: '60%',
+    //                outerRadius: '100%'
+    //            }, {
+    //                from: 12,
+    //                to: 30,
+    //                color: '#FFFF00',
+    //                innerRadius: '60%',
+    //                outerRadius: '100%'
+    //            }, {
+    //                from: 30,
+    //                to: 60,
+    //                color: '#008000',
+    //                innerRadius: '60%',
+    //                outerRadius: '100%'
+    //            }],
+    //            lineWidth: 0,
+    //            minorTickInterval: null,
+    //            tickAmount: 4,
+    //            title: {
+    //                y: 0
+    //            },
+    //            labels: {
+    //                y: 0,
+    //                distance: -40,
+    //                style: {
+    //                    color: '#484b4f',
+    //                    fontSize: '10px'
+    //                },
+    //                step: 1
+    //            }
+    //        },
+
+    //        plotOptions: {
+    //            gauge: {
+    //                dataLabels: {
+    //                    y: 35,
+    //                    borderWidth: 0,
+    //                    useHTML: true
+    //                }
+    //            }
+    //        }
+    //    };
+    //    var chart1;
+    //    $(function () {
+    //        //var newh = $("#ub04").height();
+    //        //$(window).resize(function () {
+    //        //    newh = $("#ub04").height();
+    //        //    chart1.redraw();
+    //        //    chart1.reflow();
+    //        //});
+    //        chart1 = new Highcharts.chart('ub04VerificationRequiredContainer', Highcharts.merge(gaugeOptions, {
+    //            yAxis: {
+    //                min: 0,
+    //                max: 60,
+    //                title: {
+    //                    text: null
+    //                }
+    //            },
+
+    //            credits: {
+    //                enabled: false
+    //            },
+
+    //            series: [{
+    //                name: 'Speed',
+    //                data: [20],
+    //                dataLabels: {
+    //                    format: '<div style="text-align:center"><span style="font-size:15px;color:' +
+    //                        ((Highcharts.theme && Highcharts.theme.contrastTextColor) || 'black') + '">{y}</span><br/>' +
+    //                        '</div>'
+    //                }
+    //            }]
+
+    //        }));
+    //    });
+    //}
+    //else if (number == '8') {
+    //    var gaugeOptions = {
+    //        chart: {
+    //            type: 'gauge',
+    //            borderRadius: '10px', backgroundColor: '#F0F0F0'
+
+    //        },
+    //        title: {
+    //            text: 'Roll Back',
+    //            style: {
+    //                color: '#484b4f',
+    //                font: "Segoe UI",
+    //                fontSize: '14px',
+    //                fontWeight: 'bold'
+    //            }
+    //        },
+
+    //        pane: {
+    //            center: ['50%', '70%'],
+    //            size: '170%',
+    //            startAngle: -90,
+    //            endAngle: 90,
+    //            background: {
+    //                backgroundColor: (Highcharts.theme && Highcharts.theme.background2) || '#EEE',
+    //                innerRadius: '60%',
+    //                outerRadius: '100%',
+    //                shape: 'arc'
+    //            }
+    //        },
+
+    //        tooltip: {
+    //            enabled: false
+    //        },
+
+    //        // the value axis
+    //        yAxis: {
+    //            plotBands: [{
+    //                from: 0,
+    //                to: 4,
+    //                color: '#FF0000',
+    //                innerRadius: '60%',
+    //                outerRadius: '100%'
+    //            }, {
+    //                from: 4,
+    //                to: 10,
+    //                color: '#FFFF00',
+    //                innerRadius: '60%',
+    //                outerRadius: '100%'
+    //            }, {
+    //                from: 10,
+    //                to: 20,
+    //                color: '#008000',
+    //                innerRadius: '60%',
+    //                outerRadius: '100%'
+    //            }],
+    //            lineWidth: 0,
+    //            minorTickInterval: null,
+    //            tickAmount: 6,
+    //            title: {
+    //                y: 0
+    //            },
+    //            labels: {
+    //                y: 0,
+    //                distance: -40,
+    //                style: {
+    //                    color: '#484b4f',
+    //                    fontSize: '10px'
+    //                },
+    //                step: 1
+    //            }
+    //        },
+
+    //        plotOptions: {
+    //            gauge: {
+    //                dataLabels: {
+    //                    y: 35,
+    //                    borderWidth: 0,
+    //                    useHTML: true
+    //                }
+    //            }
+    //        }
+    //    };
+    //    var chart1;
+    //    $(function () {
+    //        //var newh = $("#ub04").height();
+    //        //$(window).resize(function () {
+    //        //    newh = $("#ub04").height();
+    //        //    chart1.redraw();
+    //        //    chart1.reflow();
+    //        //});
+    //        chart1 = new Highcharts.chart('ub04RollBackContainer', Highcharts.merge(gaugeOptions, {
+    //            yAxis: {
+    //                min: 0,
+    //                max: 20,
+    //                title: {
+    //                    text: null
+    //                }
+    //            },
+
+    //            credits: {
+    //                enabled: false
+    //            },
+
+    //            series: [{
+    //                name: 'Speed',
+    //                data: [5],
+    //                dataLabels: {
+    //                    format: '<div style="text-align:center"><span style="font-size:15px;color:' +
+    //                        ((Highcharts.theme && Highcharts.theme.contrastTextColor) || 'black') + '">{y}</span><br/>' +
+    //                        '</div>'
+    //                }
+    //            }]
+
+    //        }));
+    //    });
+    //}
+    //else if (number == '9') {
+    //    var gaugeOptions = {
+    //        chart: {
+    //            type: 'gauge',
+    //            borderRadius: '10px', backgroundColor: '#F0F0F0'
+
+    //        },
+    //        title: {
+    //            text: 'Optional Verification',
+    //            style: {
+    //                color: '#484b4f',
+    //                font: "Segoe UI",
+    //                fontSize: '14px',
+    //                fontWeight: 'bold'
+    //            }
+    //        },
+
+    //        pane: {
+    //            center: ['50%', '70%'],
+    //            size: '170%',
+    //            startAngle: -90,
+    //            endAngle: 90,
+    //            background: {
+    //                backgroundColor: (Highcharts.theme && Highcharts.theme.background2) || '#EEE',
+    //                innerRadius: '60%',
+    //                outerRadius: '100%',
+    //                shape: 'arc'
+    //            }
+    //        },
+
+    //        tooltip: {
+    //            enabled: false
+    //        },
+
+    //        // the value axis
+    //        yAxis: {
+    //            plotBands: [{
+    //                from: 0,
+    //                to: 8,
+    //                color: '#FF0000',
+    //                innerRadius: '60%',
+    //                outerRadius: '100%'
+    //            }, {
+    //                from: 8,
+    //                to: 20,
+    //                color: '#FFFF00',
+    //                innerRadius: '60%',
+    //                outerRadius: '100%'
+    //            }, {
+    //                from: 20,
+    //                to: 40,
+    //                color: '#008000',
+    //                innerRadius: '60%',
+    //                outerRadius: '100%'
+    //            }],
+    //            lineWidth: 0,
+    //            minorTickInterval: null,
+    //            tickAmount: 5,
+    //            title: {
+    //                y: 0
+    //            },
+    //            labels: {
+    //                y: 0,
+    //                distance: -40,
+    //                style: {
+    //                    color: '#484b4f',
+    //                    fontSize: '10px'
+    //                },
+    //                step: 1
+    //            }
+    //        },
+
+    //        plotOptions: {
+    //            gauge: {
+    //                dataLabels: {
+    //                    y: 35,
+    //                    borderWidth: 0,
+    //                    useHTML: true
+    //                }
+    //            }
+    //        }
+    //    };
+    //    var chart1;
+    //    $(function () {
+    //        //var newh = $("#ub04").height();
+    //        //$(window).resize(function () {
+    //        //    newh = $("#ub04").height();
+    //        //    chart1.redraw();
+    //        //    chart1.reflow();
+    //        //});
+    //        chart1 = new Highcharts.chart('ub04OptionalVerificationContainer', Highcharts.merge(gaugeOptions, {
+    //            yAxis: {
+    //                min: 0,
+    //                max: 40,
+    //                title: {
+    //                    text: null
+    //                }
+    //            },
+
+    //            credits: {
+    //                enabled: false
+    //            },
+
+    //            series: [{
+    //                name: 'Speed',
+    //                data: [30],
+    //                dataLabels: {
+    //                    format: '<div style="text-align:center"><span style="font-size:15px;color:' +
+    //                        ((Highcharts.theme && Highcharts.theme.contrastTextColor) || 'black') + '">{y}</span><br/>' +
+    //                        '</div>'
+    //                }
+    //            }]
+
+    //        }));
+    //    });
+    //}
+    //else if (number == '10') {
+    //    var gaugeOptions = {
+    //        chart: {
+    //            type: 'gauge',
+    //            borderRadius: '10px', backgroundColor: '#F0F0F0'
+
+    //        },
+    //        title: {
+    //            text: 'Verification Required',
+    //            style: {
+    //                color: '#484b4f',
+    //                font: "Segoe UI",
+    //                fontSize: '14px',
+    //                fontWeight: 'bold'
+    //            }
+    //        },
+
+    //        pane: {
+    //            center: ['50%', '70%'],
+    //            size: '170%',
+    //            startAngle: -90,
+    //            endAngle: 90,
+    //            background: {
+    //                backgroundColor: (Highcharts.theme && Highcharts.theme.background2) || '#EEE',
+    //                innerRadius: '60%',
+    //                outerRadius: '100%',
+    //                shape: 'arc'
+    //            }
+    //        },
+
+    //        tooltip: {
+    //            enabled: false
+    //        },
+
+    //        // the value axis
+    //        yAxis: {
+    //            plotBands: [{
+    //                from: 0,
+    //                to: 10,
+    //                color: '#FF0000',
+    //                innerRadius: '60%',
+    //                outerRadius: '100%'
+    //            }, {
+    //                from: 10,
+    //                to: 25,
+    //                color: '#FFFF00',
+    //                innerRadius: '60%',
+    //                outerRadius: '100%'
+    //            }, {
+    //                from: 25,
+    //                to: 50,
+    //                color: '#008000',
+    //                innerRadius: '60%',
+    //                outerRadius: '100%'
+    //            }],
+    //            lineWidth: 0,
+    //            minorTickInterval: null,
+    //            tickAmount: 6,
+    //            title: {
+    //                y: 0
+    //            },
+    //            labels: {
+    //                y: 0,
+    //                distance: -40,
+    //                style: {
+    //                    color: '#484b4f',
+    //                    fontSize: '10px'
+    //                },
+    //                step: 1
+    //            }
+    //        },
+
+    //        plotOptions: {
+    //            gauge: {
+    //                dataLabels: {
+    //                    y: 35,
+    //                    borderWidth: 0,
+    //                    useHTML: true
+    //                }
+    //            }
+    //        }
+    //    };
+    //    var chart1;
+    //    $(function () {
+    //        //var newh = $("#dentalClaims").height();
+    //        //$(window).resize(function () {
+    //        //    newh = $("#dentalClaims").height();
+    //        //    chart1.redraw();
+    //        //    chart1.reflow();
+    //        //});
+    //        chart1 = new Highcharts.chart('dcVerificationRequiredContainer', Highcharts.merge(gaugeOptions, {
+    //            yAxis: {
+    //                min: 0,
+    //                max: 50,
+    //                title: {
+    //                    text: null
+    //                }
+    //            },
+
+    //            credits: {
+    //                enabled: false
+    //            },
+
+    //            series: [{
+    //                name: 'Speed',
+    //                data: [20],
+    //                dataLabels: {
+    //                    format: '<div style="text-align:center"><span style="font-size:15px;color:' +
+    //                        ((Highcharts.theme && Highcharts.theme.contrastTextColor) || 'black') + '">{y}</span><br/>' +
+    //                        '</div>'
+    //                }
+    //            }]
+
+    //        }));
+    //    });
+    //}
+    //else if (number == '11') {
+    //    var gaugeOptions = {
+    //        chart: {
+    //            type: 'gauge',
+    //            borderRadius: '10px', backgroundColor: '#F0F0F0'
+
+    //        },
+    //        title: {
+    //            text: 'Roll Back',
+    //            style: {
+    //                color: '#484b4f',
+    //                font: "Segoe UI",
+    //                fontSize: '14px',
+    //                fontWeight: 'bold'
+    //            }
+    //        },
+
+    //        pane: {
+    //            center: ['50%', '70%'],
+    //            size: '170%',
+    //            startAngle: -90,
+    //            endAngle: 90,
+    //            background: {
+    //                backgroundColor: (Highcharts.theme && Highcharts.theme.background2) || '#EEE',
+    //                innerRadius: '60%',
+    //                outerRadius: '100%',
+    //                shape: 'arc'
+    //            }
+    //        },
+
+    //        tooltip: {
+    //            enabled: false
+    //        },
+
+    //        // the value axis
+    //        yAxis: {
+    //            plotBands: [{
+    //                from: 0,
+    //                to: 4,
+    //                color: '#FF0000',
+    //                innerRadius: '60%',
+    //                outerRadius: '100%'
+    //            }, {
+    //                from: 4,
+    //                to: 10,
+    //                color: '#FFFF00',
+    //                innerRadius: '60%',
+    //                outerRadius: '100%'
+    //            }, {
+    //                from: 10,
+    //                to: 20,
+    //                color: '#008000',
+    //                innerRadius: '60%',
+    //                outerRadius: '100%'
+    //            }],
+    //            lineWidth: 0,
+    //            minorTickInterval: null,
+    //            tickAmount: 5,
+    //            title: {
+    //                y: 0
+    //            },
+    //            labels: {
+    //                y: 0,
+    //                distance: -40,
+    //                style: {
+    //                    color: '#484b4f',
+    //                    fontSize: '10px'
+    //                },
+    //                step: 1
+    //            }
+    //        },
+
+    //        plotOptions: {
+    //            gauge: {
+    //                dataLabels: {
+    //                    y: 35,
+    //                    borderWidth: 0,
+    //                    useHTML: true
+    //                }
+    //            }
+    //        }
+    //    };
+    //    var chart1;
+    //    $(function () {
+    //        //var newh = $("#dentalClaims").height();
+    //        //$(window).resize(function () {
+    //        //    newh = $("#dentalClaims").height();
+    //        //    chart1.redraw();
+    //        //    chart1.reflow();
+    //        //});
+    //        chart1 = new Highcharts.chart('dcRollBackContainer', Highcharts.merge(gaugeOptions, {
+    //            yAxis: {
+    //                min: 0,
+    //                max: 20,
+    //                title: {
+    //                    text: null
+    //                }
+    //            },
+
+    //            credits: {
+    //                enabled: false
+    //            },
+
+    //            series: [{
+    //                name: 'Speed',
+    //                data: [10],
+    //                dataLabels: {
+    //                    format: '<div style="text-align:center"><span style="font-size:15px;color:' +
+    //                        ((Highcharts.theme && Highcharts.theme.contrastTextColor) || 'black') + '">{y}</span><br/>' +
+    //                        '</div>'
+    //                }
+    //            }]
+
+    //        }));
+    //    });
+    //}
+    //else if (number == '12') {
+    //    var gaugeOptions = {
+    //        chart: {
+    //            type: 'gauge',
+    //            borderRadius: '10px', backgroundColor: '#F0F0F0'
+
+    //        },
+    //        title: {
+    //            text: 'Optional Verification',
+    //            style: {
+    //                color: '#484b4f',
+    //                font: "Segoe UI",
+    //                fontSize: '14px',
+    //                fontWeight: 'bold'
+    //            }
+    //        },
+
+    //        pane: {
+    //            center: ['50%', '70%'],
+    //            size: '170%',
+    //            startAngle: -90,
+    //            endAngle: 90,
+    //            background: {
+    //                backgroundColor: (Highcharts.theme && Highcharts.theme.background2) || '#EEE',
+    //                innerRadius: '60%',
+    //                outerRadius: '100%',
+    //                shape: 'arc'
+    //            }
+    //        },
+
+    //        tooltip: {
+    //            enabled: false
+    //        },
+
+    //        // the value axis
+    //        yAxis: {
+    //            plotBands: [{
+    //                from: 0,
+    //                to: 4,
+    //                color: '#FF0000',
+    //                innerRadius: '60%',
+    //                outerRadius: '100%'
+    //            }, {
+    //                from: 4,
+    //                to: 10,
+    //                color: '#FFFF00',
+    //                innerRadius: '60%',
+    //                outerRadius: '100%'
+    //            }, {
+    //                from: 10,
+    //                to: 20,
+    //                color: '#008000',
+    //                innerRadius: '60%',
+    //                outerRadius: '100%'
+    //            }],
+    //            lineWidth: 0,
+    //            minorTickInterval: null,
+    //            tickAmount: 5,
+    //            title: {
+    //                y: 0
+    //            },
+    //            labels: {
+    //                y: 0,
+    //                distance: -40,
+    //                style: {
+    //                    color: '#484b4f',
+    //                    fontSize: '10px'
+    //                },
+    //                step: 1
+    //            }
+    //        },
+
+    //        plotOptions: {
+    //            gauge: {
+    //                dataLabels: {
+    //                    y: 35,
+    //                    borderWidth: 0,
+    //                    useHTML: true
+    //                }
+    //            }
+    //        }
+    //    };
+    //    var chart1;
+    //    $(function () {
+    //        //var newh = $("#dentalClaims").height();
+    //        //$(window).resize(function () {
+    //        //    newh = $("#dentalClaims").height();
+    //        //    chart1.redraw();
+    //        //    chart1.reflow();
+    //        //});
+    //        chart1 = new Highcharts.chart('dcOptionalVerificationContainer', Highcharts.merge(gaugeOptions, {
+    //            yAxis: {
+    //                min: 0,
+    //                max: 20,
+    //                title: {
+    //                    text: null
+    //                }
+    //            },
+
+    //            credits: {
+    //                enabled: false
+    //            },
+
+    //            series: [{
+    //                name: 'Speed',
+    //                data: [20],
+    //                dataLabels: {
+    //                    format: '<div style="text-align:center"><span style="font-size:15px;color:' +
+    //                        ((Highcharts.theme && Highcharts.theme.contrastTextColor) || 'black') + '">{y}</span><br/>' +
+    //                        '</div>'
+    //                }
+    //            }]
+
+    //        }));
+    //    });
+    //}
     else if (number == '13') {
         var chart1;
         $(function () {
@@ -1501,13 +1501,13 @@ function loadChartsInDashboard(number, dashboardData, newHeight) {
             });
         });
     }
-    else if (number == '13') {
-        //$(function () {
-        //    var newh = $("#importantLinks").height();
-        //    $(window).resize(function () {
-        //        newh = $("#importantLinks").height();
-        //        $("#importantLinksContainer").height() = newh;
-        //    });
-        //});
-    }
+    //else if (number == '13') {
+    //    //$(function () {
+    //    //    var newh = $("#importantLinks").height();
+    //    //    $(window).resize(function () {
+    //    //        newh = $("#importantLinks").height();
+    //    //        $("#importantLinksContainer").height() = newh;
+    //    //    });
+    //    //});
+    //}
 }
