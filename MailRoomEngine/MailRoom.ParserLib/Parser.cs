@@ -54,7 +54,7 @@ namespace MailRoom.ParserLib
     public class Row
     {
         [NotMapped]
-        public virtual int Key { get; }
+        public virtual string Key { get; }
 
 
         // Verified / Validated or Error
@@ -64,6 +64,11 @@ namespace MailRoom.ParserLib
 
         [NotMapped]
         public List<Error> Errors = new List<Error>();
+        [NotMapped]
+        public string ParserErrorCsv = string.Empty;
+
+        [NotMapped]
+        public int ExecutionStatus = 0;
 
     }
 

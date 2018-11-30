@@ -1,197 +1,232 @@
-﻿@using MailRoom.Model;
-@model MailRoom.Model.Dashboard
-@{
+﻿@{
     ViewData["Title"] = "Dashboard";
-
- 
 }
 <script>
- 
+
     var dashboardData =  @(Html.Raw(Newtonsoft.Json.JsonConvert.SerializeObject(Model)));
 </script>
-<div class="container-fluid">
+<div class="container-fluid row">
     <div class="col-xs-12 dashBoardContent">
-        <div class="col-xs-12 col-sm-12 col-md-12 col-lg-8">
-            <div class="col-xs-12">
-                <h5>OVERALL PROGRESS</h5>
-            </div>
-            <div class="col-xs-12">
-                <div id="overallVerificationRequiredContainer" class="col-xs-12 col-sm-4 dashboardRow">
-                    <script type="text/javascript">
-                       
-                        loadChartsInDashboard('1', dashboardData, $(window).height())
-                    </script>
+        <div class="row">
+            <div class="col-xs-12 col-sm-12 col-md-12 col-lg-8">
+                <div class="row">
+                    <div class="col-xs-12 col-lg-12">
+                        <h5>OVERALL PROGRESS</h5>
+                    </div>
+                    <div class="col-xs-12 col-lg-12">
+                        <div class="row">
+                            <div id="overallVerificationRequiredContainer" class="col-xs-12 col-sm-4 col-lg-4 dashboardRow">
+                                <script type="text/javascript">
+                                    loadChartsInDashboard('1', dashboardData, $(window).height())
+                                </script>
+                            </div>
+                            <div id="overallRollBackContainer" class="col-xs-12 col-sm-4 col-lg-4 dashboardRow">
+                                <script>
+                                    loadChartsInDashboard('2', dashboardData, $(window).height())
+                                </script>
+                            </div>
+                            <div id="overallOptionalVerificationContainer" class="col-xs-12 col-sm-4 col-lg-4 dashboardRow">
+                                <script>
+                                    loadChartsInDashboard('3', dashboardData, $(window).height())
+                                </script>
+                            </div>
+                        </div>
+                    </div>
                 </div>
-                <div id="overallRollBackContainer" class="col-xs-12 col-sm-4 dashboardRow">
-                    <script>
-                        loadChartsInDashboard('2', dashboardData, $(window).height())
-                    </script>
-                </div>
-                <div id="overallOptionalVerificationContainer" class="col-xs-12 col-sm-4 dashboardRow">
-                    <script>
-                        loadChartsInDashboard('3', dashboardData, $(window).height())
-                    </script>
-                </div>
-            </div>
+                <div class="row">
+                    <div class="col-lg-12">
+                        <h6>CMS 1500</h6>
+                    </div>
 
-            <div class="col-xs-12">
-                <h6>CMS 1500</h6>
-            </div>
-            <div class="col-xs-12">
+                    <div class="col-xs-12 col-lg-12">
+                        <div class="row container-fluid">
+                            <div class="col-xs-12 col-sm-12 col-md-4 col-lg-4" style="padding-right:35px;" onclick="location.href='@Url.Action("FullList", "Home" )'">
+                                @*
+                                    <script>
+                                        loadChartsInDashboard('4', dashboardData, $(window).height())
+                                    </script>*@
+                                <div class="row container-fluid" style="cursor:pointer;border-radius:10px;background-color: #F0F0F0;">
+                                    <div class="col-lg-12 centerAlignmentForText" style="color: #484b4f;font:Segoe UI;font-size:14px;font-weight:bold;">
+                                        Verification Required
+                                    </div>
+                                    <div class="col-lg-12" style="padding-bottom:-10px;">
+                                        <h1 class="centerAlignmentForText">10</h1>
+                                    </div>
+                                    <div class="col-lg-12" style="padding-bottom:-10px;">
+                                        <h5 class="centerAlignmentForText">Total 40 are assigned today.</h5>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-xs-12 col-sm-12 col-md-4 col-lg-4" style="padding-right:25px;padding-left:25px;">
+                                @*
+                                    <script>
+                                        loadChartsInDashboard('5', dashboardData, $(window).height())
+                                    </script>*@
+                                <div class="row container-fluid" style="border-radius:10px;background-color: #F0F0F0;">
+                                    <div class="col-lg-12 centerAlignmentForText" style="color: #484b4f;font:Segoe UI;font-size:14px;font-weight:bold;">
+                                        Roll Back
+                                    </div>
+                                    <div class="col-lg-12">
+                                        <h1 class="centerAlignmentForText">0</h1>
+                                    </div>
+                                    <div class="col-lg-12">
+                                        <h5 class="centerAlignmentForText">Total 10 are assigned today.</h5>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-xs-12 col-sm-12 col-md-4 col-lg-4" style="padding-left:35px;">
+                                @*
+                                    <script>
+                                        loadChartsInDashboard('6', dashboardData, $(window).height())
+                                    </script>*@
+                                <div class="row container-fluid" style="border-radius:10px;background-color: #F0F0F0;">
+                                    <div class="col-lg-12 centerAlignmentForText" style="color: #484b4f;font:Segoe UI;font-size:14px;font-weight:bold;">
+                                        Optional Verification
+                                    </div>
+                                    <div class="col-lg-12">
+                                        <h1 class="centerAlignmentForText">30</h1>
+                                    </div>
+                                    <div class="col-lg-12">
+                                        <h5 class="centerAlignmentForText">Total 40 are assigned today.</h5>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-lg-12">
+                        <h6>UB-04</h6>
+                    </div>
+                    <div class="col-xs-12 col-lg-12">
+                        <div class="row container-fluid">
+                            <div class="col-xs-12 col-sm-12 col-md-4 col-lg-4" style="padding-right:35px;">
+                                @*
+                                    <script>
+                                        loadChartsInDashboard('7', dashboardData, $(window).height())
+                                    </script>*@
+                                <div class="row container-fluid" style="border-radius:10px;background-color: #F0F0F0;">
+                                    <div class="col-lg-12 centerAlignmentForText" style="color: #484b4f;font:Segoe UI;font-size:14px;font-weight:bold;">
+                                        Verification Required
+                                    </div>
+                                    <div class="col-lg-12">
+                                        <h1 class="centerAlignmentForText">20</h1>
+                                    </div>
+                                    <div class="col-lg-12">
+                                        <h5 class="centerAlignmentForText">Total 60 are assigned today.</h5>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-xs-12 col-sm-12 col-md-4 col-lg-4" style="padding-right:25px;padding-left:25px;">
+                                @*
+                                    <script>
+                                        loadChartsInDashboard('8', dashboardData, $(window).height())
+                                    </script>*@
+                                <div class="row container-fluid" style="border-radius:10px;background-color: #F0F0F0;">
+                                    <div class="col-lg-12 centerAlignmentForText" style="color: #484b4f;font:Segoe UI;font-size:14px;font-weight:bold;">
+                                        Roll Back
+                                    </div>
+                                    <div class="col-lg-12">
+                                        <h1 class="centerAlignmentForText">5</h1>
+                                    </div>
+                                    <div class="col-lg-12">
+                                        <h5 class="centerAlignmentForText">Total 20 are assigned today.</h5>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-xs-12 col-sm-12 col-md-4 col-lg-4" style="padding-left:35px;">
+                                @*
+                                    <script>
+                                        loadChartsInDashboard('9', dashboardData, $(window).height())
+                                    </script>*@
+                                <div class="row container-fluid" style="border-radius:10px;background-color: #F0F0F0;">
+                                    <div class="col-lg-12 centerAlignmentForText" style="color: #484b4f;font:Segoe UI;font-size:14px;font-weight:bold;">
+                                        Optional Verification
+                                    </div>
+                                    <div class="col-lg-12">
+                                        <h1 class="centerAlignmentForText">30</h1>
+                                    </div>
+                                    <div class="col-lg-12">
+                                        <h5 class="centerAlignmentForText">Total 40 are assigned today.</h5>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
 
-                <div id="cmsVerificationRequiredContainer" style="cursor:pointer;border-radius:15px;background-color: #F0F0F0;" class="col-xs-12 col-sm-4 dashboardRow" onclick="location.href='@Url.Action("FullList", "Home")'">
-                    @*<script>
-                        loadChartsInDashboard('4', dashboardData, $(window).height())
 
-                    </script>
-                    *@
-                    <div class="col-sm-12 centerAlignmentForText" style="color: #484b4f;font:Segoe UI;font-size:14px;font-weight:bold;margin-top:5px;">
-                        Verification Required
-                    </div>
-                    <div class="col-sm-12">
-                        <h1 class="centerAlignmentForText">@Model.ClaimsCMS100["TODO"]</h1>
-                    </div>
-                    <div class="col-sm-12">
-                        <h5 class="centerAlignmentForText">Total @Model.TotalClaimsCountByCMS1500PerDay are assigned today.</h5>
                     </div>
                 </div>
-                <div id="cmsRollBackContainer" style="cursor:pointer;border-radius:15px;background-color: #F0F0F0;" class="col-xs-12 col-sm-4 dashboardRow">
-                    @*<script>
-            loadChartsInDashboard('5', dashboardData, $(window).height())
-        </script>*@
-                    <div class="col-sm-12 centerAlignmentForText" style="color: #484b4f;font:Segoe UI;font-size:14px;font-weight:bold;margin-top:5px;">
-                        Roll Back
+                <div class="row">
+                    <div class="col-lg-12">
+                        <h6>DENTAL CLAIMS</h6>
                     </div>
-                    <div class="col-sm-12">
-                        <h1 class="centerAlignmentForText">@Model.ClaimsCMS100["ROLLBACK"]</h1>
-                    </div>
-                    <div class="col-sm-12">
-                        <h5 class="centerAlignmentForText">Total @Model.TotalClaimsCountByCMS1500PerDay are assigned today.</h5>
-                    </div>
-                </div>
-        <div id="cmsOptionalVerificationContainer" style="cursor:pointer;border-radius:15px;background-color: #F0F0F0;" class="col-xs-12 col-sm-4 dashboardRow">
-            @*<script>
-            loadChartsInDashboard('6', dashboardData, $(window).height())
-        </script>*@
-                    <div class="col-sm-12 centerAlignmentForText" style="color: #484b4f;font:Segoe UI;font-size:14px;font-weight:bold;margin-top:5px;">
-                        Optional Verification
-                    </div>
-                    <div class="col-sm-12">
-                        <h1 class="centerAlignmentForText">@Model.ClaimsCMS100["COMPLETED"]</h1>
-                    </div>
-                    <div class="col-sm-12">
-                        <h5 class="centerAlignmentForText">Total @Model.TotalClaimsCountByCMS1500PerDay are assigned today.</h5>
+                    <div class="col-xs-12 col-lg-12">
+                        <div class="row container-fluid">
+                            <div class="col-xs-12 col-sm-12 col-md-4 col-lg-4" style="padding-right:35px;">
+                                @*
+                                    <script>
+                                        loadChartsInDashboard('10', dashboardData, $(window).height())
+                                    </script>*@
+                                <div class="row container-fluid" style="border-radius:10px;background-color: #F0F0F0;">
+                                    <div class="col-lg-12 centerAlignmentForText" style="color: #484b4f;font:Segoe UI;font-size:14px;font-weight:bold;">
+                                        Verification Required
+                                    </div>
+                                    <div class="col-lg-12">
+                                        <h1 class="centerAlignmentForText">20</h1>
+                                    </div>
+                                    <div class="col-lg-12">
+                                        <h5 class="centerAlignmentForText">Total 50 are assigned today.</h5>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-xs-12 col-sm-12 col-md-4 col-lg-4" style="padding-right:25px;padding-left:25px;">
+                                @*
+                                    <script>
+                                        loadChartsInDashboard('11', dashboardData, $(window).height())
+                                    </script>*@
+                                <div class="row container-fluid" style="border-radius:10px;background-color: #F0F0F0;">
+                                    <div class="col-lg-12 centerAlignmentForText" style="color: #484b4f;font:Segoe UI;font-size:14px;font-weight:bold;">
+                                        Roll Back
+                                    </div>
+                                    <div class="col-lg-12">
+                                        <h1 class="centerAlignmentForText">10</h1>
+                                    </div>
+                                    <div class="col-lg-12">
+                                        <h5 class="centerAlignmentForText">Total 20 are assigned today.</h5>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-xs-12 col-sm-12 col-md-4 col-lg-4" style="padding-left:35px;">
+                                @*
+                                    <script>
+                                        loadChartsInDashboard('12', dashboardData, $(window).height())
+                                    </script>*@
+                                <div class="row container-fluid" style="border-radius:10px;background-color: #F0F0F0;">
+                                    <div class="col-lg-12 centerAlignmentForText" style="color: #484b4f;font:Segoe UI;font-size:14px;font-weight:bold;">
+                                        Optional Verification
+                                    </div>
+                                    <div class="col-lg-12">
+                                        <h1 class="centerAlignmentForText">20</h1>
+                                    </div>
+                                    <div class="col-lg-12">
+                                        <h5 class="centerAlignmentForText">Total 20 are assigned today.</h5>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
                     </div>
                 </div>
             </div>
-            <div class="col-xs-12">
+            <div class="col-xs-12 col-sm-12 col-md-12 col-lg-4">
+                <div class="row">
+                    <div class="col-xs-12">
+                        <h6 class="centerAlignmentForText">MY PERFORMANCE</h6>
+                    </div>
 
-                <h6>UB-04</h6>
-
-            </div>
-            <div class="col-xs-12">
-                <div id="ub04VerificationRequiredContainer" style="cursor:pointer;border-radius:15px;background-color: #F0F0F0;" class="col-xs-12 col-sm-4 dashboardRow">
-                    @*<script>
-                            loadChartsInDashboard('7', dashboardData, $(window).height())
-                        </script>*@
-                    <div class="col-sm-12 centerAlignmentForText" style="color: #484b4f;font:Segoe UI;font-size:14px;font-weight:bold;margin-top:5px;">
-                        Verification Required
-                    </div>
-                    <div class="col-sm-12">
-                        <h1 class="centerAlignmentForText">@Model.ClaimsUB04["TODO"]</h1>
-                    </div>
-                    <div class="col-sm-12">
-                        <h5 class="centerAlignmentForText">Total @Model.TotalClaimsCountByUB04PerDay are assigned today.</h5>
-                    </div>
-                </div>
-                <div id="ub04RollBackContainer" style="cursor:pointer;border-radius:15px;background-color: #F0F0F0;" class="col-xs-12 col-sm-4 dashboardRow">
-                    @*<script>
-                            loadChartsInDashboard('8', dashboardData, $(window).height())
-                        </script>*@
-                    <div class="col-sm-12 centerAlignmentForText" style="color: #484b4f;font:Segoe UI;font-size:14px;font-weight:bold;margin-top:5px;">
-                        Roll Back
-                    </div>
-                    <div class="col-sm-12">
-                        <h1 class="centerAlignmentForText">@Model.ClaimsUB04["ROLLBACK"]</h1>
-                    </div>
-                    <div class="col-sm-12">
-                        <h5 class="centerAlignmentForText">Total @Model.TotalClaimsCountByUB04PerDay are assigned today.</h5>
-                    </div>
-                </div>
-                <div id="ub04OptionalVerificationContainer" style="cursor:pointer;border-radius:15px;background-color: #F0F0F0;" class="col-xs-12 col-sm-4 dashboardRow">
-                    @*<script>
-                            loadChartsInDashboard('9', dashboardData, $(window).height())
-                        </script>*@
-                    <div class="col-sm-12 centerAlignmentForText" style="color: #484b4f;font:Segoe UI;font-size:14px;font-weight:bold;margin-top:5px;">
-                        Optional Verification
-                    </div>
-                    <div class="col-sm-12">
-                        <h1 class="centerAlignmentForText">@Model.ClaimsUB04["COMPLETED"]</h1>
-                    </div>
-                    <div class="col-sm-12">
-                        <h5 class="centerAlignmentForText">Total @Model.TotalClaimsCountByUB04PerDay are assigned today.</h5>
-                    </div>
-                </div>
-            </div>
-            <div class="col-xs-12">
-
-                <h6>DENTAL CLAIMS</h6>
-
-            </div>
-            <div class="col-xs-12">
-                <div id="dcVerificationRequiredContainer" style="cursor:pointer;border-radius:15px;background-color: #F0F0F0;" class="col-xs-12 col-sm-4 dashboardRow">
-                    @*<script>
-                            loadChartsInDashboard('10', dashboardData, $(window).height())
-                        </script>*@
-                    <div class="col-sm-12 centerAlignmentForText" style="color: #484b4f;font:Segoe UI;font-size:14px;font-weight:bold;margin-top:5px;">
-                        Verification Required
-                    </div>
-                    <div class="col-sm-12">
-                        <h1 class="centerAlignmentForText">@Model.ClaimsPK83["TODO"]</h1>
-                    </div>
-                    <div class="col-sm-12">
-                        <h5 class="centerAlignmentForText">Total @Model.TotalClaimsCountByPK83PerDay are assigned today.</h5>
-                    </div>
-                </div>
-                <div id="dcRollBackContainer" style="cursor:pointer;border-radius:15px;background-color: #F0F0F0;" class="col-xs-12 col-sm-4 dashboardRow">
-                    @*<script>
-                            loadChartsInDashboard('11', dashboardData, $(window).height())
-                        </script>*@
-                    <div class="col-sm-12 centerAlignmentForText" style="color: #484b4f;font:Segoe UI;font-size:14px;font-weight:bold;margin-top:5px;">
-                        Roll Back
-                    </div>
-                    <div class="col-sm-12">
-                        <h1 class="centerAlignmentForText">@Model.ClaimsPK83["ROLLBACK"]</h1>
-                    </div>
-                    <div class="col-sm-12">
-                        <h5 class="centerAlignmentForText">Total @Model.TotalClaimsCountByPK83PerDay are assigned today.</h5>
-                    </div>
-                </div>
-                <div id="dcOptionalVerificationContainer" style="cursor:pointer;border-radius:15px;background-color: #F0F0F0;" class="col-xs-12 col-sm-4 dashboardRow">
-                    @*<script>
-                            loadChartsInDashboard('12', dashboardData, $(window).height())
-                        </script>*@
-                    <div class="col-sm-12 centerAlignmentForText" style="color: #484b4f;font:Segoe UI;font-size:14px;font-weight:bold;margin-top:5px;">
-                        Optional Verification
-                    </div>
-                    <div class="col-sm-12">
-                        <h1 class="centerAlignmentForText">@Model.ClaimsPK83["COMPLETED"]</h1>
-                    </div>
-                    <div class="col-sm-12">
-                        <h5 class="centerAlignmentForText">Total @Model.TotalClaimsCountByPK83PerDay are assigned today.</h5>
-                    </div>
-                </div>
-            </div>
-        </div>
-        <div class="col-xs-12 col-sm-12 col-md-12 col-lg-4">
-            <div class="col-xs-12">
-                <h6 class="centerAlignmentForText">MY PERFORMANCE</h6>
-            </div>
-
-            <div id="allocatedVsCompletedContainer" class="col-xs-12 metricChartRow">
-                <script>
+                    <div id="allocatedVsCompletedContainer" class="col-xs-12 metricChartRow">
+                        <script>
                             loadChartsInDashboard('13', dashboardData, $(window).height())
-                        </script> 
+                        </script>
                     </div>
 
                     <div class="col-xs-12">
@@ -202,7 +237,8 @@
                             <br />https://www.unitedstateszipcodes.org/
                         </div>
                     </div>
-
                 </div>
             </div>
         </div>
+    </div>
+</div>

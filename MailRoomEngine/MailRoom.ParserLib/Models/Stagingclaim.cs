@@ -3,10 +3,10 @@ using System.Collections.Generic;
 
 namespace MailRoom.ParserLib
 {
-    public partial class Stagingclaim : Row
+    public partial class Stagingclaim //: Row
     {
          
-        public override int Key { get => this.ClaimId; }
+      
         public int ClaimId { get; set; }
         public string InsuredId { get; set; }
         public string PatientName { get; set; }

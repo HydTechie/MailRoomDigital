@@ -3,23 +3,32 @@ using System.Collections.Generic;
 
 namespace MailRoom.ParserLib
 {
-    public partial class StagingClaimCms1500Detail 
+    public partial class StagingClaimCms1500Detail
     {
-        public int ClaimDetailId { get; set; }
-        public int? ClaimId { get; set; }
-        public DateTime? _24aServiceStartDate { get; set; }
-        public DateTime? _24aServiceEndDate { get; set; }
-        public string _24bPlaceofService { get; set; }
+        public int Id { get; set; }
+        public string _24XClaimId { get; set; }
+        public int? _24aAMm { get; set; }
+        public int? _24aBDd { get; set; }
+        public int? _24aCYyyy { get; set; }
+        public int? _24aDMm { get; set; }
+        public int? _24aEDd { get; set; }
+        public int? _24aFYyyy { get; set; }
+        public int? _24bPlaceOfService { get; set; }
         public string _24cEmg { get; set; }
-        public string _24dCpthcpcs { get; set; }
-        public string _24dModifier { get; set; }
-        public string _24eDiagnosisPointer { get; set; }
-        public decimal? _24fCharges { get; set; }
-        public string _24gDaysOrUnits { get; set; }
-        public string _24hEpsdt { get; set; }
+        public int? _24dACptHcpcs { get; set; }
+        public int? _24dBModifier { get; set; }
+        public string _24eDiagnosticPointer { get; set; }
+        public int? _24fCharges { get; set; }
+        public int? _24fFCharges { get; set; }
+        public float? _24gDaysOrUnits { get; set; }
+        public string _24hAEpsdtCode { get; set; }
+        public string _24hBYesOrNo { get; set; }
         public string _24iQual { get; set; }
-        public int? _24jRenderingProviderId { get; set; }
+        public string _24jARenderingProviderId { get; set; }
+        public string _24jBRenderingProviderId { get; set; }
+        public DateTime? CreatedDate { get; set; }
+        public DateTime? ModifiedDate { get; set; }
 
-        public StagingClaimCms1500 Claim { get; set; }
+        public StagingClaimCms1500 _24XClaim { get; set; }
     }
 }
