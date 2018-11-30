@@ -177,7 +177,7 @@ namespace MailRoom.Repository.Helpers
             //financeUrl = "http://localhost:" + port + "/XML/financequotes.xml";
         }
 
-        Task<List<StagingclaimCms1500>> IStagingEngine.GetStaginClaimsAsync(params string[] stagingClaims)
+        Task<List<StagingClaimCms1500>> IStagingEngine.GetStaginClaimsAsync(params string[] stagingClaims)
         {
             throw new NotImplementedException();
         }

@@ -1,4 +1,6 @@
-﻿@{
+﻿@using MailRoom.Model;
+@model MailRoom.Model.Dashboard
+@{
     ViewData["Title"] = "Dashboard";
 }
 <script>
@@ -50,10 +52,10 @@
                                         Verification Required
                                     </div>
                                     <div class="col-lg-12" style="padding-bottom:-10px;">
-                                        <h1 class="centerAlignmentForText">10</h1>
+                                        <h1 class="centerAlignmentForText">@Model.ClaimsCMS100["TODO"]</h1>
                                     </div>
                                     <div class="col-lg-12" style="padding-bottom:-10px;">
-                                        <h5 class="centerAlignmentForText">Total 40 are assigned today.</h5>
+                                        <h5 class="centerAlignmentForText">Total @Model.TotalClaimsCountByCMS1500PerDay are assigned today.</h5>
                                     </div>
                                 </div>
                             </div>
@@ -67,10 +69,10 @@
                                         Roll Back
                                     </div>
                                     <div class="col-lg-12">
-                                        <h1 class="centerAlignmentForText">0</h1>
+                                        <h1 class="centerAlignmentForText">@Model.ClaimsCMS100["ROLLBACK"]</h1>
                                     </div>
                                     <div class="col-lg-12">
-                                        <h5 class="centerAlignmentForText">Total 10 are assigned today.</h5>
+                                        <h5 class="centerAlignmentForText">Total @Model.TotalClaimsCountByCMS1500PerDay are assigned today.</h5>
                                     </div>
                                 </div>
                             </div>
@@ -84,10 +86,10 @@
                                         Optional Verification
                                     </div>
                                     <div class="col-lg-12">
-                                        <h1 class="centerAlignmentForText">30</h1>
+                                        <h1 class="centerAlignmentForText">@Model.ClaimsCMS100["COMPLETED"]</h1>
                                     </div>
                                     <div class="col-lg-12">
-                                        <h5 class="centerAlignmentForText">Total 40 are assigned today.</h5>
+                                        <h5 class="centerAlignmentForText">Total @Model.TotalClaimsCountByCMS1500PerDay are assigned today.</h5>
                                     </div>
                                 </div>
                             </div>
@@ -110,10 +112,10 @@
                                         Verification Required
                                     </div>
                                     <div class="col-lg-12">
-                                        <h1 class="centerAlignmentForText">20</h1>
+                                        <h1 class="centerAlignmentForText">@Model.ClaimsUB04["TODO"]</h1>
                                     </div>
                                     <div class="col-lg-12">
-                                        <h5 class="centerAlignmentForText">Total 60 are assigned today.</h5>
+                                        <h5 class="centerAlignmentForText">Total @Model.TotalClaimsCountByUB04PerDay are assigned today.</h5>
                                     </div>
                                 </div>
                             </div>
@@ -127,10 +129,10 @@
                                         Roll Back
                                     </div>
                                     <div class="col-lg-12">
-                                        <h1 class="centerAlignmentForText">5</h1>
+                                        <h1 class="centerAlignmentForText">@Model.ClaimsUB04["ROLLBACK"]</h1>
                                     </div>
                                     <div class="col-lg-12">
-                                        <h5 class="centerAlignmentForText">Total 20 are assigned today.</h5>
+                                        <h5 class="centerAlignmentForText">Total @Model.TotalClaimsCountByUB04PerDay are assigned today.</h5>
                                     </div>
                                 </div>
                             </div>
@@ -144,10 +146,10 @@
                                         Optional Verification
                                     </div>
                                     <div class="col-lg-12">
-                                        <h1 class="centerAlignmentForText">30</h1>
+                                        <h1 class="centerAlignmentForText">@Model.ClaimsUB04["COMPLETED"]</h1>
                                     </div>
                                     <div class="col-lg-12">
-                                        <h5 class="centerAlignmentForText">Total 40 are assigned today.</h5>
+                                        <h5 class="centerAlignmentForText">Total @Model.TotalClaimsCountByUB04PerDay are assigned today.</h5>
                                     </div>
                                 </div>
                             </div>
@@ -172,10 +174,10 @@
                                         Verification Required
                                     </div>
                                     <div class="col-lg-12">
-                                        <h1 class="centerAlignmentForText">20</h1>
+                                        <h1 class="centerAlignmentForText">@Model.ClaimsPK83["TODO"]</h1>
                                     </div>
                                     <div class="col-lg-12">
-                                        <h5 class="centerAlignmentForText">Total 50 are assigned today.</h5>
+                                        <h5 class="centerAlignmentForText">Total @Model.TotalClaimsCountByPK83PerDay are assigned today.</h5>
                                     </div>
                                 </div>
                             </div>
@@ -189,10 +191,10 @@
                                         Roll Back
                                     </div>
                                     <div class="col-lg-12">
-                                        <h1 class="centerAlignmentForText">10</h1>
+                                        <h1 class="centerAlignmentForText">@Model.ClaimsPK83["ROLLBACK"]</h1>
                                     </div>
                                     <div class="col-lg-12">
-                                        <h5 class="centerAlignmentForText">Total 20 are assigned today.</h5>
+                                        <h5 class="centerAlignmentForText">Total @Model.TotalClaimsCountByPK83PerDay are assigned today.</h5>
                                     </div>
                                 </div>
                             </div>
@@ -206,10 +208,10 @@
                                         Optional Verification
                                     </div>
                                     <div class="col-lg-12">
-                                        <h1 class="centerAlignmentForText">20</h1>
+                                        <h1 class="centerAlignmentForText">@Model.ClaimsPK83["COMPLETED"]</h1>
                                     </div>
                                     <div class="col-lg-12">
-                                        <h5 class="centerAlignmentForText">Total 20 are assigned today.</h5>
+                                        <h5 class="centerAlignmentForText">Total @Model.TotalClaimsCountByPK83PerDay are assigned today.</h5>
                                     </div>
                                 </div>
                             </div>

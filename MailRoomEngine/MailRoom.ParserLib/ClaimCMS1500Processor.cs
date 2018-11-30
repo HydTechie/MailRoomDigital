@@ -36,10 +36,11 @@ namespace MailRoom.ParserLib
         {
             try
             {
-                int executionStatus = 0;  //  1- Complete & Verified
+                int executionStatus = -1;  //  1- Complete & Verified
                                           // 2- Completed But not Verified
                                           // 3 - Not Completed and Verified
                                           // 4- Not Completed and Not Verified 
+                                          // -1 - ERROR 
                 const string REQUIRED_ONLY = "required";
                 const string REQUIRED_WORD = "required and should be a single word";
                 const string MAXLENGTH = "should not exceed maxlength";
@@ -316,7 +317,7 @@ namespace MailRoom.ParserLib
                     executionStatus = 4;
                 }
 
-               // row.ExecutionStatus = executionStatus;
+                row.ExecutionStatus = executionStatus;
                 // execution state reached end...
                 IsExecutionCompleted = true;
             }

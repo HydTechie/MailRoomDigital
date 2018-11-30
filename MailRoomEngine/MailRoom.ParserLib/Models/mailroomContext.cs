@@ -752,15 +752,15 @@ namespace MailRoom.ParserLib
             {
                 entity.ToTable("cms1500_2");
 
-                entity.HasIndex(e => e._24XClaimId)
+                entity.HasIndex(e => e.ClaimId)
                     .HasName("fk_claimId");
 
                 entity.Property(e => e.Id)
                     .HasColumnName("ID")
                     .HasColumnType("int(11)");
 
-                entity.Property(e => e._24XClaimId)
-                    .HasColumnName("24-X_Claim Id")
+                entity.Property(e => e.ClaimId)
+                    .HasColumnName("ClaimID")
                     .HasColumnType("varchar(18)");
 
                 entity.Property(e => e._24aAMm)
@@ -837,9 +837,9 @@ namespace MailRoom.ParserLib
                     .HasColumnName("24j-b_Rendering provider ID")
                     .HasColumnType("varchar(10)");
 
-                entity.HasOne(d => d._24XClaim)
+                entity.HasOne(d => d.Claim)
                     .WithMany(p => p.Cms15002)
-                    .HasForeignKey(d => d._24XClaimId)
+                    .HasForeignKey(d => d.ClaimId)
                     .OnDelete(DeleteBehavior.Cascade)
                     .HasConstraintName("cms1500_2_ibfk_1");
             });
@@ -1017,6 +1017,10 @@ namespace MailRoom.ParserLib
                 entity.Property(e => e.ModifiedDate).HasColumnType("datetime");
 
                 entity.Property(e => e.ParserErrorCsv).HasColumnType("varchar(2000)");
+
+                entity.Property(e => e.ParserStatus)
+                    .HasColumnType("int(1)")
+                    .HasDefaultValueSql("'0'");
 
                 entity.Property(e => e.ReviewStatus)
                     .HasColumnType("int(1)")
@@ -1537,20 +1541,20 @@ namespace MailRoom.ParserLib
             {
                 entity.ToTable("stagingclaim_cms1500_detail");
 
-                entity.HasIndex(e => e._24XClaimId)
+                entity.HasIndex(e => e.ClaimId)
                     .HasName("fk_claimId");
 
                 entity.Property(e => e.Id)
                     .HasColumnName("ID")
                     .HasColumnType("int(11)");
 
+                entity.Property(e => e.ClaimId)
+                    .HasColumnName("ClaimID")
+                    .HasColumnType("varchar(18)");
+
                 entity.Property(e => e.CreatedDate).HasColumnType("datetime");
 
                 entity.Property(e => e.ModifiedDate).HasColumnType("datetime");
-
-                entity.Property(e => e._24XClaimId)
-                    .HasColumnName("24-X_Claim Id")
-                    .HasColumnType("varchar(18)");
 
                 entity.Property(e => e._24aAMm)
                     .HasColumnName("24a-a_MM")
@@ -1626,9 +1630,9 @@ namespace MailRoom.ParserLib
                     .HasColumnName("24j-b_Rendering provider ID")
                     .HasColumnType("varchar(10)");
 
-                entity.HasOne(d => d._24XClaim)
-                    .WithMany(p => p.StagingclaimCms1500Detail)
-                    .HasForeignKey(d => d._24XClaimId)
+                entity.HasOne(d => d.Claim)
+                    .WithMany(p => p.StagingClaimCms1500Detail)
+                    .HasForeignKey(d => d.ClaimId)
                     .OnDelete(DeleteBehavior.Cascade)
                     .HasConstraintName("stagingclaim_cms1500_detail_ibfk_1");
             });

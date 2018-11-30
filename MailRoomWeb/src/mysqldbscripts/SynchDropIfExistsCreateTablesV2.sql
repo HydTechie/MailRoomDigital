@@ -135,6 +135,7 @@ CREATE TABLE `stagingclaim_cms1500` (
   `33b_PayerAssignedIdentifier_of_BillingProvider` varchar(17) DEFAULT NULL,
   
   `ReviewerId` varchar(50),
+   `ParserStatus` int(1) DEFAULT '0',
   `ReviewStatus` int(1) DEFAULT '0',
   `ConfidenceLevel` int(5) DEFAULT '0',
   `ParserErrorCsv` varchar(2000),
@@ -147,7 +148,7 @@ CREATE TABLE `stagingclaim_cms1500` (
 
 CREATE TABLE `stagingclaim_cms1500_detail` (
   `ID` int(11) NOT NULL AUTO_INCREMENT,
-  `24-X_Claim Id` varchar(18) DEFAULT NULL,
+  `ClaimID` varchar(18) DEFAULT NULL,
   `24a-a_MM` int(2) DEFAULT NULL,
   `24a-b_DD` int(2) DEFAULT NULL,
   `24a-c_YYYY` int(2) DEFAULT NULL,
@@ -170,7 +171,7 @@ CREATE TABLE `stagingclaim_cms1500_detail` (
   
    `CreatedDate` datetime,
   `ModifiedDate` datetime,
-    FOREIGN KEY fk_claimId(`24-X_Claim Id`)
+    FOREIGN KEY fk_claimId(`ClaimID`)
    REFERENCES stagingclaim_CMS1500(ClaimID)
    ON DELETE cascade
 ON UPDATE cascade,

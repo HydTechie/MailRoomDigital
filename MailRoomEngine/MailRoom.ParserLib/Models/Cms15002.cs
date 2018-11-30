@@ -6,7 +6,7 @@ namespace MailRoom.ParserLib
     public partial class Cms15002
     {
         public int Id { get; set; }
-        public string _24XClaimId { get; set; }
+        public string ClaimId { get; set; }
         public int? _24aAMm { get; set; }
         public int? _24aBDd { get; set; }
         public int? _24aCYyyy { get; set; }
@@ -27,6 +27,6 @@ namespace MailRoom.ParserLib
         public string _24jARenderingProviderId { get; set; }
         public string _24jBRenderingProviderId { get; set; }
 
-        public Cms15001 _24XClaim { get; set; }
+        public Cms15001 Claim { get; set; }
     }
 }

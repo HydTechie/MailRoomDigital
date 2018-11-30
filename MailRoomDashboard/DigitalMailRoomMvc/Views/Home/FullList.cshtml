@@ -1,5 +1,4 @@
-﻿
-@{
+﻿@{
     ViewData["Title"] = "About";
 }
 
@@ -46,8 +45,8 @@
                             <td>@claimItem.ClaimId</td>
                             <td>@claimItem.ColumnsToVerify</td>
                             <td>@claimItem.ConfidenceScore</td>
-                            <td>@claimItem.SubmissionDate</td>
-                            <td>@claimItem.ExtractedDate</td>
+                            <td>@claimItem.SubmissionDate.ToShortDateString()</td>
+                            <td>@claimItem.ExtractedDate.ToShortDateString()</td>
                         </tr>
                     }
                 </tbody>

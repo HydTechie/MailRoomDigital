@@ -56,7 +56,7 @@ namespace MailRoomCoreEngine
             {
                 // TODO: we dont need all the details of the row, just primary key and its errors to update the database!!
                 Console.WriteLine("The row processed " 
-                    + row.Key + ", status " + row.ExecStatus + " error:" + row.Errors.Count);
+                    + row.Key + ", status " + row.ExecutionStatus + " error:" + row.Errors.Count);
                 // TODO: Need a Dirty row to be inserted as is with great status 
                 Cms15001 claimsRow = (Cms15001)row;
                 using (mailroomContext context = new mailroomContext(configuration.GetConnectionString("MailRoom")))
@@ -66,26 +66,33 @@ namespace MailRoomCoreEngine
                     foreach (var item in claimsRow.Cms15002)
                     {
                         // convert soure to target type via Mapper
-                        var stagingClaimCms1500Detail = Mapper.Map<StagingClaimCms1500Detail>(claimsRow.Cms15002);
-                     
-                        if (stagingClaimCms1500Detail.Id == 0) // insert
-                        {
-                            stagingClaimCms1500Detail.CreatedDate = DateTime.Now;
-                            context.Entry(stagingClaimCms1500Detail).State = EntityState.Added;
-                        }
-                        else// update
-                        {
-                            stagingClaimCms1500Detail.ModifiedDate = DateTime.Now;
-                            context.Entry(stagingClaimCms1500Detail).State = EntityState.Modified;
-                        }
-                           
+                        var stagingClaimCms1500Detail = Mapper.Map<StagingClaimCms1500Detail>(item);
+                        stagingClaimCms1500Detail.CreatedDate = DateTime.Now;
+                        stagingClaimCms1500Detail.Id = 0; // Ignore as ChildId carried out, for insert
+                        context.Entry(stagingClaimCms1500Detail).State = EntityState.Added;
+
                     }
+                    var rdm = new Random((int)DateTime.Now.Ticks);
                     // TODO:revisit for Hardcoded values
                     targetRow.CreatedDate = DateTime.Now;
                     targetRow.ReviewerId = "reviewerid1";
-                    targetRow.ReviewStatus = 0; //Default not reviewed
+                    /*
+                  ParserStatus = -1;  //  1- Complete & Verified
+                                          // 2- Completed But not Verified
+                                          // 3 - Not Completed and Verified
+                                          // 4- Not Completed and Not Verified 
+                                          // -1 – ERROR
+
+
+ReviewStatus = 0 – Not yet Reviewed, 1- Review Completed, 2 – Rollback
+
+                     */
+                    // TODO: Remove Random!
+                    targetRow.ReviewStatus = rdm.Next(0, 2); 
+                 
+                    targetRow.ParserStatus = row.ExecutionStatus;
                     targetRow.ParserErrorCsv = row.ParserErrorCsv;
-                    targetRow.ConfidenceLevel = 90;
+                    targetRow.ConfidenceLevel = rdm.Next(80,99);
    
                     context.StagingClaimCms1500.Add(targetRow);
                     // context.Entry(claim).State = EntityState.Modified;
@@ -110,7 +117,8 @@ namespace MailRoomCoreEngine
             using (mailroomContext context = new mailroomContext(configuration.GetConnectionString("MailRoom")))
             {
                 // TODO: where condition is A MUST FOR DEMO - Where(c => c.ModifiedDate <= DateTime.Now).
-                top10Records = context.Cms15001.Take(10).ToList();
+                // including their children records
+                top10Records = context.Cms15001.Include(claim => claim.Cms15002).Take(10).ToList();
             };
                 StagingClaimCms1500 stagingClaimCms1500 = new StagingClaimCms1500();
                 //TODO: decision to decide which parser this row should go with!

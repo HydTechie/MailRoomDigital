@@ -3,13 +3,15 @@ using System.Collections.Generic;
 
 namespace MailRoom.Model
 {
-    public partial class StagingClaimCms1500
-    {
-        public StagingClaimCms1500()
-        {
-            StagingClaimCms1500Detail = new HashSet<StagingClaimCms1500Detail>();
-        }
+    
 
+    public partial class Cms15001  
+    {
+        public Cms15001()
+        {
+            Cms15002 = new HashSet<Cms15002>();
+        }
+        //public override string Key => ClaimId;
         public string ClaimId { get; set; }
         public string IaPayerName { get; set; }
         public string IbPayerAddress1 { get; set; }
@@ -141,15 +143,7 @@ namespace MailRoom.Model
         public string _33EBillingproviderCityStateZipcode { get; set; }
         public string _33aNationalProviderIdentifierNumber { get; set; }
         public string _33bPayerAssignedIdentifierOfBillingProvider { get; set; }
-        public string ReviewerId { get; set; }
-        public int? ReviewStatus { get; set; }
-        public int? ParserStatus { get; set; }
-        public int? ConfidenceLevel { get; set; }
-        public string ParserErrorCsv { get; set; }
-        public string SourceId { get; set; }
-        public DateTime? CreatedDate { get; set; }
-        public DateTime? ModifiedDate { get; set; }
 
-        public ICollection<StagingClaimCms1500Detail> StagingClaimCms1500Detail { get; set; }
+        public ICollection<Cms15002> Cms15002 { get; set; }
     }
 }

@@ -27,9 +27,15 @@ namespace MailRoom.Repository
         public virtual DbSet<Aspnetusers> Aspnetusers { get; set; }
         public virtual DbSet<Aspnetusertokens> Aspnetusertokens { get; set; }
         public virtual DbSet<Efmigrationshistory> Efmigrationshistory { get; set; }
-        //public virtual DbSet<StagingclaimCms1500> StagingclaimCms1500 { get; set; }
+ 
+
+        public virtual DbSet<Cms15001> Cms15001 { get; set; }
+        public virtual DbSet<Cms15002> Cms15002 { get; set; }
+ 
+        public virtual DbSet<StagingClaim> Stagingclaim { get; set; }
         public virtual DbSet<StagingClaimCms1500> StagingclaimCms1500 { get; set; }
         public virtual DbSet<StagingClaimCms1500Detail> StagingclaimCms1500Detail { get; set; }
+
         bool IDisposedTracker.IsDisposed { get => throw new NotImplementedException(); set => throw new NotImplementedException(); }
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
@@ -40,738 +46,6 @@ namespace MailRoom.Repository
                 optionsBuilder.UseMySql(Configuration.GetConnectionString("MailRoom"));
             }
         }
-        //protected override void OnModelCreating(ModelBuilder modelBuilder)
-        //{
-        //    modelBuilder.Entity<Aspnetroleclaims>(entity =>
-        //    {
-        //        entity.ToTable("aspnetroleclaims");
-
-        //        entity.HasIndex(e => e.RoleId)
-        //            .HasName("IX_AspNetRoleClaims_RoleId");
-
-        //        entity.Property(e => e.Id).HasColumnType("int(11)");
-
-        //        entity.Property(e => e.ClaimType).HasColumnType("longtext");
-
-        //        entity.Property(e => e.ClaimValue).HasColumnType("longtext");
-
-        //        entity.Property(e => e.RoleId)
-        //            .IsRequired()
-        //            .HasColumnType("varchar(255)");
-
-        //        entity.HasOne(d => d.Role)
-        //            .WithMany(p => p.Aspnetroleclaims)
-        //            .HasForeignKey(d => d.RoleId)
-        //            .HasConstraintName("FK_AspNetRoleClaims_AspNetRoles_RoleId");
-        //    });
-
-        //    modelBuilder.Entity<Aspnetroles>(entity =>
-        //    {
-        //        entity.ToTable("aspnetroles");
-
-        //        entity.HasIndex(e => e.NormalizedName)
-        //            .HasName("RoleNameIndex")
-        //            .IsUnique();
-
-        //        entity.Property(e => e.Id).HasColumnType("varchar(255)");
-
-        //        entity.Property(e => e.ConcurrencyStamp).HasColumnType("longtext");
-
-        //        entity.Property(e => e.Name).HasColumnType("varchar(256)");
-
-        //        entity.Property(e => e.NormalizedName).HasColumnType("varchar(256)");
-        //    });
-
-        //    modelBuilder.Entity<Aspnetuserclaims>(entity =>
-        //    {
-        //        entity.ToTable("aspnetuserclaims");
-
-        //        entity.HasIndex(e => e.UserId)
-        //            .HasName("IX_AspNetUserClaims_UserId");
-
-        //        entity.Property(e => e.Id).HasColumnType("int(11)");
-
-        //        entity.Property(e => e.ClaimType).HasColumnType("longtext");
-
-        //        entity.Property(e => e.ClaimValue).HasColumnType("longtext");
-
-        //        entity.Property(e => e.UserId)
-        //            .IsRequired()
-        //            .HasColumnType("varchar(255)");
-
-        //        entity.HasOne(d => d.User)
-        //            .WithMany(p => p.Aspnetuserclaims)
-        //            .HasForeignKey(d => d.UserId)
-        //            .HasConstraintName("FK_AspNetUserClaims_AspNetUsers_UserId");
-        //    });
-
-        //    modelBuilder.Entity<Aspnetuserlogins>(entity =>
-        //    {
-        //        entity.HasKey(e => new { e.LoginProvider, e.ProviderKey });
-
-        //        entity.ToTable("aspnetuserlogins");
-
-        //        entity.HasIndex(e => e.UserId)
-        //            .HasName("IX_AspNetUserLogins_UserId");
-
-        //        entity.Property(e => e.LoginProvider).HasColumnType("varchar(128)");
-
-        //        entity.Property(e => e.ProviderKey).HasColumnType("varchar(128)");
-
-        //        entity.Property(e => e.ProviderDisplayName).HasColumnType("longtext");
-
-        //        entity.Property(e => e.UserId)
-        //            .IsRequired()
-        //            .HasColumnType("varchar(255)");
-
-        //        entity.HasOne(d => d.User)
-        //            .WithMany(p => p.Aspnetuserlogins)
-        //            .HasForeignKey(d => d.UserId)
-        //            .HasConstraintName("FK_AspNetUserLogins_AspNetUsers_UserId");
-        //    });
-
-        //    modelBuilder.Entity<Aspnetuserroles>(entity =>
-        //    {
-        //        entity.HasKey(e => new { e.UserId, e.RoleId });
-
-        //        entity.ToTable("aspnetuserroles");
-
-        //        entity.HasIndex(e => e.RoleId)
-        //            .HasName("IX_AspNetUserRoles_RoleId");
-
-        //        entity.Property(e => e.UserId).HasColumnType("varchar(255)");
-
-        //        entity.Property(e => e.RoleId).HasColumnType("varchar(255)");
-
-        //        entity.HasOne(d => d.Role)
-        //            .WithMany(p => p.Aspnetuserroles)
-        //            .HasForeignKey(d => d.RoleId)
-        //            .HasConstraintName("FK_AspNetUserRoles_AspNetRoles_RoleId");
-
-        //        entity.HasOne(d => d.User)
-        //            .WithMany(p => p.Aspnetuserroles)
-        //            .HasForeignKey(d => d.UserId)
-        //            .HasConstraintName("FK_AspNetUserRoles_AspNetUsers_UserId");
-        //    });
-
-        //    modelBuilder.Entity<Aspnetusers>(entity =>
-        //    {
-        //        entity.ToTable("aspnetusers");
-
-        //        entity.HasIndex(e => e.NormalizedEmail)
-        //            .HasName("EmailIndex");
-
-        //        entity.HasIndex(e => e.NormalizedUserName)
-        //            .HasName("UserNameIndex")
-        //            .IsUnique();
-
-        //        entity.Property(e => e.Id).HasColumnType("varchar(255)");
-
-        //        entity.Property(e => e.AccessFailedCount).HasColumnType("int(11)");
-
-        //        entity.Property(e => e.ConcurrencyStamp).HasColumnType("longtext");
-
-        //        entity.Property(e => e.Email).HasColumnType("varchar(256)");
-
-        //        entity.Property(e => e.EmailConfirmed).HasColumnType("bit(1)");
-
-        //        entity.Property(e => e.LockoutEnabled).HasColumnType("bit(1)");
-
-        //        entity.Property(e => e.NormalizedEmail).HasColumnType("varchar(256)");
-
-        //        entity.Property(e => e.NormalizedUserName).HasColumnType("varchar(256)");
-
-        //        entity.Property(e => e.PasswordHash).HasColumnType("longtext");
-
-        //        entity.Property(e => e.PhoneNumber).HasColumnType("longtext");
-
-        //        entity.Property(e => e.PhoneNumberConfirmed).HasColumnType("bit(1)");
-
-        //        entity.Property(e => e.SecurityStamp).HasColumnType("longtext");
-
-        //        entity.Property(e => e.TwoFactorEnabled).HasColumnType("bit(1)");
-
-        //        entity.Property(e => e.UserName).HasColumnType("varchar(256)");
-        //    });
-
-        //    modelBuilder.Entity<Aspnetusertokens>(entity =>
-        //    {
-        //        entity.HasKey(e => new { e.UserId, e.LoginProvider, e.Name });
-
-        //        entity.ToTable("aspnetusertokens");
-
-        //        entity.Property(e => e.UserId).HasColumnType("varchar(255)");
-
-        //        entity.Property(e => e.LoginProvider).HasColumnType("varchar(128)");
-
-        //        entity.Property(e => e.Name).HasColumnType("varchar(128)");
-
-        //        entity.Property(e => e.Value).HasColumnType("longtext");
-
-        //        entity.HasOne(d => d.User)
-        //            .WithMany(p => p.Aspnetusertokens)
-        //            .HasForeignKey(d => d.UserId)
-        //            .HasConstraintName("FK_AspNetUserTokens_AspNetUsers_UserId");
-        //    });
-
-        //    modelBuilder.Entity<Efmigrationshistory>(entity =>
-        //    {
-        //        entity.HasKey(e => e.MigrationId);
-
-        //        entity.ToTable("__efmigrationshistory");
-
-        //        entity.Property(e => e.MigrationId).HasColumnType("varchar(95)");
-
-        //        entity.Property(e => e.ProductVersion)
-        //            .IsRequired()
-        //            .HasColumnType("varchar(32)");
-        //    });
-
-        //    modelBuilder.Entity<StagingclaimCms1500>(entity =>
-        //    {
-        //        entity.HasKey(e => e.ClaimId);
-
-        //        entity.ToTable("stagingclaim");
-
-        //        entity.Property(e => e.ClaimId)
-        //            .HasColumnName("ClaimID")
-        //            .HasColumnType("int(11)");
-
-        //        entity.Property(e => e.AcceptAssignment).HasColumnType("bit(1)");
-
-        //        entity.Property(e => e.AdditionalClaimInfo).HasColumnType("bit(1)");
-
-        //        entity.Property(e => e.AnotherHealthBenefitPlan).HasColumnType("bit(1)");
-
-        //        entity.Property(e => e.BillingProviderNpi)
-        //            .HasColumnName("BillingProviderNPI")
-        //            .HasColumnType("int(11)");
-
-        //        entity.Property(e => e.BirthDate).HasColumnType("date");
-
-        //        entity.Property(e => e.CreatedDate).HasColumnType("date");
-
-        //        entity.Property(e => e.DateOfIllness).HasColumnType("date");
-
-        //        entity.Property(e => e.DateOfService).HasColumnType("int(11)");
-
-        //        entity.Property(e => e.DaysOrUnits).HasColumnType("int(11)");
-
-        //        entity.Property(e => e.Emg)
-        //            .HasColumnName("EMG")
-        //            .HasColumnType("bit(1)");
-
-        //        entity.Property(e => e.EpsdtfamilyPlan)
-        //            .HasColumnName("EPSDTFamilyPlan")
-        //            .HasColumnType("varchar(50)");
-
-        //        entity.Property(e => e.FacilityNameAddress).HasColumnType("varchar(50)");
-
-        //        entity.Property(e => e.FederalTaxId).HasColumnType("int(11)");
-
-        //        entity.Property(e => e.HospitalizationDates).HasColumnType("int(11)");
-
-        //        entity.Property(e => e.InsurancePlan).HasColumnType("varchar(50)");
-
-        //        entity.Property(e => e.InsurancePlanName).HasColumnType("varchar(50)");
-
-        //        entity.Property(e => e.InsuredAddress).HasColumnType("varchar(50)");
-
-        //        entity.Property(e => e.InsuredAuthorizedSignature).HasColumnType("varchar(50)");
-
-        //        entity.Property(e => e.InsuredDateOfBirth).HasColumnType("varchar(50)");
-
-        //        entity.Property(e => e.InsuredId)
-        //            .HasColumnName("InsuredID")
-        //            .HasColumnType("varchar(50)");
-
-        //        entity.Property(e => e.InsuredName).HasColumnType("varchar(50)");
-
-        //        entity.Property(e => e.InsuredPolicyGroup).HasColumnType("int(11)");
-
-        //        entity.Property(e => e.ModifiedDate).HasColumnType("date");
-
-        //        entity.Property(e => e.NatureOfIllness).HasColumnType("varchar(50)");
-
-        //        entity.Property(e => e.NoWorkDays).HasColumnType("int(11)");
-
-        //        entity.Property(e => e.OtherClaimId).HasColumnType("varchar(50)");
-
-        //        entity.Property(e => e.OtherDate).HasColumnType("date");
-
-        //        entity.Property(e => e.OtherInsurance).HasColumnType("varchar(50)");
-
-        //        entity.Property(e => e.OtherInsuranceNumber).HasColumnType("varchar(50)");
-
-        //        entity.Property(e => e.OutsideLab).HasColumnType("bit(1)");
-
-        //        entity.Property(e => e.ParserErrorCsv).HasColumnType("varchar(1000)");
-
-        //        entity.Property(e => e.PatientAccountNumber).HasColumnType("varchar(50)");
-
-        //        entity.Property(e => e.PatientAddress).HasColumnType("varchar(50)");
-
-        //        entity.Property(e => e.PatientAuthorizedSignature).HasColumnType("varchar(50)");
-
-        //        entity.Property(e => e.PatientCondition).HasColumnType("bit(1)");
-
-        //        entity.Property(e => e.PatientName).HasColumnType("varchar(50)");
-
-        //        entity.Property(e => e.PatientStagingClaimNumber).HasColumnType("varchar(50)");
-
-        //        entity.Property(e => e.PlaceOfService).HasColumnType("varchar(50)");
-
-        //        entity.Property(e => e.PriorAuthorizationNumber).HasColumnType("int(11)");
-
-        //        entity.Property(e => e.ProcedureCodes).HasColumnType("int(11)");
-
-        //        entity.Property(e => e.ProviderBillingNumber).HasColumnType("varchar(50)");
-
-        //        entity.Property(e => e.ReferringProvider).HasColumnType("varchar(50)");
-
-        //        entity.Property(e => e.RelationToInsured).HasColumnType("varchar(50)");
-
-        //        entity.Property(e => e.RenderingProviderId).HasColumnType("int(11)");
-
-        //        entity.Property(e => e.ReviewStatus)
-        //            .HasColumnType("int(1)")
-        //            .HasDefaultValueSql("'0'");
-
-        //        entity.Property(e => e.ReviewerId).HasColumnType("varchar(50)");
-
-        //        entity.Property(e => e.SecondaryRenderingProviderId).HasColumnType("int(11)");
-
-        //        entity.Property(e => e.SignatureofProvider).HasColumnType("varchar(50)");
-
-        //        entity.Property(e => e.SourceId)
-        //            .HasColumnName("sourceId")
-        //            .HasColumnType("varchar(10)");
-
-        //        entity.Property(e => e.TotalCharge).HasColumnType("decimal(13,2)");
-
-        //        entity.Property(e => e.TotalClaimAmount).HasColumnType("decimal(13,2)");
-        //    });
-
-        //    modelBuilder.Entity<StagingClaimCms1500>(entity =>
-        //    {
-        //        entity.HasKey(e => e.ClaimId);
-
-        //        entity.ToTable("stagingclaim_cms1500");
-
-        //        entity.Property(e => e.ClaimId)
-        //            .HasColumnName("ClaimID")
-        //            .HasColumnType("int(11)");
-
-        //        entity.Property(e => e.ConfidenceLevel)
-        //            .HasColumnType("int(5)")
-        //            .HasDefaultValueSql("'0'");
-
-        //        entity.Property(e => e.CreatedDate).HasColumnType("date");
-
-        //        entity.Property(e => e.ModifiedDate).HasColumnType("date");
-
-        //        entity.Property(e => e.ParserErrorCsv).HasColumnType("varchar(1000)");
-
-        //        entity.Property(e => e.ReviewStatus)
-        //            .HasColumnType("int(1)")
-        //            .HasDefaultValueSql("'0'");
-
-        //        entity.Property(e => e.ReviewerId).HasColumnType("varchar(50)");
-
-        //        entity.Property(e => e.SourceId)
-        //            .HasColumnName("sourceId")
-        //            .HasColumnType("varchar(10)");
-
-        //        entity.Property(e => e._10aPatientConditionEmployment)
-        //            .HasColumnName("10a_PatientConditionEmployment")
-        //            .HasColumnType("varchar(1)");
-
-        //        entity.Property(e => e._10bPatientConditionAuto)
-        //            .HasColumnName("10b_PatientConditionAuto")
-        //            .HasColumnType("varchar(5)");
-
-        //        entity.Property(e => e._10cPatientConditionOther)
-        //            .HasColumnName("10c_PatientConditionOther")
-        //            .HasColumnType("varchar(1)");
-
-        //        entity.Property(e => e._10dClaimCodes)
-        //            .HasColumnName("10d_ClaimCodes")
-        //            .HasColumnType("varchar(50)");
-
-        //        entity.Property(e => e._11InsuredPolicyGroup)
-        //            .HasColumnName("11_InsuredPolicyGroup")
-        //            .HasColumnType("int(11)");
-
-        //        entity.Property(e => e._11aInsuredBirthDate)
-        //            .HasColumnName("11a_InsuredBirthDate")
-        //            .HasColumnType("date");
-
-        //        entity.Property(e => e._11aInsuredGender)
-        //            .HasColumnName("11a_InsuredGender")
-        //            .HasColumnType("varchar(1)");
-
-        //        entity.Property(e => e._11bOtherClaimId)
-        //            .HasColumnName("11b_OtherClaimId")
-        //            .HasColumnType("varchar(50)");
-
-        //        entity.Property(e => e._11cInsurancePlanName)
-        //            .HasColumnName("11c_InsurancePlanName")
-        //            .HasColumnType("varchar(50)");
-
-        //        entity.Property(e => e._11cOtherClaimIdNucc)
-        //            .HasColumnName("11c_OtherClaimIdNUCC")
-        //            .HasColumnType("varchar(50)");
-
-        //        entity.Property(e => e._11dIsAnotherHealthPlan)
-        //            .HasColumnName("11d_IsAnotherHealthPlan")
-        //            .HasColumnType("varchar(1)");
-
-        //        entity.Property(e => e._12PatientAuthorizedSignatureDate)
-        //            .HasColumnName("12_PatientAuthorizedSignatureDate")
-        //            .HasColumnType("date");
-
-        //        entity.Property(e => e._12PatientAuthorizedSignatureImageUrl)
-        //            .HasColumnName("12_PatientAuthorizedSignatureImageUrl")
-        //            .HasColumnType("varchar(50)");
-
-        //        entity.Property(e => e._13InsuredAuthorizedSignatureImageUrl)
-        //            .HasColumnName("13_InsuredAuthorizedSignatureImageUrl")
-        //            .HasColumnType("varchar(50)");
-
-        //        entity.Property(e => e._14DateOfCurrentIllness)
-        //            .HasColumnName("14_DateOfCurrentIllness")
-        //            .HasColumnType("date");
-
-        //        entity.Property(e => e._14DateOfCurrentIllnessQual)
-        //            .HasColumnName("14_DateOfCurrentIllnessQual")
-        //            .HasColumnType("date");
-
-        //        entity.Property(e => e._15OtherDate)
-        //            .HasColumnName("15_OtherDate")
-        //            .HasColumnType("date");
-
-        //        entity.Property(e => e._15OtherQual)
-        //            .HasColumnName("15_OtherQual")
-        //            .HasColumnType("varchar(10)");
-
-        //        entity.Property(e => e._16PatientUnableToWorkEndDate)
-        //            .HasColumnName("16_PatientUnableToWorkEndDate")
-        //            .HasColumnType("date");
-
-        //        entity.Property(e => e._16PatientUnableToWorkStartDate)
-        //            .HasColumnName("16_PatientUnableToWorkStartDate")
-        //            .HasColumnType("date");
-
-        //        entity.Property(e => e._17ReferringProvider)
-        //            .HasColumnName("17_ReferringProvider")
-        //            .HasColumnType("varchar(50)");
-
-        //        entity.Property(e => e._17aNonNpireferringProvider)
-        //            .HasColumnName("17a_NonNPIReferringProvider")
-        //            .HasColumnType("varchar(50)");
-
-        //        entity.Property(e => e._18HospitalizationEndDate)
-        //            .HasColumnName("18_HospitalizationEndDate")
-        //            .HasColumnType("date");
-
-        //        entity.Property(e => e._18HospitalizationStartDate)
-        //            .HasColumnName("18_HospitalizationStartDate")
-        //            .HasColumnType("date");
-
-        //        entity.Property(e => e._19AdditionalClaimInfo)
-        //            .HasColumnName("19_AdditionalClaimInfo")
-        //            .HasColumnType("varchar(50)");
-
-        //        entity.Property(e => e._1PayerType)
-        //            .HasColumnName("1_PayerType")
-        //            .HasColumnType("varchar(50)");
-
-        //        entity.Property(e => e._1aPatientInsuredId)
-        //            .HasColumnName("1a_PatientInsuredID")
-        //            .HasColumnType("varchar(50)");
-
-        //        entity.Property(e => e._20OutsideLab)
-        //            .HasColumnName("20_OutsideLab")
-        //            .HasColumnType("varchar(1)");
-
-        //        entity.Property(e => e._21Icdind)
-        //            .HasColumnName("21_ICDInd")
-        //            .HasColumnType("varchar(50)");
-
-        //        entity.Property(e => e._21NatureOfIllnessA)
-        //            .HasColumnName("21_NatureOfIllnessA")
-        //            .HasColumnType("varchar(50)");
-
-        //        entity.Property(e => e._21NatureOfIllnessB)
-        //            .HasColumnName("21_NatureOfIllnessB")
-        //            .HasColumnType("varchar(50)");
-
-        //        entity.Property(e => e._21NatureOfIllnessC)
-        //            .HasColumnName("21_NatureOfIllnessC")
-        //            .HasColumnType("varchar(50)");
-
-        //        entity.Property(e => e._21NatureOfIllnessD)
-        //            .HasColumnName("21_NatureOfIllnessD")
-        //            .HasColumnType("varchar(50)");
-
-        //        entity.Property(e => e._21NatureOfIllnessE)
-        //            .HasColumnName("21_NatureOfIllnessE")
-        //            .HasColumnType("varchar(50)");
-
-        //        entity.Property(e => e._21NatureOfIllnessF)
-        //            .HasColumnName("21_NatureOfIllnessF")
-        //            .HasColumnType("varchar(50)");
-
-        //        entity.Property(e => e._21NatureOfIllnessG)
-        //            .HasColumnName("21_NatureOfIllnessG")
-        //            .HasColumnType("varchar(50)");
-
-        //        entity.Property(e => e._21NatureOfIllnessH)
-        //            .HasColumnName("21_NatureOfIllnessH")
-        //            .HasColumnType("varchar(50)");
-
-        //        entity.Property(e => e._21NatureOfIllnessI)
-        //            .HasColumnName("21_NatureOfIllnessI")
-        //            .HasColumnType("varchar(50)");
-
-        //        entity.Property(e => e._21NatureOfIllnessJ)
-        //            .HasColumnName("21_NatureOfIllnessJ")
-        //            .HasColumnType("varchar(50)");
-
-        //        entity.Property(e => e._21NatureOfIllnessK)
-        //            .HasColumnName("21_NatureOfIllnessK")
-        //            .HasColumnType("varchar(50)");
-
-        //        entity.Property(e => e._21NatureOfIllnessL)
-        //            .HasColumnName("21_NatureOfIllnessL")
-        //            .HasColumnType("varchar(50)");
-
-        //        entity.Property(e => e._22OriginalRefNo)
-        //            .HasColumnName("22_OriginalRefNo")
-        //            .HasColumnType("varchar(50)");
-
-        //        entity.Property(e => e._22ResubmissionCode)
-        //            .HasColumnName("22_ResubmissionCode")
-        //            .HasColumnType("varchar(50)");
-
-        //        entity.Property(e => e._23PriorAuthorizationNumber)
-        //            .HasColumnName("23_PriorAuthorizationNumber")
-        //            .HasColumnType("int(11)");
-
-        //        entity.Property(e => e._25FederalTaxId)
-        //            .HasColumnName("25_FederalTaxId")
-        //            .HasColumnType("int(10)");
-
-        //        entity.Property(e => e._25IsSsnorEin)
-        //            .HasColumnName("25_IsSSNorEIN")
-        //            .HasColumnType("varchar(1)");
-
-        //        entity.Property(e => e._26PatientAccountNumber)
-        //            .HasColumnName("26_PatientAccountNumber")
-        //            .HasColumnType("varchar(50)");
-
-        //        entity.Property(e => e._27AcceptAssignment)
-        //            .HasColumnName("27_AcceptAssignment")
-        //            .HasColumnType("varchar(1)");
-
-        //        entity.Property(e => e._28TotalCharge)
-        //            .HasColumnName("28_TotalCharge")
-        //            .HasColumnType("varchar(20)");
-
-        //        entity.Property(e => e._29AmountPaid)
-        //            .HasColumnName("29_AmountPaid")
-        //            .HasColumnType("varchar(20)");
-
-        //        entity.Property(e => e._2PatientName)
-        //            .HasColumnName("2_PatientName")
-        //            .HasColumnType("varchar(50)");
-
-        //        entity.Property(e => e._30Nuccuse)
-        //            .HasColumnName("30_NUCCUse")
-        //            .HasColumnType("varchar(20)");
-
-        //        entity.Property(e => e._31PhysicianSignatureImageUrl)
-        //            .HasColumnName("31_PhysicianSignatureImageUrl")
-        //            .HasColumnType("varchar(50)");
-
-        //        entity.Property(e => e._32ServiceFacilityLocationInfo)
-        //            .HasColumnName("32_ServiceFacilityLocationInfo")
-        //            .HasColumnType("varchar(50)");
-
-        //        entity.Property(e => e._32aServiceFacilityLocationInfo)
-        //            .HasColumnName("32a_ServiceFacilityLocationInfo")
-        //            .HasColumnType("varchar(50)");
-
-        //        entity.Property(e => e._32bServiceFacilityLocationInfo)
-        //            .HasColumnName("32b_ServiceFacilityLocationInfo")
-        //            .HasColumnType("varchar(50)");
-
-        //        entity.Property(e => e._33BillingProviderInfo)
-        //            .HasColumnName("33_BillingProviderInfo")
-        //            .HasColumnType("varchar(50)");
-
-        //        entity.Property(e => e._33BillingProviderInfoPhone)
-        //            .HasColumnName("33_BillingProviderInfoPhone")
-        //            .HasColumnType("varchar(50)");
-
-        //        entity.Property(e => e._33aBillingProviderInfo)
-        //            .HasColumnName("33a_BillingProviderInfo")
-        //            .HasColumnType("varchar(50)");
-
-        //        entity.Property(e => e._33bBillingProviderInfo)
-        //            .HasColumnName("33b_BillingProviderInfo")
-        //            .HasColumnType("varchar(50)");
-
-        //        entity.Property(e => e._3PatientBirthDate)
-        //            .HasColumnName("3_PatientBirthDate")
-        //            .HasColumnType("date");
-
-        //        entity.Property(e => e._3aPatientGender)
-        //            .HasColumnName("3a_PatientGender")
-        //            .HasColumnType("varchar(1)");
-
-        //        entity.Property(e => e._4InsuredName)
-        //            .HasColumnName("4_InsuredName")
-        //            .HasColumnType("varchar(50)");
-
-        //        entity.Property(e => e._5PatientAddress)
-        //            .HasColumnName("5_PatientAddress")
-        //            .HasColumnType("varchar(50)");
-
-        //        entity.Property(e => e._5PatientAddressCity)
-        //            .HasColumnName("5_PatientAddressCity")
-        //            .HasColumnType("varchar(50)");
-
-        //        entity.Property(e => e._5PatientAddressState)
-        //            .HasColumnName("5_PatientAddressState")
-        //            .HasColumnType("varchar(50)");
-
-        //        entity.Property(e => e._5PatientAddressStreet)
-        //            .HasColumnName("5_PatientAddressStreet")
-        //            .HasColumnType("varchar(50)");
-
-        //        entity.Property(e => e._6PatientRelationToInsured)
-        //            .HasColumnName("6_PatientRelationToInsured")
-        //            .HasColumnType("varchar(10)");
-
-        //        entity.Property(e => e._7InsuredAddressCity)
-        //            .HasColumnName("7_InsuredAddressCity")
-        //            .HasColumnType("varchar(50)");
-
-        //        entity.Property(e => e._7InsuredAddressState)
-        //            .HasColumnName("7_InsuredAddressState")
-        //            .HasColumnType("varchar(50)");
-
-        //        entity.Property(e => e._7InsuredAddressStreet)
-        //            .HasColumnName("7_InsuredAddressStreet")
-        //            .HasColumnType("varchar(50)");
-
-        //        entity.Property(e => e._7InsuredAddressTelephone)
-        //            .HasColumnName("7_InsuredAddressTelephone")
-        //            .HasColumnType("varchar(50)");
-
-        //        entity.Property(e => e._7InsuredAddressZip)
-        //            .HasColumnName("7_InsuredAddressZip")
-        //            .HasColumnType("varchar(20)");
-
-        //        entity.Property(e => e._8ReservedNucc)
-        //            .HasColumnName("8_ReservedNUCC")
-        //            .HasColumnType("varchar(50)");
-
-        //        entity.Property(e => e._9OtherPayerInsuredName)
-        //            .HasColumnName("9_OtherPayerInsuredName")
-        //            .HasColumnType("varchar(50)");
-
-        //        entity.Property(e => e._9aOtherPayerGroup)
-        //            .HasColumnName("9a_OtherPayerGroup")
-        //            .HasColumnType("varchar(50)");
-
-        //        entity.Property(e => e._9bOtherReservedNucc)
-        //            .HasColumnName("9b_OtherReservedNUCC")
-        //            .HasColumnType("varchar(50)");
-
-        //        entity.Property(e => e._9cOtherInsuranceName)
-        //            .HasColumnName("9c_OtherInsuranceName")
-        //            .HasColumnType("varchar(50)");
-
-        //        entity.Property(e => e._9cOtherReservedNucc)
-        //            .HasColumnName("9c_OtherReservedNUCC")
-        //            .HasColumnType("varchar(50)");
-        //    });
-
-        //    modelBuilder.Entity<StagingClaimCms1500Detail>(entity =>
-        //    {
-        //        entity.HasKey(e => e.ClaimDetailId);
-
-        //        entity.ToTable("stagingclaim_cms1500_detail");
-
-        //        entity.HasIndex(e => e.ClaimId)
-        //            .HasName("fk_claimId");
-
-        //        entity.Property(e => e.ClaimDetailId)
-        //            .HasColumnName("ClaimDetailID")
-        //            .HasColumnType("int(11)");
-
-        //        entity.Property(e => e.ClaimId)
-        //            .HasColumnName("ClaimID")
-        //            .HasColumnType("int(11)");
-
-        //        entity.Property(e => e._24aServiceEndDate)
-        //            .HasColumnName("24a_ServiceEndDate")
-        //            .HasColumnType("date");
-
-        //        entity.Property(e => e._24aServiceStartDate)
-        //            .HasColumnName("24a_ServiceStartDate")
-        //            .HasColumnType("date");
-
-        //        entity.Property(e => e._24bPlaceofService)
-        //            .HasColumnName("24b_PlaceofService")
-        //            .HasColumnType("varchar(50)");
-
-        //        entity.Property(e => e._24cEmg)
-        //            .HasColumnName("24c_EMG")
-        //            .HasColumnType("varchar(50)");
-
-        //        entity.Property(e => e._24dCpthcpcs)
-        //            .HasColumnName("24d_CPTHCPCS")
-        //            .HasColumnType("varchar(50)");
-
-        //        entity.Property(e => e._24dModifier)
-        //            .HasColumnName("24d_Modifier")
-        //            .HasColumnType("varchar(50)");
-
-        //        entity.Property(e => e._24eDiagnosisPointer)
-        //            .HasColumnName("24e_DiagnosisPointer")
-        //            .HasColumnType("varchar(50)");
-
-        //        entity.Property(e => e._24fCharges)
-        //            .HasColumnName("24f_charges")
-        //            .HasColumnType("decimal(13,2)");
-
-        //        entity.Property(e => e._24gDaysOrUnits)
-        //            .HasColumnName("24g_DaysOrUnits")
-        //            .HasColumnType("varchar(5)");
-
-        //        entity.Property(e => e._24hEpsdt)
-        //            .HasColumnName("24h_EPSDT")
-        //            .HasColumnType("varchar(5)");
-
-        //        entity.Property(e => e._24iQual)
-        //            .HasColumnName("24i_Qual")
-        //            .HasColumnType("varchar(5)");
-
-        //        entity.Property(e => e._24jRenderingProviderId)
-        //            .HasColumnName("24j_RenderingProviderId")
-        //            .HasColumnType("int(13)");
-
-        //        entity.HasOne(d => d.Claim)
-        //            .WithMany(p => p.StagingclaimCms1500Detail)
-        //            .HasForeignKey(d => d.ClaimId)
-        //            .OnDelete(DeleteBehavior.Cascade)
-        //            .HasConstraintName("stagingclaim_cms1500_detail_ibfk_1");
-        //    });
-        //}
-
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
             modelBuilder.Entity<Aspnetroleclaims>(entity =>
@@ -946,7 +220,632 @@ namespace MailRoom.Repository
                     .HasConstraintName("FK_AspNetUserTokens_AspNetUsers_UserId");
             });
 
-           
+            modelBuilder.Entity<Cms15001>(entity =>
+            {
+                entity.HasKey(e => e.ClaimId);
+
+                entity.ToTable("cms1500_1");
+
+                entity.Property(e => e.ClaimId)
+                    .HasColumnName("ClaimID")
+                    .HasColumnType("varchar(18)");
+
+                entity.Property(e => e.IaPayerName)
+                    .HasColumnName("ia_PayerName")
+                    .HasColumnType("varchar(29)");
+
+                entity.Property(e => e.IbPayerAddress1)
+                    .HasColumnName("ib_PayerAddress1")
+                    .HasColumnType("varchar(29)");
+
+                entity.Property(e => e.IcPayerAddress2)
+                    .HasColumnName("ic_PayerAddress2")
+                    .HasColumnType("varchar(29)");
+
+                entity.Property(e => e.IdPayerCityStateZipcode)
+                    .HasColumnName("id_Payer_city_state_zipcode")
+                    .HasColumnType("varchar(29)");
+
+                entity.Property(e => e._10aEmployment)
+                    .HasColumnName("10a_employment")
+                    .HasColumnType("varchar(3)");
+
+                entity.Property(e => e._10bAAutoAccidentPlace)
+                    .HasColumnName("10b-a_Auto_Accident_Place")
+                    .HasColumnType("varchar(2)");
+
+                entity.Property(e => e._10bAutoAccident)
+                    .HasColumnName("10b_Auto_Accident")
+                    .HasColumnType("varchar(3)");
+
+                entity.Property(e => e._10cOtherAccident)
+                    .HasColumnName("10c_Other_Accident")
+                    .HasColumnType("varchar(3)");
+
+                entity.Property(e => e._10dClaimCodes)
+                    .HasColumnName("10d_Claim_codes")
+                    .HasColumnType("varchar(19)");
+
+                entity.Property(e => e._11InsuredsPolicyNumber)
+                    .HasColumnName("11_InsuredsPolicyNumber")
+                    .HasColumnType("varchar(29)");
+
+                entity.Property(e => e._11aAMm)
+                    .HasColumnName("11a-a_MM")
+                    .HasColumnType("int(2)");
+
+                entity.Property(e => e._11aBDd)
+                    .HasColumnName("11a-b_DD")
+                    .HasColumnType("int(2)");
+
+                entity.Property(e => e._11aCYyyy)
+                    .HasColumnName("11a-c_YYYY")
+                    .HasColumnType("int(4)");
+
+                entity.Property(e => e._11aDGender)
+                    .HasColumnName("11a-d_Gender")
+                    .HasColumnType("varchar(6)");
+
+                entity.Property(e => e._11bAQualifier)
+                    .HasColumnName("11b-a_qualifier")
+                    .HasColumnType("varchar(2)");
+
+                entity.Property(e => e._11bBClaimId)
+                    .HasColumnName("11b-b_ClaimID")
+                    .HasColumnType("varchar(28)");
+
+                entity.Property(e => e._11cInsurancePlanName)
+                    .HasColumnName("11c_InsurancePlanName")
+                    .HasColumnType("varchar(29)");
+
+                entity.Property(e => e._11dAnotherHealthBenefitPlan)
+                    .HasColumnName("11d_Another_Health_Benefit_Plan")
+                    .HasColumnType("varchar(3)");
+
+                entity.Property(e => e._12ASignatureUrl)
+                    .HasColumnName("12-a_Signature_URL")
+                    .HasColumnType("varchar(100)");
+
+                entity.Property(e => e._12BAMm)
+                    .HasColumnName("12-b-a_MM")
+                    .HasColumnType("int(2)");
+
+                entity.Property(e => e._12BBDd)
+                    .HasColumnName("12-b-b_DD")
+                    .HasColumnType("int(2)");
+
+                entity.Property(e => e._12BCYyyy)
+                    .HasColumnName("12-b-c_YYYY")
+                    .HasColumnType("int(4)");
+
+                entity.Property(e => e._13InsuredsAuthorizedSignatureUrl)
+                    .HasColumnName("13_InsuredsAuthorizedSignature_URL")
+                    .HasColumnType("varchar(100)");
+
+                entity.Property(e => e._14AMm)
+                    .HasColumnName("14-a_MM")
+                    .HasColumnType("int(2)");
+
+                entity.Property(e => e._14BDd)
+                    .HasColumnName("14-b_DD")
+                    .HasColumnType("int(2)");
+
+                entity.Property(e => e._14CYyyy)
+                    .HasColumnName("14-c_YYYY")
+                    .HasColumnType("int(4)");
+
+                entity.Property(e => e._14DQualifier)
+                    .HasColumnName("14-d_qualifier")
+                    .HasColumnType("int(3)");
+
+                entity.Property(e => e._15AMm)
+                    .HasColumnName("15-a_MM")
+                    .HasColumnType("int(2)");
+
+                entity.Property(e => e._15BDd)
+                    .HasColumnName("15-b_DD")
+                    .HasColumnType("int(2)");
+
+                entity.Property(e => e._15CYyyy)
+                    .HasColumnName("15-c_YYYY")
+                    .HasColumnType("int(4)");
+
+                entity.Property(e => e._15DQualifier)
+                    .HasColumnName("15-d_qualifier")
+                    .HasColumnType("int(3)");
+
+                entity.Property(e => e._16AAMm)
+                    .HasColumnName("16-a-a_MM")
+                    .HasColumnType("int(2)");
+
+                entity.Property(e => e._16ABDd)
+                    .HasColumnName("16-a-b_DD")
+                    .HasColumnType("int(2)");
+
+                entity.Property(e => e._16ACYyyy)
+                    .HasColumnName("16-a-c_YYYY")
+                    .HasColumnType("int(4)");
+
+                entity.Property(e => e._16AMm)
+                    .HasColumnName("16-a_MM")
+                    .HasColumnType("int(2)");
+
+                entity.Property(e => e._16BDd)
+                    .HasColumnName("16-b_DD")
+                    .HasColumnType("int(2)");
+
+                entity.Property(e => e._16CYyyy)
+                    .HasColumnName("16-c_YYYY")
+                    .HasColumnType("int(4)");
+
+                entity.Property(e => e._17AName)
+                    .HasColumnName("17-a_Name")
+                    .HasColumnType("varchar(24)");
+
+                entity.Property(e => e._17Qualifier)
+                    .HasColumnName("17_qualifier")
+                    .HasColumnType("varchar(2)");
+
+                entity.Property(e => e._17aAQualifier)
+                    .HasColumnName("17a-a_Qualifier")
+                    .HasColumnType("varchar(2)");
+
+                entity.Property(e => e._17aBIdNumber)
+                    .HasColumnName("17a-b_ID number")
+                    .HasColumnType("varchar(17)");
+
+                entity.Property(e => e._17bIdNumber)
+                    .HasColumnName("17b_ID number")
+                    .HasColumnType("varchar(10)");
+
+                entity.Property(e => e._18AAMm)
+                    .HasColumnName("18-a-a_MM")
+                    .HasColumnType("int(2)");
+
+                entity.Property(e => e._18ABDd)
+                    .HasColumnName("18-a-b_DD")
+                    .HasColumnType("int(2)");
+
+                entity.Property(e => e._18ACYyyy)
+                    .HasColumnName("18-a-c_YYYY")
+                    .HasColumnType("int(4)");
+
+                entity.Property(e => e._18AMm)
+                    .HasColumnName("18-a_MM")
+                    .HasColumnType("int(2)");
+
+                entity.Property(e => e._18BDd)
+                    .HasColumnName("18-b_DD")
+                    .HasColumnType("int(2)");
+
+                entity.Property(e => e._18CYyyy)
+                    .HasColumnName("18-c_YYYY")
+                    .HasColumnType("int(4)");
+
+                entity.Property(e => e._19AdditionalClaimInformation)
+                    .HasColumnName("19_Additional_Claim_Information")
+                    .HasColumnType("varchar(71)");
+
+                entity.Property(e => e._1PayerType)
+                    .HasColumnName("1_PAYER_TYPE")
+                    .HasColumnType("varchar(8)");
+
+                entity.Property(e => e._1aInsuredIdNumber)
+                    .HasColumnName("1a_Insured_Id_number")
+                    .HasColumnType("varchar(29)");
+
+                entity.Property(e => e._20AChargesDollars)
+                    .HasColumnName("20-a_Charges_dollars")
+                    .HasColumnType("int(8)");
+
+                entity.Property(e => e._20BChargesCents)
+                    .HasColumnName("20-b_charges_cents")
+                    .HasColumnType("int(2)");
+
+                entity.Property(e => e._20YesOrNo)
+                    .HasColumnName("20_YES OR NO")
+                    .HasColumnType("varchar(3)");
+
+                entity.Property(e => e._21IcdIndicator)
+                    .HasColumnName("21_ICD_Indicator")
+                    .HasColumnType("int(1)");
+
+                entity.Property(e => e._21aNatureOfIllnes)
+                    .HasColumnName("21A_Nature_of_Illnes")
+                    .HasColumnType("varchar(7)");
+
+                entity.Property(e => e._21bNatureOfIllnes)
+                    .HasColumnName("21B_Nature_of_Illnes")
+                    .HasColumnType("varchar(7)");
+
+                entity.Property(e => e._21cNatureOfIllnes)
+                    .HasColumnName("21C_Nature_of_Illnes")
+                    .HasColumnType("varchar(7)");
+
+                entity.Property(e => e._21dNatureOfIllnes)
+                    .HasColumnName("21D_Nature_of_Illnes")
+                    .HasColumnType("varchar(7)");
+
+                entity.Property(e => e._21eNatureOfIllnes)
+                    .HasColumnName("21E_Nature_of_Illnes")
+                    .HasColumnType("varchar(7)");
+
+                entity.Property(e => e._21fNatureOfIllnes)
+                    .HasColumnName("21F_Nature_of_Illnes")
+                    .HasColumnType("varchar(7)");
+
+                entity.Property(e => e._21gNatureOfIllnes)
+                    .HasColumnName("21G_Nature_of_Illnes")
+                    .HasColumnType("varchar(7)");
+
+                entity.Property(e => e._21hNatureOfIllnes)
+                    .HasColumnName("21H_Nature_of_Illnes")
+                    .HasColumnType("varchar(7)");
+
+                entity.Property(e => e._21iNatureOfIllnes)
+                    .HasColumnName("21I_Nature_of_Illnes")
+                    .HasColumnType("varchar(7)");
+
+                entity.Property(e => e._21jNatureOfIllnes)
+                    .HasColumnName("21J_Nature_of_Illnes")
+                    .HasColumnType("varchar(7)");
+
+                entity.Property(e => e._21kNatureOfIllnes)
+                    .HasColumnName("21K_Nature_of_Illnes")
+                    .HasColumnType("varchar(7)");
+
+                entity.Property(e => e._21lNatureOfIllnes)
+                    .HasColumnName("21L_Nature_of_Illnes")
+                    .HasColumnType("varchar(7)");
+
+                entity.Property(e => e._22AReSubmissionCodeQualifier)
+                    .HasColumnName("22-a_ReSubmissionCode_qualifier")
+                    .HasColumnType("varchar(11)");
+
+                entity.Property(e => e._22BOriginalRefNo)
+                    .HasColumnName("22-b_original_ref_No")
+                    .HasColumnType("varchar(18)");
+
+                entity.Property(e => e._23PriorAuthorizationNumber)
+                    .HasColumnName("23_PriorAuthorizationNumber")
+                    .HasColumnType("varchar(29)");
+
+                entity.Property(e => e._25AType)
+                    .HasColumnName("25-a_type")
+                    .HasColumnType("varchar(3)");
+
+                entity.Property(e => e._25BIdNumber)
+                    .HasColumnName("25-b_ID_Number")
+                    .HasColumnType("varchar(15)");
+
+                entity.Property(e => e._26PatientAccNumber)
+                    .HasColumnName("26_Patient_Acc_Number")
+                    .HasColumnType("int(14)");
+
+                entity.Property(e => e._27AcceptAssignment)
+                    .HasColumnName("27_Accept_Assignment")
+                    .HasColumnType("varchar(3)");
+
+                entity.Property(e => e._28ADollars)
+                    .HasColumnName("28-a_dollars")
+                    .HasColumnType("int(6)");
+
+                entity.Property(e => e._28BCents)
+                    .HasColumnName("28-b_cents")
+                    .HasColumnType("int(2)");
+
+                entity.Property(e => e._29ADollars)
+                    .HasColumnName("29-a_dollars")
+                    .HasColumnType("int(6)");
+
+                entity.Property(e => e._29BCents)
+                    .HasColumnName("29-b_cents")
+                    .HasColumnType("int(2)");
+
+                entity.Property(e => e._2aLastName)
+                    .HasColumnName("2a_LastName")
+                    .HasColumnType("varchar(14)");
+
+                entity.Property(e => e._2bSuffix)
+                    .HasColumnName("2b_Suffix")
+                    .HasColumnType("varchar(14)");
+
+                entity.Property(e => e._2cFirstName)
+                    .HasColumnName("2c_FirstName")
+                    .HasColumnType("varchar(14)");
+
+                entity.Property(e => e._2dMiddleName)
+                    .HasColumnName("2d_MiddleName")
+                    .HasColumnType("varchar(14)");
+
+                entity.Property(e => e._30ACode)
+                    .HasColumnName("30-a_code")
+                    .HasColumnType("varchar(3)");
+
+                entity.Property(e => e._30BQualifier)
+                    .HasColumnName("30-b_qualifier")
+                    .HasColumnType("varchar(100)");
+
+                entity.Property(e => e._31ASignature)
+                    .HasColumnName("31-a_Signature")
+                    .HasColumnType("varchar(100)");
+
+                entity.Property(e => e._31BAMm)
+                    .HasColumnName("31-b-a_MM")
+                    .HasColumnType("int(2)");
+
+                entity.Property(e => e._31BBDd)
+                    .HasColumnName("31-b-b_DD")
+                    .HasColumnType("int(2)");
+
+                entity.Property(e => e._31BCYyyy)
+                    .HasColumnName("31-b-c_YYYY")
+                    .HasColumnType("int(4)");
+
+                entity.Property(e => e._32AProviderName)
+                    .HasColumnName("32-a_ProviderName")
+                    .HasColumnType("varchar(29)");
+
+                entity.Property(e => e._32BProviderAddress)
+                    .HasColumnName("32-b_ProviderAddress")
+                    .HasColumnType("varchar(29)");
+
+                entity.Property(e => e._32CCityStateZipcode)
+                    .HasColumnName("32-c_City_State_Zipcode")
+                    .HasColumnType("varchar(29)");
+
+                entity.Property(e => e._32aNationalProviderIdentifierNumber)
+                    .HasColumnName("32a_NationalProvider_IdentifierNumber")
+                    .HasColumnType("varchar(10)");
+
+                entity.Property(e => e._32bPayerAssignedIdentifierOfBillingProvider)
+                    .HasColumnName("32b_PayerAssignedIdentifier_of_BillingProvider")
+                    .HasColumnType("varchar(14)");
+
+                entity.Property(e => e._33AAreaCode)
+                    .HasColumnName("33-a_AreaCode")
+                    .HasColumnType("int(3)");
+
+                entity.Property(e => e._33BPhoneNumber)
+                    .HasColumnName("33-b_PhoneNumber")
+                    .HasColumnType("int(10)");
+
+                entity.Property(e => e._33CBillingProviderName)
+                    .HasColumnName("33-c_BillingProvider_Name")
+                    .HasColumnType("varchar(29)");
+
+                entity.Property(e => e._33DBillingProviderAddress)
+                    .HasColumnName("33-d_BillingProvider_Address")
+                    .HasColumnType("varchar(29)");
+
+                entity.Property(e => e._33EBillingproviderCityStateZipcode)
+                    .HasColumnName("33-e_Billingprovider_city_state_zipcode")
+                    .HasColumnType("varchar(29)");
+
+                entity.Property(e => e._33aNationalProviderIdentifierNumber)
+                    .HasColumnName("33a_NationalProvider_IdentifierNumber")
+                    .HasColumnType("varchar(10)");
+
+                entity.Property(e => e._33bPayerAssignedIdentifierOfBillingProvider)
+                    .HasColumnName("33b_PayerAssignedIdentifier_of_BillingProvider")
+                    .HasColumnType("varchar(17)");
+
+                entity.Property(e => e._3aMm)
+                    .HasColumnName("3a_MM")
+                    .HasColumnType("int(2)");
+
+                entity.Property(e => e._3bDd)
+                    .HasColumnName("3b_DD")
+                    .HasColumnType("int(2)");
+
+                entity.Property(e => e._3cYyyy)
+                    .HasColumnName("3c_YYYY")
+                    .HasColumnType("int(4)");
+
+                entity.Property(e => e._3dGender)
+                    .HasColumnName("3d_Gender")
+                    .HasColumnType("varchar(6)");
+
+                entity.Property(e => e._4aLastName)
+                    .HasColumnName("4a_LastName")
+                    .HasColumnType("varchar(14)");
+
+                entity.Property(e => e._4bSuffix)
+                    .HasColumnName("4b_Suffix")
+                    .HasColumnType("varchar(14)");
+
+                entity.Property(e => e._4cFirstName)
+                    .HasColumnName("4c_FirstName")
+                    .HasColumnType("varchar(14)");
+
+                entity.Property(e => e._4dMiddleName)
+                    .HasColumnName("4d_MiddleName")
+                    .HasColumnType("varchar(14)");
+
+                entity.Property(e => e._5aStreetAddress)
+                    .HasColumnName("5a_Street_Address")
+                    .HasColumnType("varchar(28)");
+
+                entity.Property(e => e._5bCity)
+                    .HasColumnName("5b_City")
+                    .HasColumnType("varchar(24)");
+
+                entity.Property(e => e._5cState)
+                    .HasColumnName("5c_State")
+                    .HasColumnType("varchar(3)");
+
+                entity.Property(e => e._5dZipcode)
+                    .HasColumnName("5d_Zipcode")
+                    .HasColumnType("varchar(7)");
+
+                entity.Property(e => e._5eTelephoneAreacode)
+                    .HasColumnName("5e_Telephone_areacode")
+                    .HasColumnType("int(3)");
+
+                entity.Property(e => e._5fTelephonePhoneNumber)
+                    .HasColumnName("5f_Telephone_phone number")
+                    .HasColumnType("int(10)");
+
+                entity.Property(e => e._6PatientRelationshipToInsured)
+                    .HasColumnName("6_Patient_Relationship_to_Insured")
+                    .HasColumnType("varchar(6)");
+
+                entity.Property(e => e._7aStreetAddress)
+                    .HasColumnName("7a_Street_Address")
+                    .HasColumnType("varchar(28)");
+
+                entity.Property(e => e._7bCity)
+                    .HasColumnName("7b_City")
+                    .HasColumnType("varchar(24)");
+
+                entity.Property(e => e._7cState)
+                    .HasColumnName("7c_State")
+                    .HasColumnType("varchar(3)");
+
+                entity.Property(e => e._7dZipCode)
+                    .HasColumnName("7d_Zip code")
+                    .HasColumnType("varchar(7)");
+
+                entity.Property(e => e._7eTelephoneAreacode)
+                    .HasColumnName("7e_Telephone_areacode")
+                    .HasColumnType("int(3)");
+
+                entity.Property(e => e._7fTelephonePhonenumber)
+                    .HasColumnName("7f_Telephone_phonenumber")
+                    .HasColumnType("int(10)");
+
+                entity.Property(e => e._8ReservedForNuccUse)
+                    .HasColumnName("8_Reserved_for_NUCC_Use")
+                    .HasColumnType("varchar(50)");
+
+                entity.Property(e => e._9ALastName)
+                    .HasColumnName("9-a_LastName")
+                    .HasColumnType("varchar(14)");
+
+                entity.Property(e => e._9BSuffix)
+                    .HasColumnName("9-b_Suffix")
+                    .HasColumnType("varchar(14)");
+
+                entity.Property(e => e._9CFirstName)
+                    .HasColumnName("9-c_FirstName")
+                    .HasColumnType("varchar(14)");
+
+                entity.Property(e => e._9DMiddleName)
+                    .HasColumnName("9-d_MiddleName")
+                    .HasColumnType("varchar(14)");
+
+                entity.Property(e => e._9aOtherPoliciesNumber)
+                    .HasColumnName("9a_other_policies_number")
+                    .HasColumnType("varchar(28)");
+
+                entity.Property(e => e._9bReservedForNuccUse)
+                    .HasColumnName("9b_Reserved_for_NUCC_Use")
+                    .HasColumnType("varchar(100)");
+
+                entity.Property(e => e._9cReservedForNuccUse)
+                    .HasColumnName("9c_Reserved_for_NUCC_Use")
+                    .HasColumnType("varchar(100)");
+
+                entity.Property(e => e._9dInsuranceplanName)
+                    .HasColumnName("9d_InsuranceplanName")
+                    .HasColumnType("varchar(28)");
+            });
+
+            modelBuilder.Entity<Cms15002>(entity =>
+            {
+                entity.ToTable("cms1500_2");
+
+                entity.HasIndex(e => e.ClaimId)
+                    .HasName("fk_claimId");
+
+                entity.Property(e => e.Id)
+                    .HasColumnName("ID")
+                    .HasColumnType("int(11)");
+
+                entity.Property(e => e.ClaimId)
+                    .HasColumnName("ClaimID")
+                    .HasColumnType("varchar(18)");
+
+                entity.Property(e => e._24aAMm)
+                    .HasColumnName("24a-a_MM")
+                    .HasColumnType("int(2)");
+
+                entity.Property(e => e._24aBDd)
+                    .HasColumnName("24a-b_DD")
+                    .HasColumnType("int(2)");
+
+                entity.Property(e => e._24aCYyyy)
+                    .HasColumnName("24a-c_YYYY")
+                    .HasColumnType("int(2)");
+
+                entity.Property(e => e._24aDMm)
+                    .HasColumnName("24a-d_MM")
+                    .HasColumnType("int(2)");
+
+                entity.Property(e => e._24aEDd)
+                    .HasColumnName("24a-e_DD")
+                    .HasColumnType("int(2)");
+
+                entity.Property(e => e._24aFYyyy)
+                    .HasColumnName("24a-f_YYYY")
+                    .HasColumnType("int(2)");
+
+                entity.Property(e => e._24bPlaceOfService)
+                    .HasColumnName("24b_Place of Service")
+                    .HasColumnType("int(2)");
+
+                entity.Property(e => e._24cEmg)
+                    .HasColumnName("24c_EMG")
+                    .HasColumnType("varchar(1)");
+
+                entity.Property(e => e._24dACptHcpcs)
+                    .HasColumnName("24d-a_CPT/HCPCS")
+                    .HasColumnType("int(6)");
+
+                entity.Property(e => e._24dBModifier)
+                    .HasColumnName("24d-b_Modifier")
+                    .HasColumnType("int(8)");
+
+                entity.Property(e => e._24eDiagnosticPointer)
+                    .HasColumnName("24E_Diagnostic Pointer")
+                    .HasColumnType("varchar(4)");
+
+                entity.Property(e => e._24fCharges)
+                    .HasColumnName("24F_charges")
+                    .HasColumnType("int(6)");
+
+                entity.Property(e => e._24fFCharges)
+                    .HasColumnName("24F(F)_charges")
+                    .HasColumnType("int(2)");
+
+                entity.Property(e => e._24gDaysOrUnits).HasColumnName("24G_Days or Units");
+
+                entity.Property(e => e._24hAEpsdtCode)
+                    .HasColumnName("24H-a_EPSDT code")
+                    .HasColumnType("varchar(2)");
+
+                entity.Property(e => e._24hBYesOrNo)
+                    .HasColumnName("24H-b_Yes or no")
+                    .HasColumnType("varchar(1)");
+
+                entity.Property(e => e._24iQual)
+                    .HasColumnName("24I_Qual")
+                    .HasColumnType("varchar(2)");
+
+                entity.Property(e => e._24jARenderingProviderId)
+                    .HasColumnName("24J-a_Rendering provider ID")
+                    .HasColumnType("varchar(17)");
+
+                entity.Property(e => e._24jBRenderingProviderId)
+                    .HasColumnName("24j-b_Rendering provider ID")
+                    .HasColumnType("varchar(10)");
+
+                entity.HasOne(d => d.Claim)
+                    .WithMany(p => p.Cms15002)
+                    .HasForeignKey(d => d.ClaimId)
+                    .OnDelete(DeleteBehavior.Cascade)
+                    .HasConstraintName("cms1500_2_ibfk_1");
+            });
 
             modelBuilder.Entity<Efmigrationshistory>(entity =>
             {
@@ -961,7 +860,130 @@ namespace MailRoom.Repository
                     .HasColumnType("varchar(32)");
             });
 
-        
+            modelBuilder.Entity<StagingClaim>(entity =>
+            {
+                entity.HasKey(e => e.ClaimId);
+
+                entity.ToTable("stagingclaim");
+
+                entity.Property(e => e.ClaimId)
+                    .HasColumnName("ClaimID")
+                    .HasColumnType("int(11)");
+
+                entity.Property(e => e.AcceptAssignment).HasColumnType("bit(1)");
+
+                entity.Property(e => e.AdditionalClaimInfo).HasColumnType("bit(1)");
+
+                entity.Property(e => e.AnotherHealthBenefitPlan).HasColumnType("bit(1)");
+
+                entity.Property(e => e.BillingProviderNpi)
+                    .HasColumnName("BillingProviderNPI")
+                    .HasColumnType("int(11)");
+
+                entity.Property(e => e.BirthDate).HasColumnType("date");
+
+                entity.Property(e => e.CreatedDate).HasColumnType("date");
+
+                entity.Property(e => e.DateOfIllness).HasColumnType("date");
+
+                entity.Property(e => e.DateOfService).HasColumnType("int(11)");
+
+                entity.Property(e => e.DaysOrUnits).HasColumnType("int(11)");
+
+                entity.Property(e => e.Emg)
+                    .HasColumnName("EMG")
+                    .HasColumnType("bit(1)");
+
+                entity.Property(e => e.EpsdtfamilyPlan)
+                    .HasColumnName("EPSDTFamilyPlan")
+                    .HasColumnType("varchar(50)");
+
+                entity.Property(e => e.FacilityNameAddress).HasColumnType("varchar(50)");
+
+                entity.Property(e => e.FederalTaxId).HasColumnType("int(11)");
+
+                entity.Property(e => e.HospitalizationDates).HasColumnType("int(11)");
+
+                entity.Property(e => e.InsurancePlan).HasColumnType("varchar(50)");
+
+                entity.Property(e => e.InsurancePlanName).HasColumnType("varchar(50)");
+
+                entity.Property(e => e.InsuredAddress).HasColumnType("varchar(50)");
+
+                entity.Property(e => e.InsuredAuthorizedSignature).HasColumnType("varchar(50)");
+
+                entity.Property(e => e.InsuredDateOfBirth).HasColumnType("varchar(50)");
+
+                entity.Property(e => e.InsuredId)
+                    .HasColumnName("InsuredID")
+                    .HasColumnType("varchar(50)");
+
+                entity.Property(e => e.InsuredName).HasColumnType("varchar(50)");
+
+                entity.Property(e => e.InsuredPolicyGroup).HasColumnType("int(11)");
+
+                entity.Property(e => e.ModifiedDate).HasColumnType("date");
+
+                entity.Property(e => e.NatureOfIllness).HasColumnType("varchar(50)");
+
+                entity.Property(e => e.NoWorkDays).HasColumnType("int(11)");
+
+                entity.Property(e => e.OtherClaimId).HasColumnType("varchar(50)");
+
+                entity.Property(e => e.OtherDate).HasColumnType("date");
+
+                entity.Property(e => e.OtherInsurance).HasColumnType("varchar(50)");
+
+                entity.Property(e => e.OtherInsuranceNumber).HasColumnType("varchar(50)");
+
+                entity.Property(e => e.OutsideLab).HasColumnType("bit(1)");
+
+                entity.Property(e => e.ParserErrorCsv).HasColumnType("varchar(1000)");
+
+                entity.Property(e => e.PatientAccountNumber).HasColumnType("varchar(50)");
+
+                entity.Property(e => e.PatientAddress).HasColumnType("varchar(50)");
+
+                entity.Property(e => e.PatientAuthorizedSignature).HasColumnType("varchar(50)");
+
+                entity.Property(e => e.PatientCondition).HasColumnType("bit(1)");
+
+                entity.Property(e => e.PatientName).HasColumnType("varchar(50)");
+
+                entity.Property(e => e.PatientStagingClaimNumber).HasColumnType("varchar(50)");
+
+                entity.Property(e => e.PlaceOfService).HasColumnType("varchar(50)");
+
+                entity.Property(e => e.PriorAuthorizationNumber).HasColumnType("int(11)");
+
+                entity.Property(e => e.ProcedureCodes).HasColumnType("int(11)");
+
+                entity.Property(e => e.ProviderBillingNumber).HasColumnType("varchar(50)");
+
+                entity.Property(e => e.ReferringProvider).HasColumnType("varchar(50)");
+
+                entity.Property(e => e.RelationToInsured).HasColumnType("varchar(50)");
+
+                entity.Property(e => e.RenderingProviderId).HasColumnType("int(11)");
+
+                entity.Property(e => e.ReviewStatus)
+                    .HasColumnType("int(1)")
+                    .HasDefaultValueSql("'0'");
+
+                entity.Property(e => e.ReviewerId).HasColumnType("varchar(50)");
+
+                entity.Property(e => e.SecondaryRenderingProviderId).HasColumnType("int(11)");
+
+                entity.Property(e => e.SignatureofProvider).HasColumnType("varchar(50)");
+
+                entity.Property(e => e.SourceId)
+                    .HasColumnName("sourceId")
+                    .HasColumnType("varchar(10)");
+
+                entity.Property(e => e.TotalCharge).HasColumnType("decimal(13,2)");
+
+                entity.Property(e => e.TotalClaimAmount).HasColumnType("decimal(13,2)");
+            });
 
             modelBuilder.Entity<StagingClaimCms1500>(entity =>
             {
@@ -971,7 +993,7 @@ namespace MailRoom.Repository
 
                 entity.Property(e => e.ClaimId)
                     .HasColumnName("ClaimID")
-                    .HasColumnType("int(11)");
+                    .HasColumnType("varchar(18)");
 
                 entity.Property(e => e.ConfidenceLevel)
                     .HasColumnType("int(5)")
@@ -980,34 +1002,28 @@ namespace MailRoom.Repository
                 entity.Property(e => e.CreatedDate).HasColumnType("datetime");
 
                 entity.Property(e => e.IaPayerName)
-                    .IsRequired()
                     .HasColumnName("ia_PayerName")
-                    .HasColumnType("varchar(44)");
+                    .HasColumnType("varchar(29)");
 
                 entity.Property(e => e.IbPayerAddress1)
-                    .IsRequired()
                     .HasColumnName("ib_PayerAddress1")
-                    .HasColumnType("varchar(44)");
+                    .HasColumnType("varchar(29)");
 
                 entity.Property(e => e.IcPayerAddress2)
                     .HasColumnName("ic_PayerAddress2")
-                    .HasColumnType("varchar(44)");
+                    .HasColumnType("varchar(29)");
 
-                entity.Property(e => e.IdPayerCity)
-                    .HasColumnName("id_PayerCity")
-                    .HasColumnType("varchar(44)");
-
-                entity.Property(e => e.IdPayerState)
-                    .HasColumnName("id_PayerState")
-                    .HasColumnType("varchar(44)");
-
-                entity.Property(e => e.IdPayerZipcode)
-                    .HasColumnName("id_PayerZipcode")
-                    .HasColumnType("varchar(44)");
+                entity.Property(e => e.IdPayerCityStateZipcode)
+                    .HasColumnName("id_Payer_city_state_zipcode")
+                    .HasColumnType("varchar(29)");
 
                 entity.Property(e => e.ModifiedDate).HasColumnType("datetime");
 
-                entity.Property(e => e.ParserErrorCsv).HasColumnType("varchar(1000)");
+                entity.Property(e => e.ParserErrorCsv).HasColumnType("varchar(2000)");
+
+                entity.Property(e => e.ParserStatus)
+                    .HasColumnType("int(1)")
+                    .HasDefaultValueSql("'0'");
 
                 entity.Property(e => e.ReviewStatus)
                     .HasColumnType("int(1)")
@@ -1019,606 +1035,606 @@ namespace MailRoom.Repository
                     .HasColumnName("sourceId")
                     .HasColumnType("varchar(10)");
 
-                entity.Property(e => e._10aPatientConditionEmployment)
-                    .HasColumnName("10a_PatientConditionEmployment")
+                entity.Property(e => e._10aEmployment)
+                    .HasColumnName("10a_employment")
                     .HasColumnType("varchar(3)");
 
-                entity.Property(e => e._10bPatientConditionAuto)
-                    .HasColumnName("10b_PatientConditionAuto")
-                    .HasColumnType("varchar(3)");
-
-                entity.Property(e => e._10bPatientConditionPlace)
-                    .HasColumnName("10b_PatientConditionPlace")
+                entity.Property(e => e._10bAAutoAccidentPlace)
+                    .HasColumnName("10b-a_Auto_Accident_Place")
                     .HasColumnType("varchar(2)");
 
-                entity.Property(e => e._10cPatientConditionOther)
-                    .HasColumnName("10c_PatientConditionOther")
+                entity.Property(e => e._10bAutoAccident)
+                    .HasColumnName("10b_Auto_Accident")
+                    .HasColumnType("varchar(3)");
+
+                entity.Property(e => e._10cOtherAccident)
+                    .HasColumnName("10c_Other_Accident")
                     .HasColumnType("varchar(3)");
 
                 entity.Property(e => e._10dClaimCodes)
-                    .HasColumnName("10d_ClaimCodes")
+                    .HasColumnName("10d_Claim_codes")
+                    .HasColumnType("varchar(19)");
+
+                entity.Property(e => e._11InsuredsPolicyNumber)
+                    .HasColumnName("11_InsuredsPolicyNumber")
                     .HasColumnType("varchar(29)");
 
-                entity.Property(e => e._11InsuredPolicyGroup)
-                    .HasColumnName("11_InsuredPolicyGroup")
-                    .HasColumnType("varchar(11)");
+                entity.Property(e => e._11aAMm)
+                    .HasColumnName("11a-a_MM")
+                    .HasColumnType("int(2)");
 
-                entity.Property(e => e._11aInsuredBirthDd)
-                    .HasColumnName("11a_InsuredBirthDD")
-                    .HasColumnType("int(11)");
+                entity.Property(e => e._11aBDd)
+                    .HasColumnName("11a-b_DD")
+                    .HasColumnType("int(2)");
 
-                entity.Property(e => e._11aInsuredBirthMm)
-                    .HasColumnName("11a_InsuredBirthMM")
-                    .HasColumnType("int(11)");
+                entity.Property(e => e._11aCYyyy)
+                    .HasColumnName("11a-c_YYYY")
+                    .HasColumnType("int(4)");
 
-                entity.Property(e => e._11aInsuredBirthYyyy)
-                    .HasColumnName("11a_InsuredBirthYYYY")
-                    .HasColumnType("int(11)");
+                entity.Property(e => e._11aDGender)
+                    .HasColumnName("11a-d_Gender")
+                    .HasColumnType("varchar(6)");
 
-                entity.Property(e => e._11aInsuredGender)
-                    .HasColumnName("11a_InsuredGender")
+                entity.Property(e => e._11bAQualifier)
+                    .HasColumnName("11b-a_qualifier")
                     .HasColumnType("varchar(2)");
 
-                entity.Property(e => e._11bOtherClaimId)
-                    .HasColumnName("11b_OtherClaimId")
-                    .HasColumnType("varchar(29)");
-
-                entity.Property(e => e._11bOtherClaimIdQual)
-                    .HasColumnName("11b_OtherClaimIdQual")
-                    .HasColumnType("varchar(2)");
+                entity.Property(e => e._11bBClaimId)
+                    .HasColumnName("11b-b_ClaimID")
+                    .HasColumnType("varchar(28)");
 
                 entity.Property(e => e._11cInsurancePlanName)
                     .HasColumnName("11c_InsurancePlanName")
                     .HasColumnType("varchar(29)");
 
-                entity.Property(e => e._11dIsAnotherHealthPlan)
-                    .HasColumnName("11d_IsAnotherHealthPlan")
+                entity.Property(e => e._11dAnotherHealthBenefitPlan)
+                    .HasColumnName("11d_Another_Health_Benefit_Plan")
                     .HasColumnType("varchar(3)");
 
-                entity.Property(e => e._12PatientAuthorizedSignatureDd)
-                    .HasColumnName("12_PatientAuthorizedSignatureDD")
-                    .HasColumnType("int(11)");
-
-                entity.Property(e => e._12PatientAuthorizedSignatureImageUrl)
-                    .HasColumnName("12_PatientAuthorizedSignatureImageUrl")
+                entity.Property(e => e._12ASignatureUrl)
+                    .HasColumnName("12-a_Signature_URL")
                     .HasColumnType("varchar(100)");
 
-                entity.Property(e => e._12PatientAuthorizedSignatureMm)
-                    .HasColumnName("12_PatientAuthorizedSignatureMM")
-                    .HasColumnType("int(11)");
+                entity.Property(e => e._12BAMm)
+                    .HasColumnName("12-b-a_MM")
+                    .HasColumnType("int(2)");
 
-                entity.Property(e => e._12PatientAuthorizedSignatureYyyy)
-                    .HasColumnName("12_PatientAuthorizedSignatureYYYY")
-                    .HasColumnType("int(11)");
+                entity.Property(e => e._12BBDd)
+                    .HasColumnName("12-b-b_DD")
+                    .HasColumnType("int(2)");
 
-                entity.Property(e => e._13InsuredAuthorizedSignatureImageUrl)
-                    .HasColumnName("13_InsuredAuthorizedSignatureImageUrl")
+                entity.Property(e => e._12BCYyyy)
+                    .HasColumnName("12-b-c_YYYY")
+                    .HasColumnType("int(4)");
+
+                entity.Property(e => e._13InsuredsAuthorizedSignatureUrl)
+                    .HasColumnName("13_InsuredsAuthorizedSignature_URL")
                     .HasColumnType("varchar(100)");
 
-                entity.Property(e => e._14CurrentIllnessDd)
-                    .HasColumnName("14_CurrentIllnessDD")
-                    .HasColumnType("int(11)");
+                entity.Property(e => e._14AMm)
+                    .HasColumnName("14-a_MM")
+                    .HasColumnType("int(2)");
 
-                entity.Property(e => e._14CurrentIllnessMm)
-                    .HasColumnName("14_CurrentIllnessMM")
-                    .HasColumnType("int(11)");
+                entity.Property(e => e._14BDd)
+                    .HasColumnName("14-b_DD")
+                    .HasColumnType("int(2)");
 
-                entity.Property(e => e._14CurrentIllnessYyyy)
-                    .HasColumnName("14_CurrentIllnessYYYY")
-                    .HasColumnType("int(11)");
+                entity.Property(e => e._14CYyyy)
+                    .HasColumnName("14-c_YYYY")
+                    .HasColumnType("int(4)");
 
-                entity.Property(e => e._14DateOfCurrentIllnessQual)
-                    .HasColumnName("14_DateOfCurrentIllnessQual")
-                    .HasColumnType("varchar(3)");
+                entity.Property(e => e._14DQualifier)
+                    .HasColumnName("14-d_qualifier")
+                    .HasColumnType("int(3)");
 
-                entity.Property(e => e._15OtherDateDd)
-                    .HasColumnName("15_OtherDateDD")
-                    .HasColumnType("int(11)");
+                entity.Property(e => e._15AMm)
+                    .HasColumnName("15-a_MM")
+                    .HasColumnType("int(2)");
 
-                entity.Property(e => e._15OtherDateMm)
-                    .HasColumnName("15_OtherDateMM")
-                    .HasColumnType("int(11)");
+                entity.Property(e => e._15BDd)
+                    .HasColumnName("15-b_DD")
+                    .HasColumnType("int(2)");
 
-                entity.Property(e => e._15OtherDateYyyy)
-                    .HasColumnName("15_OtherDateYYYY")
-                    .HasColumnType("int(11)");
+                entity.Property(e => e._15CYyyy)
+                    .HasColumnName("15-c_YYYY")
+                    .HasColumnType("int(4)");
 
-                entity.Property(e => e._15OtherQual)
-                    .HasColumnName("15_OtherQual")
-                    .HasColumnType("varchar(3)");
+                entity.Property(e => e._15DQualifier)
+                    .HasColumnName("15-d_qualifier")
+                    .HasColumnType("int(3)");
 
-                entity.Property(e => e._16PatientUnableToWorkEndDd)
-                    .HasColumnName("16_PatientUnableToWorkEndDD")
-                    .HasColumnType("int(11)");
+                entity.Property(e => e._16AAMm)
+                    .HasColumnName("16-a-a_MM")
+                    .HasColumnType("int(2)");
 
-                entity.Property(e => e._16PatientUnableToWorkEndMm)
-                    .HasColumnName("16_PatientUnableToWorkEndMM")
-                    .HasColumnType("int(11)");
+                entity.Property(e => e._16ABDd)
+                    .HasColumnName("16-a-b_DD")
+                    .HasColumnType("int(2)");
 
-                entity.Property(e => e._16PatientUnableToWorkEndYyyy)
-                    .HasColumnName("16_PatientUnableToWorkEndYYYY")
-                    .HasColumnType("int(11)");
+                entity.Property(e => e._16ACYyyy)
+                    .HasColumnName("16-a-c_YYYY")
+                    .HasColumnType("int(4)");
 
-                entity.Property(e => e._16PatientUnableToWorkStartDd)
-                    .HasColumnName("16_PatientUnableToWorkStartDD")
-                    .HasColumnType("int(11)");
+                entity.Property(e => e._16AMm)
+                    .HasColumnName("16-a_MM")
+                    .HasColumnType("int(2)");
 
-                entity.Property(e => e._16PatientUnableToWorkStartMm)
-                    .HasColumnName("16_PatientUnableToWorkStartMM")
-                    .HasColumnType("int(11)");
+                entity.Property(e => e._16BDd)
+                    .HasColumnName("16-b_DD")
+                    .HasColumnType("int(2)");
 
-                entity.Property(e => e._16PatientUnableToWorkStartYyyy)
-                    .HasColumnName("16_PatientUnableToWorkStartYYYY")
-                    .HasColumnType("int(11)");
+                entity.Property(e => e._16CYyyy)
+                    .HasColumnName("16-c_YYYY")
+                    .HasColumnType("int(4)");
 
-                entity.Property(e => e._17ReferringProviderName)
-                    .HasColumnName("17_ReferringProviderName")
+                entity.Property(e => e._17AName)
+                    .HasColumnName("17-a_Name")
                     .HasColumnType("varchar(24)");
 
-                entity.Property(e => e._17ReferringProviderQual)
-                    .HasColumnName("17_ReferringProviderQual")
+                entity.Property(e => e._17Qualifier)
+                    .HasColumnName("17_qualifier")
                     .HasColumnType("varchar(2)");
 
-                entity.Property(e => e._17aNonNpireferringProvider)
-                    .HasColumnName("17a_NonNPIReferringProvider")
+                entity.Property(e => e._17aAQualifier)
+                    .HasColumnName("17a-a_Qualifier")
+                    .HasColumnType("varchar(2)");
+
+                entity.Property(e => e._17aBIdNumber)
+                    .HasColumnName("17a-b_ID number")
                     .HasColumnType("varchar(17)");
 
-                entity.Property(e => e._17aNonNpireferringProviderQual)
-                    .HasColumnName("17a_NonNPIReferringProviderQual")
-                    .HasColumnType("varchar(2)");
-
-                entity.Property(e => e._17aNpireferringProvider)
-                    .HasColumnName("17a_NPIReferringProvider")
+                entity.Property(e => e._17bIdNumber)
+                    .HasColumnName("17b_ID number")
                     .HasColumnType("varchar(10)");
 
-                entity.Property(e => e._17aNpireferringProviderQual)
-                    .HasColumnName("17a_NPIReferringProviderQual")
-                    .HasColumnType("varchar(2)");
+                entity.Property(e => e._18AAMm)
+                    .HasColumnName("18-a-a_MM")
+                    .HasColumnType("int(2)");
 
-                entity.Property(e => e._18HospitalizationEndDd)
-                    .HasColumnName("18_HospitalizationEndDD")
-                    .HasColumnType("int(11)");
+                entity.Property(e => e._18ABDd)
+                    .HasColumnName("18-a-b_DD")
+                    .HasColumnType("int(2)");
 
-                entity.Property(e => e._18HospitalizationEndMm)
-                    .HasColumnName("18_HospitalizationEndMM")
-                    .HasColumnType("int(11)");
+                entity.Property(e => e._18ACYyyy)
+                    .HasColumnName("18-a-c_YYYY")
+                    .HasColumnType("int(4)");
 
-                entity.Property(e => e._18HospitalizationEndYyyy)
-                    .HasColumnName("18_HospitalizationEndYYYY")
-                    .HasColumnType("int(11)");
+                entity.Property(e => e._18AMm)
+                    .HasColumnName("18-a_MM")
+                    .HasColumnType("int(2)");
 
-                entity.Property(e => e._18HospitalizationStartDd)
-                    .HasColumnName("18_HospitalizationStartDD")
-                    .HasColumnType("int(11)");
+                entity.Property(e => e._18BDd)
+                    .HasColumnName("18-b_DD")
+                    .HasColumnType("int(2)");
 
-                entity.Property(e => e._18HospitalizationStartMm)
-                    .HasColumnName("18_HospitalizationStartMM")
-                    .HasColumnType("int(11)");
+                entity.Property(e => e._18CYyyy)
+                    .HasColumnName("18-c_YYYY")
+                    .HasColumnType("int(4)");
 
-                entity.Property(e => e._18HospitalizationStartYyyy)
-                    .HasColumnName("18_HospitalizationStartYYYY")
-                    .HasColumnType("int(11)");
-
-                entity.Property(e => e._19AdditionalClaimInfo)
-                    .HasColumnName("19_AdditionalClaimInfo")
-                    .HasColumnType("varchar(70)");
+                entity.Property(e => e._19AdditionalClaimInformation)
+                    .HasColumnName("19_Additional_Claim_Information")
+                    .HasColumnType("varchar(71)");
 
                 entity.Property(e => e._1PayerType)
-                    .HasColumnName("1_PayerType")
+                    .HasColumnName("1_PAYER_TYPE")
                     .HasColumnType("varchar(8)");
 
-                entity.Property(e => e._1aPatientInsuredId)
-                    .HasColumnName("1a_PatientInsuredID")
+                entity.Property(e => e._1aInsuredIdNumber)
+                    .HasColumnName("1a_Insured_Id_number")
                     .HasColumnType("varchar(29)");
 
-                entity.Property(e => e._20ChargesCents)
-                    .HasColumnName("20_ChargesCents")
-                    .HasColumnType("varchar(2)");
+                entity.Property(e => e._20AChargesDollars)
+                    .HasColumnName("20-a_Charges_dollars")
+                    .HasColumnType("int(8)");
 
-                entity.Property(e => e._20ChargesDollars)
-                    .HasColumnName("20_ChargesDollars")
-                    .HasColumnType("varchar(8)");
+                entity.Property(e => e._20BChargesCents)
+                    .HasColumnName("20-b_charges_cents")
+                    .HasColumnType("int(2)");
 
-                entity.Property(e => e._20OutsideLab)
-                    .HasColumnName("20_OutsideLab")
+                entity.Property(e => e._20YesOrNo)
+                    .HasColumnName("20_YES OR NO")
                     .HasColumnType("varchar(3)");
 
-                entity.Property(e => e._21IcdindQual)
-                    .HasColumnName("21_ICDIndQual")
-                    .HasColumnType("varchar(1)");
+                entity.Property(e => e._21IcdIndicator)
+                    .HasColumnName("21_ICD_Indicator")
+                    .HasColumnType("int(1)");
 
-                entity.Property(e => e._21IcdindValue)
-                    .HasColumnName("21_ICDIndValue")
-                    .HasColumnType("varchar(9)");
+                entity.Property(e => e._21aNatureOfIllnes)
+                    .HasColumnName("21A_Nature_of_Illnes")
+                    .HasColumnType("varchar(7)");
 
-                entity.Property(e => e._21NatureOfIllnessA)
-                    .HasColumnName("21_NatureOfIllnessA")
-                    .HasColumnType("varchar(50)");
+                entity.Property(e => e._21bNatureOfIllnes)
+                    .HasColumnName("21B_Nature_of_Illnes")
+                    .HasColumnType("varchar(7)");
 
-                entity.Property(e => e._21NatureOfIllnessB)
-                    .HasColumnName("21_NatureOfIllnessB")
-                    .HasColumnType("varchar(50)");
+                entity.Property(e => e._21cNatureOfIllnes)
+                    .HasColumnName("21C_Nature_of_Illnes")
+                    .HasColumnType("varchar(7)");
 
-                entity.Property(e => e._21NatureOfIllnessC)
-                    .HasColumnName("21_NatureOfIllnessC")
-                    .HasColumnType("varchar(50)");
+                entity.Property(e => e._21dNatureOfIllnes)
+                    .HasColumnName("21D_Nature_of_Illnes")
+                    .HasColumnType("varchar(7)");
 
-                entity.Property(e => e._21NatureOfIllnessD)
-                    .HasColumnName("21_NatureOfIllnessD")
-                    .HasColumnType("varchar(50)");
+                entity.Property(e => e._21eNatureOfIllnes)
+                    .HasColumnName("21E_Nature_of_Illnes")
+                    .HasColumnType("varchar(7)");
 
-                entity.Property(e => e._21NatureOfIllnessE)
-                    .HasColumnName("21_NatureOfIllnessE")
-                    .HasColumnType("varchar(50)");
+                entity.Property(e => e._21fNatureOfIllnes)
+                    .HasColumnName("21F_Nature_of_Illnes")
+                    .HasColumnType("varchar(7)");
 
-                entity.Property(e => e._21NatureOfIllnessF)
-                    .HasColumnName("21_NatureOfIllnessF")
-                    .HasColumnType("varchar(50)");
+                entity.Property(e => e._21gNatureOfIllnes)
+                    .HasColumnName("21G_Nature_of_Illnes")
+                    .HasColumnType("varchar(7)");
 
-                entity.Property(e => e._21NatureOfIllnessG)
-                    .HasColumnName("21_NatureOfIllnessG")
-                    .HasColumnType("varchar(50)");
+                entity.Property(e => e._21hNatureOfIllnes)
+                    .HasColumnName("21H_Nature_of_Illnes")
+                    .HasColumnType("varchar(7)");
 
-                entity.Property(e => e._21NatureOfIllnessH)
-                    .HasColumnName("21_NatureOfIllnessH")
-                    .HasColumnType("varchar(50)");
+                entity.Property(e => e._21iNatureOfIllnes)
+                    .HasColumnName("21I_Nature_of_Illnes")
+                    .HasColumnType("varchar(7)");
 
-                entity.Property(e => e._21NatureOfIllnessI)
-                    .HasColumnName("21_NatureOfIllnessI")
-                    .HasColumnType("varchar(50)");
+                entity.Property(e => e._21jNatureOfIllnes)
+                    .HasColumnName("21J_Nature_of_Illnes")
+                    .HasColumnType("varchar(7)");
 
-                entity.Property(e => e._21NatureOfIllnessJ)
-                    .HasColumnName("21_NatureOfIllnessJ")
-                    .HasColumnType("varchar(50)");
+                entity.Property(e => e._21kNatureOfIllnes)
+                    .HasColumnName("21K_Nature_of_Illnes")
+                    .HasColumnType("varchar(7)");
 
-                entity.Property(e => e._21NatureOfIllnessK)
-                    .HasColumnName("21_NatureOfIllnessK")
-                    .HasColumnType("varchar(50)");
+                entity.Property(e => e._21lNatureOfIllnes)
+                    .HasColumnName("21L_Nature_of_Illnes")
+                    .HasColumnType("varchar(7)");
 
-                entity.Property(e => e._21NatureOfIllnessL)
-                    .HasColumnName("21_NatureOfIllnessL")
-                    .HasColumnType("varchar(50)");
-
-                entity.Property(e => e._22OriginalRefNo)
-                    .HasColumnName("22_OriginalRefNo")
-                    .HasColumnType("varchar(18)");
-
-                entity.Property(e => e._22ResubmissionCodeQual)
-                    .HasColumnName("22_ResubmissionCodeQual")
+                entity.Property(e => e._22AReSubmissionCodeQualifier)
+                    .HasColumnName("22-a_ReSubmissionCode_qualifier")
                     .HasColumnType("varchar(11)");
+
+                entity.Property(e => e._22BOriginalRefNo)
+                    .HasColumnName("22-b_original_ref_No")
+                    .HasColumnType("varchar(18)");
 
                 entity.Property(e => e._23PriorAuthorizationNumber)
                     .HasColumnName("23_PriorAuthorizationNumber")
                     .HasColumnType("varchar(29)");
 
-                entity.Property(e => e._25FederalTaxId)
-                    .HasColumnName("25_FederalTaxId")
-                    .HasColumnType("varchar(15)");
-
-                entity.Property(e => e._25FederalTaxType)
-                    .HasColumnName("25_FederalTaxType")
+                entity.Property(e => e._25AType)
+                    .HasColumnName("25-a_type")
                     .HasColumnType("varchar(3)");
 
-                entity.Property(e => e._26PatientAccountNumber)
-                    .HasColumnName("26_PatientAccountNumber")
+                entity.Property(e => e._25BIdNumber)
+                    .HasColumnName("25-b_ID_Number")
+                    .HasColumnType("varchar(15)");
+
+                entity.Property(e => e._26PatientAccNumber)
+                    .HasColumnName("26_Patient_Acc_Number")
                     .HasColumnType("int(14)");
 
                 entity.Property(e => e._27AcceptAssignment)
-                    .HasColumnName("27_AcceptAssignment")
+                    .HasColumnName("27_Accept_Assignment")
                     .HasColumnType("varchar(3)");
 
-                entity.Property(e => e._28TotalCharges)
-                    .HasColumnName("28_TotalCharges")
-                    .HasColumnType("decimal(6,2)");
+                entity.Property(e => e._28ADollars)
+                    .HasColumnName("28-a_dollars")
+                    .HasColumnType("int(6)");
 
-                entity.Property(e => e._29AmountPaid)
-                    .HasColumnName("29_AmountPaid")
-                    .HasColumnType("decimal(6,2)");
+                entity.Property(e => e._28BCents)
+                    .HasColumnName("28-b_cents")
+                    .HasColumnType("int(2)");
 
-                entity.Property(e => e._2aPatientLastName)
-                    .HasColumnName("2a_PatientLastName")
-                    .HasColumnType("varchar(28)");
+                entity.Property(e => e._29ADollars)
+                    .HasColumnName("29-a_dollars")
+                    .HasColumnType("int(6)");
+
+                entity.Property(e => e._29BCents)
+                    .HasColumnName("29-b_cents")
+                    .HasColumnType("int(2)");
+
+                entity.Property(e => e._2aLastName)
+                    .HasColumnName("2a_LastName")
+                    .HasColumnType("varchar(14)");
 
                 entity.Property(e => e._2bSuffix)
                     .HasColumnName("2b_Suffix")
-                    .HasColumnType("varchar(28)");
-
-                entity.Property(e => e._2cPatientFirstName)
-                    .HasColumnName("2c_PatientFirstName")
-                    .HasColumnType("varchar(28)");
-
-                entity.Property(e => e._2dPatientMiddleName)
-                    .HasColumnName("2d_PatientMiddleName")
-                    .HasColumnType("varchar(28)");
-
-                entity.Property(e => e._30NuccuseCode)
-                    .HasColumnName("30_NUCCUseCode")
-                    .HasColumnType("varchar(3)");
-
-                entity.Property(e => e._30NuccuseQualifier)
-                    .HasColumnName("30_NUCCUseQualifier")
-                    .HasColumnType("varchar(100)");
-
-                entity.Property(e => e._31PhysicianSignatureDd)
-                    .HasColumnName("31_PhysicianSignatureDD")
-                    .HasColumnType("int(2)");
-
-                entity.Property(e => e._31PhysicianSignatureImageUrl)
-                    .HasColumnName("31_PhysicianSignatureImageUrl")
-                    .HasColumnType("varchar(100)");
-
-                entity.Property(e => e._31PhysicianSignatureMm)
-                    .HasColumnName("31_PhysicianSignatureMM")
-                    .HasColumnType("int(2)");
-
-                entity.Property(e => e._31PhysicianSignatureYyyy)
-                    .HasColumnName("31_PhysicianSignatureYYYY")
-                    .HasColumnType("int(4)");
-
-                entity.Property(e => e._32ServiceFacilityCityStateZipCode)
-                    .HasColumnName("32_ServiceFacilityCityStateZipCode")
-                    .HasColumnType("varchar(29)");
-
-                entity.Property(e => e._32ServiceFacilityProviderAddress)
-                    .HasColumnName("32_ServiceFacilityProviderAddress")
-                    .HasColumnType("varchar(29)");
-
-                entity.Property(e => e._32ServiceFacilityProviderName)
-                    .HasColumnName("32_ServiceFacilityProviderName")
-                    .HasColumnType("varchar(29)");
-
-                entity.Property(e => e._32aServiceFacilityProviderId)
-                    .HasColumnName("32a_ServiceFacilityProviderId")
-                    .HasColumnType("varchar(10)");
-
-                entity.Property(e => e._32bServiceFacilityBillingProviderId)
-                    .HasColumnName("32b_ServiceFacilityBillingProviderId")
                     .HasColumnType("varchar(14)");
 
-                entity.Property(e => e._33BillingProviderAddress)
-                    .HasColumnName("33_BillingProviderAddress")
-                    .HasColumnType("varchar(29)");
+                entity.Property(e => e._2cFirstName)
+                    .HasColumnName("2c_FirstName")
+                    .HasColumnType("varchar(14)");
 
-                entity.Property(e => e._33BillingProviderAreaCode)
-                    .HasColumnName("33_BillingProviderAreaCode")
+                entity.Property(e => e._2dMiddleName)
+                    .HasColumnName("2d_MiddleName")
+                    .HasColumnType("varchar(14)");
+
+                entity.Property(e => e._30ACode)
+                    .HasColumnName("30-a_code")
                     .HasColumnType("varchar(3)");
 
-                entity.Property(e => e._33BillingProviderCityStateZipCode)
-                    .HasColumnName("33_BillingProviderCityStateZipCode")
+                entity.Property(e => e._30BQualifier)
+                    .HasColumnName("30-b_qualifier")
+                    .HasColumnType("varchar(100)");
+
+                entity.Property(e => e._31ASignature)
+                    .HasColumnName("31-a_Signature")
+                    .HasColumnType("varchar(100)");
+
+                entity.Property(e => e._31BAMm)
+                    .HasColumnName("31-b-a_MM")
+                    .HasColumnType("int(2)");
+
+                entity.Property(e => e._31BBDd)
+                    .HasColumnName("31-b-b_DD")
+                    .HasColumnType("int(2)");
+
+                entity.Property(e => e._31BCYyyy)
+                    .HasColumnName("31-b-c_YYYY")
+                    .HasColumnType("int(4)");
+
+                entity.Property(e => e._32AProviderName)
+                    .HasColumnName("32-a_ProviderName")
                     .HasColumnType("varchar(29)");
 
-                entity.Property(e => e._33BillingProviderName)
-                    .HasColumnName("33_BillingProviderName")
+                entity.Property(e => e._32BProviderAddress)
+                    .HasColumnName("32-b_ProviderAddress")
                     .HasColumnType("varchar(29)");
 
-                entity.Property(e => e._33BillingProviderPhone)
-                    .HasColumnName("33_BillingProviderPhone")
+                entity.Property(e => e._32CCityStateZipcode)
+                    .HasColumnName("32-c_City_State_Zipcode")
+                    .HasColumnType("varchar(29)");
+
+                entity.Property(e => e._32aNationalProviderIdentifierNumber)
+                    .HasColumnName("32a_NationalProvider_IdentifierNumber")
                     .HasColumnType("varchar(10)");
 
-                entity.Property(e => e._33aBillingProviderNpi)
-                    .HasColumnName("33a_BillingProviderNPI")
+                entity.Property(e => e._32bPayerAssignedIdentifierOfBillingProvider)
+                    .HasColumnName("32b_PayerAssignedIdentifier_of_BillingProvider")
+                    .HasColumnType("varchar(14)");
+
+                entity.Property(e => e._33AAreaCode)
+                    .HasColumnName("33-a_AreaCode")
+                    .HasColumnType("int(3)");
+
+                entity.Property(e => e._33BPhoneNumber)
+                    .HasColumnName("33-b_PhoneNumber")
+                    .HasColumnType("int(10)");
+
+                entity.Property(e => e._33CBillingProviderName)
+                    .HasColumnName("33-c_BillingProvider_Name")
+                    .HasColumnType("varchar(29)");
+
+                entity.Property(e => e._33DBillingProviderAddress)
+                    .HasColumnName("33-d_BillingProvider_Address")
+                    .HasColumnType("varchar(29)");
+
+                entity.Property(e => e._33EBillingproviderCityStateZipcode)
+                    .HasColumnName("33-e_Billingprovider_city_state_zipcode")
+                    .HasColumnType("varchar(29)");
+
+                entity.Property(e => e._33aNationalProviderIdentifierNumber)
+                    .HasColumnName("33a_NationalProvider_IdentifierNumber")
                     .HasColumnType("varchar(10)");
 
-                entity.Property(e => e._33bBillingProviderIdentifier)
-                    .HasColumnName("33b_BillingProviderIdentifier")
+                entity.Property(e => e._33bPayerAssignedIdentifierOfBillingProvider)
+                    .HasColumnName("33b_PayerAssignedIdentifier_of_BillingProvider")
                     .HasColumnType("varchar(17)");
 
-                entity.Property(e => e._3PatientBirthDd)
-                    .HasColumnName("3_PatientBirthDD")
-                    .HasColumnType("int(11)");
+                entity.Property(e => e._3aMm)
+                    .HasColumnName("3a_MM")
+                    .HasColumnType("int(2)");
 
-                entity.Property(e => e._3PatientBirthMm)
-                    .HasColumnName("3_PatientBirthMM")
-                    .HasColumnType("int(11)");
+                entity.Property(e => e._3bDd)
+                    .HasColumnName("3b_DD")
+                    .HasColumnType("int(2)");
 
-                entity.Property(e => e._3PatientBirthYyyy)
-                    .HasColumnName("3_PatientBirthYYYY")
-                    .HasColumnType("int(11)");
+                entity.Property(e => e._3cYyyy)
+                    .HasColumnName("3c_YYYY")
+                    .HasColumnType("int(4)");
 
-                entity.Property(e => e._3PatientGender)
-                    .HasColumnName("3_PatientGender")
+                entity.Property(e => e._3dGender)
+                    .HasColumnName("3d_Gender")
                     .HasColumnType("varchar(6)");
 
-                entity.Property(e => e._4InsuredFirstName)
-                    .HasColumnName("4_InsuredFirstName")
-                    .HasColumnType("varchar(29)");
+                entity.Property(e => e._4aLastName)
+                    .HasColumnName("4a_LastName")
+                    .HasColumnType("varchar(14)");
 
-                entity.Property(e => e._4InsuredLastName)
-                    .HasColumnName("4_InsuredLastName")
-                    .HasColumnType("varchar(29)");
+                entity.Property(e => e._4bSuffix)
+                    .HasColumnName("4b_Suffix")
+                    .HasColumnType("varchar(14)");
 
-                entity.Property(e => e._4InsuredMiddleName)
-                    .HasColumnName("4_InsuredMiddleName")
-                    .HasColumnType("varchar(29)");
+                entity.Property(e => e._4cFirstName)
+                    .HasColumnName("4c_FirstName")
+                    .HasColumnType("varchar(14)");
 
-                entity.Property(e => e._4InsuredSuffix)
-                    .HasColumnName("4_InsuredSuffix")
-                    .HasColumnType("varchar(29)");
+                entity.Property(e => e._4dMiddleName)
+                    .HasColumnName("4d_MiddleName")
+                    .HasColumnType("varchar(14)");
 
-                entity.Property(e => e._5PatientAddressCity)
-                    .HasColumnName("5_PatientAddressCity")
-                    .HasColumnType("varchar(29)");
+                entity.Property(e => e._5aStreetAddress)
+                    .HasColumnName("5a_Street_Address")
+                    .HasColumnType("varchar(28)");
 
-                entity.Property(e => e._5PatientAddressState)
-                    .HasColumnName("5_PatientAddressState")
-                    .HasColumnType("varchar(10)");
+                entity.Property(e => e._5bCity)
+                    .HasColumnName("5b_City")
+                    .HasColumnType("varchar(24)");
 
-                entity.Property(e => e._5PatientAddressStreet)
-                    .HasColumnName("5_PatientAddressStreet")
-                    .HasColumnType("varchar(29)");
+                entity.Property(e => e._5cState)
+                    .HasColumnName("5c_State")
+                    .HasColumnType("varchar(3)");
 
-                entity.Property(e => e._5PatientAreaCode)
-                    .HasColumnName("5_PatientAreaCode")
-                    .HasColumnType("varchar(10)");
+                entity.Property(e => e._5dZipcode)
+                    .HasColumnName("5d_Zipcode")
+                    .HasColumnType("varchar(7)");
 
-                entity.Property(e => e._5PatientTelePhone)
-                    .HasColumnName("5_PatientTelePhone")
-                    .HasColumnType("varchar(10)");
+                entity.Property(e => e._5eTelephoneAreacode)
+                    .HasColumnName("5e_Telephone_areacode")
+                    .HasColumnType("int(3)");
 
-                entity.Property(e => e._5PatientZipCode)
-                    .HasColumnName("5_PatientZipCode")
-                    .HasColumnType("varchar(10)");
+                entity.Property(e => e._5fTelephonePhoneNumber)
+                    .HasColumnName("5f_Telephone_phone number")
+                    .HasColumnType("int(10)");
 
-                entity.Property(e => e._6PatientRelationToInsured)
-                    .HasColumnName("6_PatientRelationToInsured")
-                    .HasColumnType("varchar(10)");
+                entity.Property(e => e._6PatientRelationshipToInsured)
+                    .HasColumnName("6_Patient_Relationship_to_Insured")
+                    .HasColumnType("varchar(6)");
 
-                entity.Property(e => e._7InsuredAddressCity)
-                    .HasColumnName("7_InsuredAddressCity")
-                    .HasColumnType("varchar(29)");
+                entity.Property(e => e._7aStreetAddress)
+                    .HasColumnName("7a_Street_Address")
+                    .HasColumnType("varchar(28)");
 
-                entity.Property(e => e._7InsuredAddressState)
-                    .HasColumnName("7_InsuredAddressState")
-                    .HasColumnType("varchar(29)");
+                entity.Property(e => e._7bCity)
+                    .HasColumnName("7b_City")
+                    .HasColumnType("varchar(24)");
 
-                entity.Property(e => e._7InsuredAddressStreet)
-                    .HasColumnName("7_InsuredAddressStreet")
-                    .HasColumnType("varchar(29)");
+                entity.Property(e => e._7cState)
+                    .HasColumnName("7c_State")
+                    .HasColumnType("varchar(3)");
 
-                entity.Property(e => e._7InsuredAreaCode)
-                    .HasColumnName("7_InsuredAreaCode")
-                    .HasColumnType("varchar(10)");
+                entity.Property(e => e._7dZipCode)
+                    .HasColumnName("7d_Zip code")
+                    .HasColumnType("varchar(7)");
 
-                entity.Property(e => e._7InsuredTelephone)
-                    .HasColumnName("7_InsuredTelephone")
-                    .HasColumnType("varchar(10)");
+                entity.Property(e => e._7eTelephoneAreacode)
+                    .HasColumnName("7e_Telephone_areacode")
+                    .HasColumnType("int(3)");
 
-                entity.Property(e => e._7InsuredZipCode)
-                    .HasColumnName("7_InsuredZipCode")
-                    .HasColumnType("varchar(10)");
+                entity.Property(e => e._7fTelephonePhonenumber)
+                    .HasColumnName("7f_Telephone_phonenumber")
+                    .HasColumnType("int(10)");
 
-                entity.Property(e => e._8ReservedNucc)
-                    .HasColumnName("8_ReservedNUCC")
+                entity.Property(e => e._8ReservedForNuccUse)
+                    .HasColumnName("8_Reserved_for_NUCC_Use")
                     .HasColumnType("varchar(50)");
 
-                entity.Property(e => e._9OtherInsuredFirstName)
-                    .HasColumnName("9_OtherInsuredFirstName")
-                    .HasColumnType("varchar(29)");
+                entity.Property(e => e._9ALastName)
+                    .HasColumnName("9-a_LastName")
+                    .HasColumnType("varchar(14)");
 
-                entity.Property(e => e._9OtherInsuredLastName)
-                    .HasColumnName("9_OtherInsuredLastName")
-                    .HasColumnType("varchar(29)");
+                entity.Property(e => e._9BSuffix)
+                    .HasColumnName("9-b_Suffix")
+                    .HasColumnType("varchar(14)");
 
-                entity.Property(e => e._9OtherInsuredMiddleName)
-                    .HasColumnName("9_OtherInsuredMiddleName")
-                    .HasColumnType("varchar(29)");
+                entity.Property(e => e._9CFirstName)
+                    .HasColumnName("9-c_FirstName")
+                    .HasColumnType("varchar(14)");
 
-                entity.Property(e => e._9OtherInsuredSuffix)
-                    .HasColumnName("9_OtherInsuredSuffix")
-                    .HasColumnType("varchar(29)");
+                entity.Property(e => e._9DMiddleName)
+                    .HasColumnName("9-d_MiddleName")
+                    .HasColumnType("varchar(14)");
 
-                entity.Property(e => e._9aOtherPolicyGroup)
-                    .HasColumnName("9a_OtherPolicyGroup")
-                    .HasColumnType("varchar(29)");
+                entity.Property(e => e._9aOtherPoliciesNumber)
+                    .HasColumnName("9a_other_policies_number")
+                    .HasColumnType("varchar(28)");
 
-                entity.Property(e => e._9bOtherReservedNucc)
-                    .HasColumnName("9b_OtherReservedNUCC")
-                    .HasColumnType("varchar(29)");
+                entity.Property(e => e._9bReservedForNuccUse)
+                    .HasColumnName("9b_Reserved_for_NUCC_Use")
+                    .HasColumnType("varchar(100)");
 
-                entity.Property(e => e._9cOtherInsuranceName)
-                    .HasColumnName("9c_OtherInsuranceName")
-                    .HasColumnType("varchar(29)");
+                entity.Property(e => e._9cReservedForNuccUse)
+                    .HasColumnName("9c_Reserved_for_NUCC_Use")
+                    .HasColumnType("varchar(100)");
 
-                entity.Property(e => e._9cOtherReservedNucc)
-                    .HasColumnName("9c_OtherReservedNUCC")
-                    .HasColumnType("varchar(29)");
+                entity.Property(e => e._9dInsuranceplanName)
+                    .HasColumnName("9d_InsuranceplanName")
+                    .HasColumnType("varchar(28)");
             });
 
             modelBuilder.Entity<StagingClaimCms1500Detail>(entity =>
             {
-                entity.HasKey(e => e.ClaimDetailId);
-
                 entity.ToTable("stagingclaim_cms1500_detail");
 
                 entity.HasIndex(e => e.ClaimId)
                     .HasName("fk_claimId");
 
-                entity.Property(e => e.ClaimDetailId)
-                    .HasColumnName("ClaimDetailID")
+                entity.Property(e => e.Id)
+                    .HasColumnName("ID")
                     .HasColumnType("int(11)");
 
                 entity.Property(e => e.ClaimId)
                     .HasColumnName("ClaimID")
-                    .HasColumnType("int(11)");
+                    .HasColumnType("varchar(18)");
 
-                entity.Property(e => e._24aServiceEndDd)
-                    .HasColumnName("24a_ServiceEndDD")
-                    .HasColumnType("int(11)");
+                entity.Property(e => e.CreatedDate).HasColumnType("datetime");
 
-                entity.Property(e => e._24aServiceEndMm)
-                    .HasColumnName("24a_ServiceEndMM")
-                    .HasColumnType("int(11)");
+                entity.Property(e => e.ModifiedDate).HasColumnType("datetime");
 
-                entity.Property(e => e._24aServiceEndYyyy)
-                    .HasColumnName("24a_ServiceEndYYYY")
-                    .HasColumnType("int(11)");
+                entity.Property(e => e._24aAMm)
+                    .HasColumnName("24a-a_MM")
+                    .HasColumnType("int(2)");
 
-                entity.Property(e => e._24aServiceStartDd)
-                    .HasColumnName("24a_ServiceStartDD")
-                    .HasColumnType("int(11)");
+                entity.Property(e => e._24aBDd)
+                    .HasColumnName("24a-b_DD")
+                    .HasColumnType("int(2)");
 
-                entity.Property(e => e._24aServiceStartMm)
-                    .HasColumnName("24a_ServiceStartMM")
-                    .HasColumnType("int(11)");
+                entity.Property(e => e._24aCYyyy)
+                    .HasColumnName("24a-c_YYYY")
+                    .HasColumnType("int(2)");
 
-                entity.Property(e => e._24aServiceStartYyyy)
-                    .HasColumnName("24a_ServiceStartYYYY")
-                    .HasColumnType("int(11)");
+                entity.Property(e => e._24aDMm)
+                    .HasColumnName("24a-d_MM")
+                    .HasColumnType("int(2)");
 
-                entity.Property(e => e._24bPlaceofService)
-                    .HasColumnName("24b_PlaceofService")
-                    .HasColumnType("int(11)");
+                entity.Property(e => e._24aEDd)
+                    .HasColumnName("24a-e_DD")
+                    .HasColumnType("int(2)");
+
+                entity.Property(e => e._24aFYyyy)
+                    .HasColumnName("24a-f_YYYY")
+                    .HasColumnType("int(2)");
+
+                entity.Property(e => e._24bPlaceOfService)
+                    .HasColumnName("24b_Place of Service")
+                    .HasColumnType("int(2)");
 
                 entity.Property(e => e._24cEmg)
                     .HasColumnName("24c_EMG")
                     .HasColumnType("varchar(1)");
 
-                entity.Property(e => e._24dCpthcpcs)
-                    .HasColumnName("24d_CPTHCPCS")
+                entity.Property(e => e._24dACptHcpcs)
+                    .HasColumnName("24d-a_CPT/HCPCS")
                     .HasColumnType("int(6)");
 
-                entity.Property(e => e._24dModifier)
-                    .HasColumnName("24d_Modifier")
+                entity.Property(e => e._24dBModifier)
+                    .HasColumnName("24d-b_Modifier")
                     .HasColumnType("int(8)");
 
-                entity.Property(e => e._24eDiagnosisPointer)
-                    .HasColumnName("24e_DiagnosisPointer")
+                entity.Property(e => e._24eDiagnosticPointer)
+                    .HasColumnName("24E_Diagnostic Pointer")
                     .HasColumnType("varchar(4)");
 
-                entity.Property(e => e._24fChargesCents)
-                    .HasColumnName("24f_chargesCents")
-                    .HasColumnType("int(11)");
+                entity.Property(e => e._24fCharges)
+                    .HasColumnName("24F_charges")
+                    .HasColumnType("int(6)");
 
-                entity.Property(e => e._24fChargesDollar)
-                    .HasColumnName("24f_chargesDollar")
-                    .HasColumnType("int(11)");
+                entity.Property(e => e._24fFCharges)
+                    .HasColumnName("24F(F)_charges")
+                    .HasColumnType("int(2)");
 
-                entity.Property(e => e._24gDaysOrUnits)
-                    .HasColumnName("24g_DaysOrUnits")
-                    .HasColumnType("varchar(5)");
+                entity.Property(e => e._24gDaysOrUnits).HasColumnName("24G_Days or Units");
 
-                entity.Property(e => e._24hEpsdtcode)
-                    .HasColumnName("24h_EPSDTCode")
-                    .HasColumnType("varchar(5)");
+                entity.Property(e => e._24hAEpsdtCode)
+                    .HasColumnName("24H-a_EPSDT code")
+                    .HasColumnType("varchar(2)");
 
-                entity.Property(e => e._24hEpsdtyn)
-                    .HasColumnName("24h_EPSDTYN")
+                entity.Property(e => e._24hBYesOrNo)
+                    .HasColumnName("24H-b_Yes or no")
                     .HasColumnType("varchar(1)");
 
                 entity.Property(e => e._24iQual)
-                    .HasColumnName("24i_Qual")
-                    .HasColumnType("varchar(5)");
+                    .HasColumnName("24I_Qual")
+                    .HasColumnType("varchar(2)");
 
-                entity.Property(e => e._24jRenderingProviderId)
-                    .HasColumnName("24j_RenderingProviderId")
-                    .HasColumnType("int(17)");
+                entity.Property(e => e._24jARenderingProviderId)
+                    .HasColumnName("24J-a_Rendering provider ID")
+                    .HasColumnType("varchar(17)");
 
-                entity.Property(e => e._24jRenderingProviderNpiid)
-                    .HasColumnName("24j_RenderingProviderNPIId")
-                    .HasColumnType("int(10)");
+                entity.Property(e => e._24jBRenderingProviderId)
+                    .HasColumnName("24j-b_Rendering provider ID")
+                    .HasColumnType("varchar(10)");
 
                 entity.HasOne(d => d.Claim)
-                    .WithMany(p => p.StagingclaimCms1500Detail)
+                    .WithMany(p => p.StagingClaimCms1500Detail)
                     .HasForeignKey(d => d.ClaimId)
                     .OnDelete(DeleteBehavior.Cascade)
                     .HasConstraintName("stagingclaim_cms1500_detail_ibfk_1");

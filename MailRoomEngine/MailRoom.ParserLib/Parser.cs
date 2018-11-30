@@ -59,9 +59,7 @@ namespace MailRoom.ParserLib
 
         // Verified / Validated or Error
         // 1-Verified, 2 - Validated, Error = -1
-        [NotMapped]
-        public int ExecStatus { get; set; }
-
+        
         [NotMapped]
         public List<Error> Errors = new List<Error>();
         [NotMapped]

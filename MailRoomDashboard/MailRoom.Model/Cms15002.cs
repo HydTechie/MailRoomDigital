@@ -3,7 +3,7 @@ using System.Collections.Generic;
 
 namespace MailRoom.Model
 {
-    public partial class StagingClaimCms1500Detail
+    public partial class Cms15002
     {
         public int Id { get; set; }
         public string ClaimId { get; set; }
@@ -26,9 +26,7 @@ namespace MailRoom.Model
         public string _24iQual { get; set; }
         public string _24jARenderingProviderId { get; set; }
         public string _24jBRenderingProviderId { get; set; }
-        public DateTime? CreatedDate { get; set; }
-        public DateTime? ModifiedDate { get; set; }
 
-        public StagingClaimCms1500 Claim { get; set; }
+        public Cms15001 Claim { get; set; }
     }
 }

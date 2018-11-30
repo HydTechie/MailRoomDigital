@@ -6,7 +6,7 @@ namespace MailRoom.ParserLib
     public partial class StagingClaimCms1500Detail
     {
         public int Id { get; set; }
-        public string _24XClaimId { get; set; }
+        public string ClaimId { get; set; }
         public int? _24aAMm { get; set; }
         public int? _24aBDd { get; set; }
         public int? _24aCYyyy { get; set; }
@@ -29,6 +29,6 @@ namespace MailRoom.ParserLib
         public DateTime? CreatedDate { get; set; }
         public DateTime? ModifiedDate { get; set; }
 
-        public StagingClaimCms1500 _24XClaim { get; set; }
+        public StagingClaimCms1500 Claim { get; set; }
     }
 }

@@ -3,7 +3,9 @@ using System.Collections.Generic;
 
 namespace MailRoom.ParserLib
 {
-    public partial class Cms15001 :Row
+    
+
+    public partial class Cms15001 : Row
     {
         public Cms15001()
         {

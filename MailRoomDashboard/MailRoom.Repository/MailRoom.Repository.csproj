@@ -7,12 +7,6 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <Compile Remove="Models\**" />
-    <EmbeddedResource Remove="Models\**" />
-    <None Remove="Models\**" />
-  </ItemGroup>
-
-  <ItemGroup>
     <Compile Remove="Helpers\DataSimulator.cs" />
     <Compile Remove="Interfaces\IMarketsAndNewsRepository.cs" />
     <Compile Remove="Interfaces\ISecurityRepository.cs" />

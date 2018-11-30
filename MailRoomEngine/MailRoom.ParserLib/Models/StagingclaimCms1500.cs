@@ -7,7 +7,7 @@ namespace MailRoom.ParserLib
     {
         public StagingClaimCms1500()
         {
-            StagingclaimCms1500Detail = new HashSet<StagingClaimCms1500Detail>();
+            StagingClaimCms1500Detail = new HashSet<StagingClaimCms1500Detail>();
         }
 
         public string ClaimId { get; set; }
@@ -143,12 +143,13 @@ namespace MailRoom.ParserLib
         public string _33bPayerAssignedIdentifierOfBillingProvider { get; set; }
         public string ReviewerId { get; set; }
         public int? ReviewStatus { get; set; }
+        public int? ParserStatus { get; set; }
         public int? ConfidenceLevel { get; set; }
         public string ParserErrorCsv { get; set; }
         public string SourceId { get; set; }
         public DateTime? CreatedDate { get; set; }
         public DateTime? ModifiedDate { get; set; }
 
-        public ICollection<StagingClaimCms1500Detail> StagingclaimCms1500Detail { get; set; }
+        public ICollection<StagingClaimCms1500Detail> StagingClaimCms1500Detail { get; set; }
     }
 }
