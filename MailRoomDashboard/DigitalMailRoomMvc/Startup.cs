@@ -1,19 +1,13 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
+﻿using MailRoom.Repository;
+using MailRoom.Repository.Interfaces;
+using MailRoom.Repository.Seeding;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Http;
-using Microsoft.AspNetCore.HttpsPolicy;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
-using Microsoft.EntityFrameworkCore;
-using MailRoom.Repository;
-using MailRoom.Repository.Interfaces;
-using MailRoom.Repository.Helpers;
-using MailRoom.Repository.Seeding;
 
 namespace DigitalMailRoomMvc
 {
@@ -49,7 +43,7 @@ namespace DigitalMailRoomMvc
             //Add data repository mappings
             services.AddTransient<IStagingClaimRepository, StagingClaimRepository>();
             
-            services.AddTransient<IStagingEngine, StagingEngine>();
+            //services.AddTransient<IStagingEngine, StagingEngine>();
             services.AddTransient<DatabaseInitializer>();
         }
 

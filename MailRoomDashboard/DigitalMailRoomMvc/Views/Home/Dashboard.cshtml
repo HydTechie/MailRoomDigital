@@ -42,7 +42,8 @@
 
                     <div class="col-xs-12 col-lg-12">
                         <div class="row container-fluid">
-                            <div class="col-xs-12 col-sm-12 col-md-4 col-lg-4" style="padding-right:35px;" onclick="location.href='@Url.Action("FullList", "Home" )'">
+                            <div class="col-xs-12 col-sm-12 col-md-4 col-lg-4" style="padding-right:35px;" 
+                                 onclick="location.href='@Url.Action("FullList", "Home", new { @claimType ="CMS", @reviewerId ="reviewerid1", @reviewStauts = 0  } )'">
                                 @*
                                     <script>
                                         loadChartsInDashboard('4', dashboardData, $(window).height())
@@ -59,7 +60,8 @@
                                     </div>
                                 </div>
                             </div>
-                            <div class="col-xs-12 col-sm-12 col-md-4 col-lg-4" style="padding-right:25px;padding-left:25px;">
+                            <div class="col-xs-12 col-sm-12 col-md-4 col-lg-4" style="padding-right:25px;padding-left:25px;"
+                                  onclick="location.href='@Url.Action("FullList", "Home", new { @claimType ="CMS", @reviewerId ="reviewerid1", @reviewStatus = 2  } )'">
                                 @*
                                     <script>
                                         loadChartsInDashboard('5', dashboardData, $(window).height())
@@ -76,7 +78,8 @@
                                     </div>
                                 </div>
                             </div>
-                            <div class="col-xs-12 col-sm-12 col-md-4 col-lg-4" style="padding-left:35px;">
+                            <div class="col-xs-12 col-sm-12 col-md-4 col-lg-4" style="padding-left:35px;"
+                                  onclick="location.href='@Url.Action("FullList", "Home", new { @claimType ="CMS", @reviewerId ="reviewerid1", @reviewStatus =1  } )'">
                                 @*
                                     <script>
                                         loadChartsInDashboard('6', dashboardData, $(window).height())

@@ -99,19 +99,77 @@ namespace DigitalMailRoomMvc.Controllers
             var Dashboard = await _StagingClaimRepository.GetDashboardAsync("reviewerId1");
            
             return View("Dashboard", Dashboard);
-        } 
+        }
 
         //public IActionResult Index()
         //{
         //    return View();
         //}
-
-        public IActionResult FullList()
+        // public async Task<IActionResult> FullList(QueryParams queryParams)
+        public async Task<IActionResult> FullList(string claimType, string reviewerId, int reviewStatus)
         {
+            IList<GenericClaim> gridData = new List<GenericClaim>();
+            if (claimType == "CMS")
+            {
+                IList<StagingClaimCms1500> cmsGridData = await _StagingClaimRepository.GetStagingCMSClaimsByReviewerAsync(reviewerId, reviewStatus);
+                              
+                foreach (var item in cmsGridData)
+                {
+                    gridData.Add(new GenericClaim
+                    {
+                        ClaimId = item.ClaimId,
+                        ConfidenceScore = item.ConfidenceLevel.Value.ToString(),
+                        CreatedDate = item.CreatedDate.Value.ToString(),
+                        ParserStatus = item.ParserStatus.ToString(),
+                        PayerName = item._1PayerType,
+                        ReviewStatus = item.ReviewStatus.Value.ToString(),
+                        ReviewerId = item.ReviewerId
+                    });
+                }
+            }
 
-            return View(claimList);
+            //if (queryParams.claimType == "UB04")
+            //{
+            //    IList<StagingClaimCms1500> cmsGridData = await _StagingClaimRepository.GetStagingCMSClaimsByReviewerAsync(queryParams.reviewerId, queryParams.reviewStauts);
+
+            //    foreach (var item in cmsGridData)
+            //    {
+            //        gridData.Add(new GenericClaim
+            //        {
+            //            ClaimId = item.ClaimId,
+            //            ConfidenceScore = item.ConfidenceLevel.Value.ToString(),
+            //            CreatedDate = item.CreatedDate.Value.ToString(),
+            //            ParserStatus = item.ParserStatus.ToString(),
+            //            PayerName = item._1PayerType,
+            //            ReviewStatus = item.ReviewStatus.Value.ToString(),
+            //            ReviewerId = item.ReviewerId
+            //        });
+            //    }
+            //}
+
+            //if (queryParams.claimType == "PK83")
+            //{
+            //    IList<StagingClaimCms1500> cmsGridData = await _StagingClaimRepository.GetStagingCMSClaimsByReviewerAsync(queryParams.reviewerId, queryParams.reviewStauts);
+
+            //    foreach (var item in cmsGridData)
+            //    {
+            //        gridData.Add(new GenericClaim
+            //        {
+            //            ClaimId = item.ClaimId,
+            //            ConfidenceScore = item.ConfidenceLevel.Value.ToString(),
+            //            CreatedDate = item.CreatedDate.Value.ToString(),
+            //            ParserStatus = item.ParserStatus.ToString(),
+            //            PayerName = item._1PayerType,
+            //            ReviewStatus = item.ReviewStatus.Value.ToString(),
+            //            ReviewerId = item.ReviewerId
+            //        });
+            //    }
+            //}
+
+            return View("FullList", gridData);
+ 
         }
-
+ 
         public IActionResult Validation()
         {
             ViewData["Message"] = "Your validation page.";

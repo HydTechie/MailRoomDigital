@@ -37,4 +37,25 @@ namespace MailRoom.Model
             return opStatus;
         }
     }
+
+    public class GenericClaim
+    {
+        public string ClaimId {get; set;}
+        public string PayerName { get; set; }
+        public string ConfidenceScore { get; set; }
+        public string ReviewStatus { get; set; }
+        public string ParserStatus { get; set; }
+        public string CreatedDate { get; set; }
+        public string ReviewerId { get; set; }
+
+
+    }
+
+    public class QueryParams
+    {
+        public string reviewerId;
+        public int reviewStauts;
+        public string claimType;
+    }
+
 }

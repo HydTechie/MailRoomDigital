@@ -7,7 +7,6 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <Compile Remove="Helpers\DataSimulator.cs" />
     <Compile Remove="Interfaces\IMarketsAndNewsRepository.cs" />
     <Compile Remove="Interfaces\ISecurityRepository.cs" />
     <Compile Remove="MarketsAndNewsRepository.cs" />
