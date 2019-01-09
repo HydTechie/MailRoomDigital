@@ -1,0 +1,58 @@
+﻿@{
+    ViewData["Title"] = "Service List";
+    Layout = "~/Views/Shared/MasterLayout.cshtml";
+}
+
+@{
+    var format = "dd-MM-yyyy"; // your datetime format
+    var dateTimeConverter = new Newtonsoft.Json.Converters.IsoDateTimeConverter { DateTimeFormat = format };
+    var serviceList = Newtonsoft.Json.JsonConvert
+        .DeserializeObject<List<ServiceEntity>>("[{\"ServiceName\":\"CMS 1500\",\"ServiceStatus\":\"Stopped\",\"LastModifiedDate\":\"29-11-2018\"},{\"ServiceName\":\"UB-04\",\"ServiceStatus\":\"Stopped\",\"LastModifiedDate\":\"29-11-2018\"},{\"ServiceName\":\"Dental Claims\",\"ServiceStatus\":\"Stopped\",\"LastModifiedDate\":\"29-11-2018\"}]", dateTimeConverter);
+}
+
+<div class="container-fluid">
+    <div class="row">
+        <h2>Service List</h2>
+        <table id="serviceList" class="table table-striped table-bordered display" style="width:100%;">
+            <thead>
+                <tr>
+                    <th></th>
+                    <th>Service Name</th>
+                    <th>Service Status</th>
+                    <th>Last Modified Date</th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var serviceItem in serviceList)
+                {
+                    <tr>
+                        <td></td>
+                        <td>@serviceItem.ServiceName</td>
+                        <td>@serviceItem.ServiceStatus</td>
+                        <td>@serviceItem.LastModifiedDate</td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+        <script>
+            //var table = $('#serviceList').DataTable({ "dom": 'rt<"bottom"ip><"clear">' });
+            $('#serviceList').DataTable({
+                dom: 'rt<"bottom"ip><"clear">',
+                columnDefs: [{
+                    orderable: false,
+                    className: 'select-checkbox',
+                    targets: 0
+                }],
+                select: {
+                    style: 'single',
+                    selector: 'td:first-child'
+                },
+                order: [[1, 'asc']]
+            });
+        </script>
+    </div>
+    <div class="row" style="float:right;padding-top:10px;">
+        <input class="button" type="submit" name="submitbutton1" value="Edit" />
+        <input class="button" type="submit" name="submitbutton2" value="Delete" />
+    </div>
+</div>

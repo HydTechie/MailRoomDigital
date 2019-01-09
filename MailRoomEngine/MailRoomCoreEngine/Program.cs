@@ -6,24 +6,32 @@ using Microsoft.EntityFrameworkCore;
 using System.Collections.Generic;
 using System.Linq;
 using AutoMapper;
+using MailRoom.Model;
+using MailRoom.Repository;
+using System.Timers;
+using System.Reactive.Linq;
+using MailRoom.Model.Constants;
 
 namespace MailRoomCoreEngine
 {
     class Program
     {
+        private static IConfigurationRoot configuration;
         static void Main(string[] args)
         {
-            Console.WriteLine("Hello World!");
-            
             var builder = new ConfigurationBuilder()
-                .SetBasePath(Directory.GetCurrentDirectory())
-                .AddJsonFile("appsettings.json", optional: true, reloadOnChange: true);
+              .SetBasePath(Directory.GetCurrentDirectory())
+              .AddJsonFile("appsettings.json", optional: true, reloadOnChange: true);
 
-            IConfigurationRoot configuration = builder.Build();
+            configuration = builder.Build();
 
-            Console.WriteLine(configuration.GetConnectionString("MailRoom"));
-            Console.WriteLine(configuration.GetConnectionString("ConfidenceLevelThreshold"));
-            Console.WriteLine();
+            Console.WriteLine("Database Details: " + configuration.GetConnectionString("MailRoom"));
+            Console.WriteLine("Confidence Level Threshold: " + configuration.GetConnectionString("ConfidenceLevelThreshold"));
+
+            Console.WriteLine("DataFetchFrequency set for minutes:" + configuration.GetConnectionString("DataFetchFrequency"));
+            Console.WriteLine("NumberOfRecords per fetch:" + configuration.GetConnectionString("NumberOfRecords"));
+
+            int numRecords = Int32.Parse(configuration.GetConnectionString("NumberOfRecords"));
 
             Mapper.Initialize(config =>
             {
@@ -33,36 +41,70 @@ namespace MailRoomCoreEngine
 
             });
 
+            IObservable<long> timer =
+     Observable
+         .Defer(() =>
+         {
+
+             //var now = DateTimeOffset.Now;
+             var afterMinutes = Int32.Parse(configuration.GetConnectionString("DataFetchFrequency"));
+             //var result = new DateTimeOffset(now.Year, now.Month, now.Day, now.Hour, 0, 0, now.Offset);
+             //result = result.AddMinutes(((now.Minute / afterMinutes) + 1) * afterMinutes);
+             // starts immediatley, runs after every 'afterminutes'
+             return Observable.Timer(TimeSpan.FromSeconds(0), TimeSpan.FromMinutes(afterMinutes));
+         });
+
+            timer.Subscribe(x =>
+            {
+                /* Your code here that run on the scheduled minute . */
+                RunEngine();
+            });
+
+            Console.ReadLine();
+        }
+
+
+
+        private static void RunEngine()
+        {
+
             //#1 Read Top 10 records from sql database
-            Cache localCache = new Cache();
-
-            //localCache.Add(new Row { Id = 1, PatientAge = 65, PatientName = "Patient-1-65", Type = 1 });
-            //localCache.Add(new Row { Id = 2, PatientAge = 89 , PatientName ="Patient-2-89", Type =2});
-            //localCache.Add(new Row { Id = 3, PatientAge = 55 , PatientName ="Patient-3-55", Type =3});
-             
-
+            List<Cms15001> top10Records = new List<Cms15001>();
             // start the parser
             ParserQueue parserQueue = new ParserQueue();
 
+            //This event raised after all rows in the ParserQueue are parsed
             parserQueue.OnParsingCompleted += () =>
             {
-                Console.WriteLine("Main Parser Completed @ " + DateTime.Now.ToLongDateString());
-                Console.WriteLine("Checking database for more data ");
-                // Pause 5secs.. for getting data
-                // if there is data, 
-            };
+                Console.WriteLine("Main Parser Completed @ " + DateTime.Now.ToLocalTime());
+                Console.WriteLine("--------------------------------------------------");
+                // updating the dirty claims as completed 
+                using (MailRoomContext context = new MailRoomContext(configuration.GetConnectionString("MailRoom")))
+                {
+                    var top10Records2 = context.Cms15001  // 24column records
+             .Where(claim => top10Records.Contains(claim))
+                              .ToList();
+                    // TODO: Modified Date??
+                    top10Records2.ForEach(claim => { claim.Status = 2; }); //set in progress state
+                    context.SaveChanges();
+                }
+                Console.WriteLine("Runs again after # minutes:  " + Int32.Parse(configuration.GetConnectionString("DataFetchFrequency")));
 
+            };
+            // This event raised after each row parsed
             parserQueue.OnRowParsed += (row) =>
             {
-                // TODO: we dont need all the details of the row, just primary key and its errors to update the database!!
-                Console.WriteLine("The row processed " 
+
+                Console.WriteLine("The row processed at " + DateTime.Now.ToLocalTime() + " Key: "
                     + row.Key + ", status " + row.ExecutionStatus + " error:" + row.Errors.Count);
-                // TODO: Need a Dirty row to be inserted as is with great status 
+                Console.WriteLine("Errors " + row.ParserErrorCsv);
+                Console.WriteLine("*****");
+                //make sure derived row for DB updation
                 Cms15001 claimsRow = (Cms15001)row;
-                using (mailroomContext context = new mailroomContext(configuration.GetConnectionString("MailRoom")))
+                using (MailRoomContext context = new MailRoomContext(configuration.GetConnectionString("MailRoom")))
                 {
                     StagingClaimCms1500 targetRow = Mapper.Map<StagingClaimCms1500>(claimsRow);
- 
+
                     foreach (var item in claimsRow.Cms15002)
                     {
                         // convert soure to target type via Mapper
@@ -72,70 +114,79 @@ namespace MailRoomCoreEngine
                         context.Entry(stagingClaimCms1500Detail).State = EntityState.Added;
 
                     }
-                    var rdm = new Random((int)DateTime.Now.Ticks);
-                    // TODO:revisit for Hardcoded values
+
                     targetRow.CreatedDate = DateTime.Now;
                     targetRow.ReviewerId = "reviewerid1";
-                    /*
-                  ParserStatus = -1;  //  1- Complete & Verified
-                                          // 2- Completed But not Verified
-                                          // 3 - Not Completed and Verified
-                                          // 4- Not Completed and Not Verified 
-                                          // -1 – ERROR
+                    // set status in engine
+                    targetRow.ReviewStatus = ConstantStore.PENDING_STRING;
 
-
-ReviewStatus = 0 – Not yet Reviewed, 1- Review Completed, 2 – Rollback
-
-                     */
-                    // TODO: Remove Random!
-                    targetRow.ReviewStatus = rdm.Next(0, 2); 
-                 
                     targetRow.ParserStatus = row.ExecutionStatus;
                     targetRow.ParserErrorCsv = row.ParserErrorCsv;
-                    targetRow.ConfidenceLevel = rdm.Next(80,99);
-   
+                    if (claimsRow.Cms15001Conf != null)
+                        targetRow.ConfidenceLevel = Convert.ToInt32(claimsRow.Cms15001Conf.OverallTableConfidence);
+                    else
+                        targetRow.ConfidenceLevel = -1;
+
                     context.StagingClaimCms1500.Add(targetRow);
                     // context.Entry(claim).State = EntityState.Modified;
-                    context.SaveChanges();
-                   // if ( claim != null)
-                   //{
-                   //     claim.ParserErrorCsv = String.Join(",", row.Errors.Select(x => x.ToString()).ToArray());
-                   //    // claim.ModifiedDate = DateTime.Now;
-                        
-                   // }
+                    try
+                    {
+                        context.SaveChanges();
+                    }
+                    catch (Exception e)
+                    {
+                        if (e.InnerException != null)
+                            Console.WriteLine("Eror occured " + e.InnerException.Message);
+                    }
+                    // if ( claim != null)
+                    //{
+                    //     claim.ParserErrorCsv = String.Join(",", row.Errors.Select(x => x.ToString()).ToArray());
+                    //    // claim.ModifiedDate = DateTime.Now;
+
+                    // }
                 };
             };
 
             EngineConfiguration engineConfig = new EngineConfiguration
-            { 
-                ConfidenceLevelThreshold = Convert.ToInt16(configuration.GetConnectionString("ConfidenceLevelThreshold"))
-            }; 
-            
+            (
+                Convert.ToInt16(configuration.GetConnectionString("ConfidenceLevelThreshold")),
+                 Convert.ToInt16(configuration.GetConnectionString("DataFetchFrequency")),
+                 Convert.ToInt16(configuration.GetConnectionString("NumberOfRecords"))
+           );
 
-          
-            List<Cms15001> top10Records = new List<Cms15001>(); 
-            using (mailroomContext context = new mailroomContext(configuration.GetConnectionString("MailRoom")))
+
+
+
+            using (MailRoomContext context = new MailRoomContext(configuration.GetConnectionString("MailRoom")))
             {
+
                 // TODO: where condition is A MUST FOR DEMO - Where(c => c.ModifiedDate <= DateTime.Now).
                 // including their children records
-                top10Records = context.Cms15001.Include(claim => claim.Cms15002).Take(10).ToList();
+                top10Records = context.Cms15001.Include(claim => claim.Cms15002) // 24column records
+                    .Where(claim => claim.Status == 0)
+                                    .Include(claim => claim.Cms15001Conf) //1500_1 row's confidence records
+                        .Take(engineConfig.NumberOfRecords).ToList();
+
+                top10Records.ForEach(claim => claim.Status = 1); //set in progress state
+                context.SaveChanges();
             };
-                StagingClaimCms1500 stagingClaimCms1500 = new StagingClaimCms1500();
-                //TODO: decision to decide which parser this row should go with!
-                //if (row.Type == 1) // ClaimType1 or ClaimType2 
+            Console.WriteLine("Trying to process # records: " + top10Records.Count);
+            StagingClaimCms1500 stagingClaimCms1500 = new StagingClaimCms1500();
+            //TODO: decision to decide which parser this row should go with!
+            //if (row.Type == 1) // ClaimType1 or ClaimType2 
 
-                //if (row.Type == 2)// ClaimType1 or ClaimType2 
-                //    parserQueue.Enqueue(new Claims2Processor(row));
-                foreach(var claim in top10Records)
-                { 
-                    parserQueue.Enqueue(new ClaimCMS1500Processor(claim, engineConfig));
-                }
+            //if (row.Type == 2)// ClaimType1 or ClaimType2 
+            //    parserQueue.Enqueue(new Claims2Processor(row));
+            foreach (var claim in top10Records)
+            {
+                parserQueue.Enqueue(new ClaimCMS1500Processor(claim, engineConfig));
+            }
 
-                parserQueue.Process();
-            
+            parserQueue.Process();
 
-            //FileStyleUriParser
-            Console.ReadLine();
+
+
+
         }
     }
 }

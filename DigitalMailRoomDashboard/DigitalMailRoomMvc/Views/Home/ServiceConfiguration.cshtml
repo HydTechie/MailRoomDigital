@@ -1,0 +1,119 @@
+﻿@model DigitalMailRoomMvc.Models.ServiceEntity
+@{
+    ViewData["Title"] = "Service List";
+    Layout = "~/Views/Shared/MasterLayout.cshtml";
+}
+
+
+@using (Html.BeginForm())
+{
+    <div class="container-fluid">
+        <div class="row">
+            <h2>Service Configuration</h2><br />
+        </div>
+        <div class="row container-fluid" style="border:1px solid rgb(80, 191, 230);padding-left:30px;padding-top:10px;padding-bottom:10px;">
+
+            <div class="row">
+                <div class="col-sm-12 col-md-4 col-lg-4">
+                    <label style="width:30%;">Service Name</label>
+                    @Html.TextBoxFor(a => a.ServiceName)
+                </div>
+                <div class="col-sm-12 col-md-4 col-lg-4">
+                    <label style="width:30%;">Source Path</label>
+                    @Html.TextBoxFor(a => a.SourcePath)
+                </div>
+                <div class="col-sm-12 col-md-4 col-lg-4">
+                    <label style="width:30%;">File Name Pattern</label>
+                    @Html.TextBoxFor(a => a.FileNamePattern)
+                </div>
+            </div>
+            <br />
+            <div class="row">
+                <div class="col-sm-12 col-md-4 col-lg-4">
+                    <label style="width:30%;">Host</label>
+                    @Html.TextBoxFor(a => a.Host)
+                </div>
+                <div class="col-sm-12 col-md-4 col-lg-4">
+                    <label style="width:30%;">Username</label>
+                    @Html.TextBoxFor(a => a.UserName)
+                </div>
+                <div class="col-sm-12 col-md-4 col-lg-4">
+                    <label style="width:30%;">Password</label>
+                    @Html.TextBoxFor(a => a.Password)
+                </div>
+            </div>
+            <br />
+            <div class="row">
+                <div class="col-sm-12 col-md-4 col-lg-4">
+                    <label style="width:30%;">Restrict File Size</label>
+                    @Html.RadioButtonFor(a => a.RestrictFileSize, "true") Yes&nbsp;&nbsp;&nbsp;&nbsp;
+                    @Html.RadioButtonFor(a => a.RestrictFileSize, "false") No
+                </div>
+                <div class="col-sm-12 col-md-4 col-lg-4">
+                    <label style="width:30%;">File Size Limit</label>
+                    @Html.TextBoxFor(a => a.FileSizeLimit, "", (Model.RestrictFileSize) ? null : new { disabled = "disabled" })
+                </div>
+                <div class="col-sm-12 col-md-4 col-lg-4">
+                    <label style="width:30%;">Polling Messages</label>
+                    @Html.TextBoxFor(a => a.PollingMessages)
+                </div>
+            </div>
+            <br />
+            <div class="row">
+                <div class="col-sm-12 col-md-4 col-lg-4" style="padding-right:100px;">
+                    <div class="row" style="border:1px solid rgb(80, 191, 230);border-radius:6px 6px 0px 0px;">
+                        <div class="col-sm-12" style="padding-top:5px;padding-bottom:5px;background-color:rgb(80, 191, 230);">
+                            <label style="width:30%;">Polling Interval</label>
+                        </div>
+                        <div class="col-sm-12" style="padding-bottom:10px;">
+                            @Html.RadioButtonFor(a => a.IsPollByTime, "true") Poll by Time&nbsp;&nbsp;&nbsp;&nbsp;
+                            @Html.RadioButtonFor(a => a.IsPollByTime, "false") Poll by Frequency
+                        </div>
+                        <div class="col-sm-12" style="padding-bottom:10px;">
+                            <label style="width:40%;">Polling Time (hh:mm)</label>
+                            @Html.TextBoxFor(a => a.PollingTime, "", (Model.IsPollByTime) ? null : new { disabled = "disabled" })
+                        </div>
+                        <div class="col-sm-12" style="padding-bottom:10px;">
+                            <label style="width:40%;">Polling Frequency (ms)</label>
+                            @Html.TextBoxFor(a => a.PollingFrequency, "", (!Model.IsPollByTime) ? null : new { disabled = "disabled" })
+                        </div>
+                    </div>
+                </div>
+                <div class="col-sm-12 col-md-4 col-lg-4" style="padding-right:100px;">
+                    <div class="row" style="border:1px solid rgb(80, 191, 230);border-radius:6px 6px 0px 0px;">
+                        <div class="col-sm-12" style="padding-top:5px;padding-bottom:5px;background-color:rgb(80, 191, 230);">
+                            <label style="width:30%;">After Processing</label>
+                        </div>
+                        <div class="col-sm-12" style="padding-bottom:10px;">
+                            @Html.RadioButtonFor(a => a.IsMoveAllowed, "true") Move&nbsp;&nbsp;&nbsp;&nbsp;
+                            @Html.RadioButtonFor(a => a.IsMoveAllowed, "false") Delete
+                        </div>
+                        <div class="col-sm-12" style="padding-bottom:10px;">
+                            <label style="width:40%;">Move to Directory</label>
+                            @Html.TextBoxFor(a => a.MoveToPath, "", (Model.IsMoveAllowed) ? null : new { disabled = "disabled" })
+                        </div>
+                    </div>
+                </div>
+                <div class="col-sm-12 col-md-4 col-lg-4" style="padding-right:100px;">
+                    <div class="row" style="border:1px solid rgb(80, 191, 230);border-radius:6px 6px 0px 0px;">
+                        <div class="col-sm-12" style="padding-top:5px;padding-bottom:5px;background-color:rgb(80, 191, 230);">
+                            <label style="width:30%;">On Error</label>
+                        </div>
+                        <div class="col-sm-12" style="padding-bottom:10px;">
+                            @Html.RadioButtonFor(a => a.IsMoveErroredAllowed, "true") Move&nbsp;&nbsp;&nbsp;&nbsp;
+                            @Html.RadioButtonFor(a => a.IsMoveErroredAllowed, "false") Delete
+                        </div>
+                        <div class="col-sm-12" style="padding-bottom:10px;">
+                            <label style="width:40%;">Move to Directory</label>
+                            @Html.TextBoxFor(a => a.MoveErroredToPath, "", (Model.IsMoveErroredAllowed) ? null : new { disabled = "disabled" })
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="row" style="float:right;padding-top:10px;padding-right:50px;">
+                <input class="button" type="submit" name="submitbutton1" value="Save" />
+                <input class="button" type="submit" name="submitbutton2" value="Reset" />
+            </div>
+        </div>
+    </div>
+}

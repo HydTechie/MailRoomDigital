@@ -1,0 +1,12 @@
+D:\work\POCs\SVN\trunk\DigitalMailRoomDashboard\MailRoom.Model\bin\Release\netcoreapp2.1\MailRoom.Model.deps.json
+D:\work\POCs\SVN\trunk\DigitalMailRoomDashboard\MailRoom.Model\bin\Release\netcoreapp2.1\MailRoom.Model.dll
+D:\work\POCs\SVN\trunk\DigitalMailRoomDashboard\MailRoom.Model\bin\Release\netcoreapp2.1\MailRoom.Model.pdb
+D:\work\POCs\SVN\trunk\DigitalMailRoomDashboard\MailRoom.Model\bin\Release\netcoreapp2.1\Microsoft.EntityFrameworkCore.dll
+D:\work\POCs\SVN\trunk\DigitalMailRoomDashboard\MailRoom.Model\bin\Release\netcoreapp2.1\Microsoft.EntityFrameworkCore.xml
+D:\work\POCs\SVN\trunk\DigitalMailRoomDashboard\MailRoom.Model\obj\Release\netcoreapp2.1\MailRoom.Model.csproj.CoreCompileInputs.cache
+D:\work\POCs\SVN\trunk\DigitalMailRoomDashboard\MailRoom.Model\obj\Release\netcoreapp2.1\MailRoom.Model.AssemblyInfoInputs.cache
+D:\work\POCs\SVN\trunk\DigitalMailRoomDashboard\MailRoom.Model\obj\Release\netcoreapp2.1\MailRoom.Model.AssemblyInfo.cs
+D:\work\POCs\SVN\trunk\DigitalMailRoomDashboard\MailRoom.Model\obj\Release\netcoreapp2.1\MailRoom.Model.csproj.CopyComplete
+D:\work\POCs\SVN\trunk\DigitalMailRoomDashboard\MailRoom.Model\obj\Release\netcoreapp2.1\MailRoom.Model.dll
+D:\work\POCs\SVN\trunk\DigitalMailRoomDashboard\MailRoom.Model\obj\Release\netcoreapp2.1\MailRoom.Model.pdb
+D:\work\POCs\SVN\trunk\DigitalMailRoomDashboard\MailRoom.Model\obj\Release\netcoreapp2.1\MailRoom.Model.csprojAssemblyReference.cache

@@ -1,0 +1,64 @@
+﻿@{
+    ViewData["Title"] = "AdminDashboard";
+    Layout = "~/Views/Shared/MasterLayout.cshtml";
+}
+
+@{
+    var format = "dd-MM-yyyy"; // your datetime format
+    var dateTimeConverter = new Newtonsoft.Json.Converters.IsoDateTimeConverter { DateTimeFormat = format };
+    var serviceManagementList = Newtonsoft.Json.JsonConvert
+        .DeserializeObject<List<ServiceManagementEntity>>("[{\"ServiceName\":\"CMS 1500\",\"Received\":151,\"Processed\":150,\"Errored\":1,\"LastRunDate\":\"29-11-2018\",\"Status\":\"In Active\"},{\"ServiceName\":\"UB-04\",\"Received\":55,\"Processed\":50,\"Errored\":5,\"LastRunDate\":\"29-11-2018\",\"Status\":\"In Active\"},{\"ServiceName\":\"Dental Claims\",\"Received\":100,\"Processed\":100,\"Errored\":0,\"LastRunDate\":\"29-11-2018\",\"Status\":\"In Active\"}]", dateTimeConverter);
+}
+
+<div class="container-fluid">
+    <div class="row">
+        <h2>Dashboard</h2>
+        <table id="serviceManagementList" class="table table-striped table-bordered display" style="width:100%;">
+            <thead>
+                <tr>
+                    <th></th>
+                    <th>Service Name</th>
+                    <th>Claim Received</th>
+                    <th>Claim Processed</th>
+                    <th>Claim Errored</th>
+                    <th>Status</th>
+                    <th>Last Run Date</th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var managementItem in serviceManagementList)
+                {
+                    <tr>
+                        <td></td>
+                        <td>@managementItem.ServiceName</td>
+                        <td>@managementItem.Received</td>
+                        <td>@managementItem.Processed</td>
+                        <td>@managementItem.Errored</td>
+                        <td>@managementItem.Status</td>
+                        <td>@managementItem.LastRunDate</td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+        <script>
+            //var table = $('#serviceList').DataTable({ "dom": 'rt<"bottom"ip><"clear">' });
+            $('#serviceManagementList').DataTable({
+                dom: 'rt<"bottom"ip><"clear">',
+                columnDefs: [{
+                    orderable: false,
+                    className: 'select-checkbox',
+                    targets: 0
+                }],
+                select: {
+                    style: 'single',
+                    selector: 'td:first-child'
+                },
+                order: [[1, 'asc']]
+            });
+        </script>
+    </div>
+    <div class="row" style="float:right;padding-top:10px;">
+        <input class="button" type="submit" name="submitbutton1" value="Start" />
+        <input class="button" type="submit" name="submitbutton2" value="Stop" />
+    </div>
+</div>

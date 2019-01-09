@@ -1,0 +1,56 @@
+﻿@{
+    ViewData["Title"] = "Service List";
+    Layout = "~/Views/Shared/MasterLayout.cshtml";
+}
+
+@{
+    var format = "dd-MM-yyyy"; // your datetime format
+    var dateTimeConverter = new Newtonsoft.Json.Converters.IsoDateTimeConverter { DateTimeFormat = format };
+    var interfaceList = Newtonsoft.Json.JsonConvert
+        .DeserializeObject<List<InterfaceEntity>>("[{\"InterfaceName\":\"CMS 1500\",\"LastModifiedDate\":\"29-11-2018\"},{\"InterfaceName\":\"UB-04\",\"LastModifiedDate\":\"29-11-2018\"},{\"InterfaceName\":\"Dental Claims\",\"LastModifiedDate\":\"29-11-2018\"}]", dateTimeConverter);
+}
+
+<div class="container-fluid">
+    <div class="row">
+        <h2>Service List</h2>
+        <table id="interfaceList" class="table table-striped table-bordered display" style="width:100%;">
+            <thead>
+                <tr>
+                    <th></th>
+                    <th>Service Name</th>
+                    <th>Last Modified Date</th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var interfaceItem in interfaceList)
+                {
+                <tr>
+                    <td></td>
+                    <td>@interfaceItem.InterfaceName</td>
+                    <td>@interfaceItem.LastModifiedDate</td>
+                </tr>
+                }
+            </tbody>
+        </table>
+        <script>
+            //var table = $('#serviceList').DataTable({ "dom": 'rt<"bottom"ip><"clear">' });
+            $('#interfaceList').DataTable({
+                dom: 'rt<"bottom"ip><"clear">',
+                columnDefs: [{
+                    orderable: false,
+                    className: 'select-checkbox',
+                    targets: 0
+                }],
+                select: {
+                    style: 'single',
+                    selector: 'td:first-child'
+                },
+                order: [[1, 'asc']]
+            });
+        </script>
+    </div>
+    <div class="row" style="float:right;padding-top:10px;">
+        <input class="button" type="submit" name="submitbutton1" value="Edit" />
+        <input class="button" type="submit" name="submitbutton2" value="Delete" />
+    </div>
+</div>

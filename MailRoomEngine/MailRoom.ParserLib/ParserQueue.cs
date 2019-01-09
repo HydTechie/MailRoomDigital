@@ -1,4 +1,5 @@
-﻿using System;
+﻿using MailRoom.Model;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -6,25 +7,15 @@ using System.Threading;
 
 namespace MailRoom.ParserLib
 {
-    public interface  IProcessor
-    {
-        Row Row { get; }
-        void Execute();
-        bool? IsCompleted { get;}
-         
-        
-    }
    
-
    
-    
     public class ParserQueue
     {
         private readonly IList<IProcessor> _executing = new List<IProcessor>();
         private readonly IList<IProcessor> _waiting = new List<IProcessor>();
         private readonly object _mutex = new object();
 
-        public const int MaxConcurrency = 500;
+        public const int MaxConcurrency = 50;
         // Holder for on retrieval of the row
         public event Action<Row> OnRowParsed;
         // Raise after all rows parsed

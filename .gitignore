@@ -3,3 +3,5 @@
 ################################################################################
 
 /DigitalMailRoomDashboard/.vs/DigitalMailRoomDashboard/DesignTimeBuild
+/DigitalMailRoomDashboard/DigitalMailRoomMvc/bin/Debug/netcoreapp2.1
+/DigitalMailRoomDashboard/.vs/DigitalMailRoomDashboard/v15/Server/sqlite3

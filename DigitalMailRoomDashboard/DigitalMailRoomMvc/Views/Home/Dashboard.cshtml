@@ -1,0 +1,436 @@
+﻿@using MailRoom.Model;
+@model MailRoom.Model.Dashboard
+@{
+    ViewData["Title"] = "Dashboard";
+    Layout = "~/Views/Shared/MasterLayout.cshtml";
+}
+<script>
+    var dashboardData =  @(Html.Raw(Newtonsoft.Json.JsonConvert.SerializeObject(Model)));
+</script>
+
+<div class="container-fluid row">
+    <div class="col-xs-12 dashBoardContent">
+        <div class="row">
+            <div class="col-xs-12 col-sm-12 col-md-12 col-lg-8">
+                <div class="row">
+                    <div class="col-xs-12 col-lg-12">
+                        <h5>OVERALL PROGRESS</h5>
+                    </div>
+                    <div class="col-xs-12 col-lg-12">
+                        <div class="row">
+                            <div id="overallVerificationRequiredContainer" class="col-xs-12 col-sm-4 col-lg-4 dashboardRow">
+                                <script type="text/javascript">
+                                    loadChartsInDashboard('1', dashboardData, $(window).height())
+                                </script>
+                            </div>
+                            <div id="overallRollBackContainer" class="col-xs-12 col-sm-4 col-lg-4 dashboardRow">
+                                <script>
+                                    loadChartsInDashboard('2', dashboardData, $(window).height())
+                                </script>
+                            </div>
+                            <div id="overallOptionalVerificationContainer" class="col-xs-12 col-sm-4 col-lg-4 dashboardRow">
+                                <script>
+                                    loadChartsInDashboard('3', dashboardData, $(window).height())
+                                </script>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-lg-12">
+                        <h6>CMS 1500</h6>
+                    </div>
+
+                    <div class="col-xs-12 col-lg-12">
+                        <div class="row container-fluid">
+                            <div class="col-xs-12 col-sm-12 col-md-4 col-lg-4" style="padding-right:35px;">
+                                @*
+                                    <script>
+                                        loadChartsInDashboard('4', $(window).height())
+                                    </script>*@
+                                <div class="row container-fluid" style="border-radius:10px;background-color: #F0F0F0;">
+                                    <div class="row">
+                                        <div class="col-lg-12 centerAlignmentForText" style="color: #484b4f;font:Segoe UI;font-size:14px;font-weight:bold;">
+                                            Verification Required
+                                        </div>
+                                    </div>
+                                    <div class="row">
+                                        <div class="col-xs-7">
+                                            <h5 class="rightAlignmentForText">Total Assigned :</h5>
+                                        </div>
+                                        <div class="col-xs-5" style="padding-top:8px;">
+                                            <a style="cursor:pointer;font-weight:bold;text-decoration:underline;" href='@Url.Action("FullList", "Home",new { @claimType ="CMS1500", @reviewerId ="reviewerid1", @parserStatus = 2, @reviewStatus="All"  } )'>@Model.ClaimsCMS100["VERIFICATIONREQUIRED_ASSIGNED"]</a>
+                                        </div>
+                                    </div>
+                                    <div class="row">
+                                        <div class="col-xs-7">
+                                            <h5 class="rightAlignmentForText">Completed :</h5>
+                                        </div>
+                                        <div class="col-xs-5" style="padding-top:8px;">
+                                            <a style="cursor:pointer;font-weight:bold;text-decoration:underline;" href='@Url.Action("FullList", "Home",new { @claimType ="CMS1500", @reviewerId ="reviewerid1", @parserStatus = 2, @reviewStatus="Completed"  } )'>@Model.ClaimsCMS100["VERIFICATIONREQUIRED_REVIEWED"]</a>
+                                        </div>
+                                    </div>
+                                    <div class="row">
+                                        <div class="col-xs-7">
+                                            <h5 class="rightAlignmentForText">Pending :</h5>
+                                        </div>
+                                        <div class="col-xs-5" style="padding-top:8px;">
+                                            <a style="cursor:pointer;font-weight:bold;text-decoration:underline;" href='@Url.Action("FullList", "Home",new { @claimType ="CMS1500", @reviewerId ="reviewerid1", @parserStatus = 2, @reviewStatus="Pending"  } )'>@Model.ClaimsCMS100["VERIFICATIONREQUIRED_PENDING"]</a>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-xs-12 col-sm-12 col-md-4 col-lg-4" style="padding-right:25px;padding-left:25px;">
+                                @*
+                                    <script>
+                                        loadChartsInDashboard('5', $(window).height())
+                                    </script>*@
+                                <div class="row container-fluid" style="border-radius:10px;background-color: #F0F0F0;">
+                                    <div class="row">
+                                        <div class="col-lg-12 centerAlignmentForText" style="color: #484b4f;font:Segoe UI;font-size:14px;font-weight:bold;">
+                                            Roll Back
+                                        </div>
+                                    </div>
+                                    <div class="row">
+                                        <div class="col-xs-7">
+                                            <h5 class="rightAlignmentForText">Total Assigned :</h5>
+                                        </div>
+                                        <div class="col-xs-5" style="padding-top:8px;">
+                                            <a style="cursor:pointer;font-weight:bold;text-decoration:underline;" href='@Url.Action("FullList", "Home",new { @claimType ="CMS1500", @reviewerId ="reviewerid1", @parserStatus = 1, @reviewStatus="All"  } )'>@Model.ClaimsCMS100["ROLLBACK_ASSIGNED"]</a>
+                                        </div>
+                                    </div>
+                                    <div class="row">
+                                        <div class="col-xs-7">
+                                            <h5 class="rightAlignmentForText">Completed :</h5>
+                                        </div>
+                                        <div class="col-xs-5" style="padding-top:8px;">
+                                            <a style="cursor:pointer;font-weight:bold;text-decoration:underline;" href='@Url.Action("FullList", "Home",new { @claimType ="CMS1500", @reviewerId ="reviewerid1", @parserStatus = 1, @reviewStatus="Completed"  } )'>@Model.ClaimsCMS100["ROLLBACK_REVIEWED"]</a>
+                                        </div>
+                                    </div>
+                                    <div class="row">
+                                        <div class="col-xs-7">
+                                            <h5 class="rightAlignmentForText">Pending :</h5>
+                                        </div>
+                                        <div class="col-xs-5" style="padding-top:8px;">
+                                            <a style="cursor:pointer;font-weight:bold;text-decoration:underline;" href='@Url.Action("FullList", "Home",new { @claimType ="CMS1500", @reviewerId ="reviewerid1", @parserStatus = 1, @reviewStatus="Pending"  } )'>@Model.ClaimsCMS100["ROLLBACK_PENDING"]</a>
+                                        </div>
+                                    </div>
+
+
+
+                                </div>
+                            </div>
+                            <div class="col-xs-12 col-sm-12 col-md-4 col-lg-4" style="padding-left:35px;">
+                                @*
+                                    <script>
+                                        loadChartsInDashboard('6', $(window).height())
+                                    </script>*@
+                                <div class="row container-fluid" style="border-radius:10px;background-color: #F0F0F0;">
+                                    <div class="row">
+                                        <div class="col-lg-12 centerAlignmentForText" style="color: #484b4f;font:Segoe UI;font-size:14px;font-weight:bold;">
+                                            Optional Verification
+                                        </div>
+                                    </div>
+                                    <div class="row">
+                                        <div class="col-xs-7">
+                                            <h5 class="rightAlignmentForText">Total Assigned :</h5>
+                                        </div>
+                                        <div class="col-xs-5" style="padding-top:8px;">
+                                            <a style="cursor:pointer;font-weight:bold;text-decoration:underline;" href='@Url.Action("FullList", "Home",new { @claimType ="CMS1500", @reviewerId ="reviewerid1", @parserStatus = 5, @reviewStatus="All"  } )'>@Model.ClaimsCMS100["OPTIONALVERIFICATION_ASSIGNED"]</a>
+                                        </div>
+                                    </div>
+                                    <div class="row">
+                                        <div class="col-xs-7">
+                                            <h5 class="rightAlignmentForText">Completed :</h5>
+                                        </div>
+                                        <div class="col-xs-5" style="padding-top:8px;">
+                                            <a style="cursor:pointer;font-weight:bold;text-decoration:underline;" href='@Url.Action("FullList", "Home",new { @claimType ="CMS1500", @reviewerId ="reviewerid1", @parserStatus = 5, @reviewStatus="Completed"  } )'>@Model.ClaimsCMS100["OPTIONALVERIFICATION_REVIEWED"]</a>
+                                        </div>
+                                    </div>
+                                    <div class="row">
+                                        <div class="col-xs-7">
+                                            <h5 class="rightAlignmentForText">Pending :</h5>
+                                        </div>
+                                        <div class="col-xs-5" style="padding-top:8px;">
+                                            <a style="cursor:pointer;font-weight:bold;text-decoration:underline;" href='@Url.Action("FullList", "Home",new { @claimType ="CMS1500", @reviewerId ="reviewerid1", @parserStatus = 5, @reviewStatus="Pending"  } )'>@Model.ClaimsCMS100["OPTIONALVERIFICATION_PENDING"]</a>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-lg-12">
+                        <h6>UB-04</h6>
+                    </div>
+                    <div class="col-xs-12 col-lg-12">
+                        <div class="row container-fluid">
+                            <div class="col-xs-12 col-sm-12 col-md-4 col-lg-4" style="padding-right:35px;">
+                                @*
+                                    <script>
+                                        loadChartsInDashboard('7', $(window).height())
+                                    </script>*@
+                                <div class="row container-fluid" style="border-radius:10px;background-color: #F0F0F0;">
+
+                                    <div class="row">
+                                        <div class="col-lg-12 centerAlignmentForText" style="color: #484b4f;font:Segoe UI;font-size:14px;font-weight:bold;">
+                                            Verification Required
+                                        </div>
+                                    </div>
+                                    <div class="row">
+                                        <div class="col-xs-7">
+                                            <h5 class="rightAlignmentForText">Total Assigned :</h5>
+                                        </div>
+                                        <div class="col-xs-5" style="padding-top:8px;">
+                                            <a style="cursor:pointer;font-weight:bold;text-decoration:underline;" href='@Url.Action("FullList", "Home",new { @claimType ="UB04", @reviewerId ="reviewerid1", @parserStatus = 5, @reviewStatus="All"  } )'>@Model.ClaimsUB04["VERIFICATIONREQUIRED_ASSIGNED"]</a>
+                                        </div>
+                                    </div>
+                                    <div class="row">
+                                        <div class="col-xs-7">
+                                            <h5 class="rightAlignmentForText">Completed :</h5>
+                                        </div>
+                                        <div class="col-xs-5" style="padding-top:8px;">
+                                            <a style="cursor:pointer;font-weight:bold;text-decoration:underline;" href='@Url.Action("FullList", "Home",new { @claimType ="UB04", @reviewerId ="reviewerid1", @parserStatus = 5, @reviewStatus="Completed"  } )'>@Model.ClaimsUB04["VERIFICATIONREQUIRED_REVIEWED"]</a>
+                                        </div>
+                                    </div>
+                                    <div class="row">
+                                        <div class="col-xs-7">
+                                            <h5 class="rightAlignmentForText">Pending :</h5>
+                                        </div>
+                                        <div class="col-xs-5" style="padding-top:8px;">
+                                            <a style="cursor:pointer;font-weight:bold;text-decoration:underline;" href='@Url.Action("FullList", "Home",new { @claimType ="UB04", @reviewerId ="reviewerid1", @parserStatus = 5, @reviewStatus="Pending"  } )'>@Model.ClaimsUB04["VERIFICATIONREQUIRED_PENDING"]</a>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-xs-12 col-sm-12 col-md-4 col-lg-4" style="padding-right:25px;padding-left:25px;">
+                                @*
+                                    <script>
+                                        loadChartsInDashboard('8', $(window).height())
+                                    </script>*@
+                                <div class="row container-fluid" style="border-radius:10px;background-color: #F0F0F0;">
+                                    <div class="row">
+                                        <div class="col-lg-12 centerAlignmentForText" style="color: #484b4f;font:Segoe UI;font-size:14px;font-weight:bold;">
+                                            Roll Back
+                                        </div>
+                                    </div>
+                                    <div class="row">
+                                        <div class="col-xs-7">
+                                            <h5 class="rightAlignmentForText">Total Assigned :</h5>
+                                        </div>
+                                        <div class="col-xs-5" style="padding-top:8px;">
+                                            <a style="cursor:pointer;font-weight:bold;text-decoration:underline;" href='@Url.Action("FullList", "Home",new { @claimType ="UB04", @reviewerId ="reviewerid1", @parserStatus = 1, @reviewStatus="All"  } )'>@Model.ClaimsUB04["ROLLBACK_ASSIGNED"]</a>
+                                        </div>
+                                    </div>
+                                    <div class="row">
+                                        <div class="col-xs-7">
+                                            <h5 class="rightAlignmentForText">Completed :</h5>
+                                        </div>
+                                        <div class="col-xs-5" style="padding-top:8px;">
+                                            <a style="cursor:pointer;font-weight:bold;text-decoration:underline;" href='@Url.Action("FullList", "Home",new { @claimType ="UB04", @reviewerId ="reviewerid1", @parserStatus = 1, @reviewStatus="Completed"  } )'>@Model.ClaimsUB04["ROLLBACK_REVIEWED"]</a>
+                                        </div>
+                                    </div>
+                                    <div class="row">
+                                        <div class="col-xs-7">
+                                            <h5 class="rightAlignmentForText">Pending :</h5>
+                                        </div>
+                                        <div class="col-xs-5" style="padding-top:8px;">
+                                            <a style="cursor:pointer;font-weight:bold;text-decoration:underline;" href='@Url.Action("FullList", "Home",new { @claimType ="UB04", @reviewerId ="reviewerid1", @parserStatus = 1, @reviewStatus="Pending"  } )'>@Model.ClaimsUB04["ROLLBACK_PENDING"]</a>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-xs-12 col-sm-12 col-md-4 col-lg-4" style="padding-left:35px;">
+                                @*
+                                    <script>
+                                        loadChartsInDashboard('9', $(window).height())
+                                    </script>*@
+                                <div class="row container-fluid" style="border-radius:10px;background-color: #F0F0F0;">
+
+                                    <div class="row">
+                                        <div class="col-lg-12 centerAlignmentForText" style="color: #484b4f;font:Segoe UI;font-size:14px;font-weight:bold;">
+                                            Optional Verification
+                                        </div>
+                                    </div>
+                                    <div class="row">
+                                        <div class="col-xs-7">
+                                            <h5 class="rightAlignmentForText">Total Assigned :</h5>
+                                        </div>
+                                        <div class="col-xs-5" style="padding-top:8px;">
+                                            <a style="cursor:pointer;font-weight:bold;text-decoration:underline;" href='@Url.Action("FullList", "Home",new { @claimType ="UB04", @reviewerId ="reviewerid1", @parserStatus = 5, @reviewStatus="All"  } )'>@Model.ClaimsUB04["OPTIONALVERIFICATION_ASSIGNED"]</a>
+                                        </div>
+                                    </div>
+                                    <div class="row">
+                                        <div class="col-xs-7">
+                                            <h5 class="rightAlignmentForText">Completed :</h5>
+                                        </div>
+                                        <div class="col-xs-5" style="padding-top:8px;">
+                                            <a style="cursor:pointer;font-weight:bold;text-decoration:underline;" href='@Url.Action("FullList", "Home",new { @claimType ="UB04", @reviewerId ="reviewerid1", @parserStatus = 5, @reviewStatus="Completed"  } )'>@Model.ClaimsUB04["OPTIONALVERIFICATION_REVIEWED"]</a>
+                                        </div>
+                                    </div>
+                                    <div class="row">
+                                        <div class="col-xs-7">
+                                            <h5 class="rightAlignmentForText">Pending :</h5>
+                                        </div>
+                                        <div class="col-xs-5" style="padding-top:8px;">
+                                            <a style="cursor:pointer;font-weight:bold;text-decoration:underline;" href='@Url.Action("FullList", "Home",new { @claimType ="UB04", @reviewerId ="reviewerid1", @parserStatus = 5, @reviewStatus="Pending"  } )'>@Model.ClaimsUB04["ROLLBACK_PENDING"]</a>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-lg-12">
+                        <h6>DENTAL CLAIMS</h6>
+                    </div>
+                    <div class="col-xs-12 col-lg-12">
+                        <div class="row container-fluid">
+                            <div class="col-xs-12 col-sm-12 col-md-4 col-lg-4" style="padding-right:35px;">
+                                @*
+                                    <script>
+                                        loadChartsInDashboard('10', $(window).height())
+                                    </script>*@
+                                <div class="row container-fluid" style="border-radius:10px;background-color: #F0F0F0;">
+
+                                    <div class="row">
+                                        <div class="col-lg-12 centerAlignmentForText" style="color: #484b4f;font:Segoe UI;font-size:14px;font-weight:bold;">
+                                            Verification Required
+                                        </div>
+                                    </div>
+                                    <div class="row">
+                                        <div class="col-xs-7">
+                                            <h5 class="rightAlignmentForText">Total Assigned :</h5>
+                                        </div>
+                                        <div class="col-xs-5" style="padding-top:8px;">
+                                            <a style="cursor:pointer;font-weight:bold;text-decoration:underline;" href='@Url.Action("FullList", "Home",new { @claimType ="PK83", @reviewerId ="reviewerid1", @parserStatus = 2, @reviewStatus="All"  } )'>@Model.ClaimsPK83["VERIFICATIONREQUIRED_ASSIGNED"]</a>
+                                        </div>
+                                    </div>
+                                    <div class="row">
+                                        <div class="col-xs-7">
+                                            <h5 class="rightAlignmentForText">Completed :</h5>
+                                        </div>
+                                        <div class="col-xs-5" style="padding-top:8px;">
+                                            <a style="cursor:pointer;font-weight:bold;text-decoration:underline;" href='@Url.Action("FullList", "Home",new { @claimType ="PK83", @reviewerId ="reviewerid1", @parserStatus = 2, @reviewStatus="Completed"  } )'>@Model.ClaimsPK83["VERIFICATIONREQUIRED_REVIEWED"]</a>
+                                        </div>
+                                    </div>
+                                    <div class="row">
+                                        <div class="col-xs-7">
+                                            <h5 class="rightAlignmentForText">Pending :</h5>
+                                        </div>
+                                        <div class="col-xs-5" style="padding-top:8px;">
+                                            <a style="cursor:pointer;font-weight:bold;text-decoration:underline;" href='@Url.Action("FullList", "Home",new { @claimType ="PK83", @reviewerId ="reviewerid1", @parserStatus = 2, @reviewStatus="Pending"  } )'>@Model.ClaimsPK83["VERIFICATIONREQUIRED_PENDING"]</a>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-xs-12 col-sm-12 col-md-4 col-lg-4" style="padding-right:25px;padding-left:25px;">
+                                @*
+                                    <script>
+                                        loadChartsInDashboard('11', $(window).height())
+                                    </script>*@
+                                <div class="row container-fluid" style="border-radius:10px;background-color: #F0F0F0;">
+
+                                    <div class="row">
+                                        <div class="col-lg-12 centerAlignmentForText" style="color: #484b4f;font:Segoe UI;font-size:14px;font-weight:bold;">
+                                            Roll Back
+                                        </div>
+                                    </div>
+                                    <div class="row">
+                                        <div class="col-xs-7">
+                                            <h5 class="rightAlignmentForText">Total Assigned :</h5>
+                                        </div>
+                                        <div class="col-xs-5" style="padding-top:8px;">
+                                            <a style="cursor:pointer;font-weight:bold;text-decoration:underline;" href='@Url.Action("FullList", "Home",new { @claimType ="PK83", @reviewerId ="reviewerid1", @parserStatus = 1, @reviewStatus="All"  } )'>@Model.ClaimsPK83["ROLLBACK_ASSIGNED"]</a>
+                                        </div>
+                                    </div>
+                                    <div class="row">
+                                        <div class="col-xs-7">
+                                            <h5 class="rightAlignmentForText">Completed :</h5>
+                                        </div>
+                                        <div class="col-xs-5" style="padding-top:8px;">
+                                            <a style="cursor:pointer;font-weight:bold;text-decoration:underline;" href='@Url.Action("FullList", "Home",new { @claimType ="PK83", @reviewerId ="reviewerid1", @parserStatus = 1, @reviewStatus="Completed"  } )'>@Model.ClaimsPK83["ROLLBACK_REVIEWED"]</a>
+                                        </div>
+                                    </div>
+                                    <div class="row">
+                                        <div class="col-xs-7">
+                                            <h5 class="rightAlignmentForText">Pending :</h5>
+                                        </div>
+                                        <div class="col-xs-5" style="padding-top:8px;">
+                                            <a style="cursor:pointer;font-weight:bold;text-decoration:underline;" href='@Url.Action("FullList", "Home",new { @claimType ="PK83", @reviewerId ="reviewerid1", @parserStatus = 1, @reviewStatus="Pending"  } )'>@Model.ClaimsPK83["ROLLBACK_PENDING"]</a>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-xs-12 col-sm-12 col-md-4 col-lg-4" style="padding-left:35px;">
+                                @*
+                                    <script>
+                                        loadChartsInDashboard('12', $(window).height())
+                                    </script>*@
+                                <div class="row container-fluid" style="border-radius:10px;background-color: #F0F0F0;">
+
+
+                                    <div class="row">
+                                        <div class="col-lg-12 centerAlignmentForText" style="color: #484b4f;font:Segoe UI;font-size:14px;font-weight:bold;">
+                                            Optional Verification
+                                        </div>
+                                    </div>
+                                    <div class="row">
+                                        <div class="col-xs-7">
+                                            <h5 class="rightAlignmentForText">Total Assigned :</h5>
+                                        </div>
+                                        <div class="col-xs-5" style="padding-top:8px;">
+                                            <a style="cursor:pointer;font-weight:bold;text-decoration:underline;" href='@Url.Action("FullList", "Home",new { @claimType ="PK83", @reviewerId ="reviewerid1", @parserStatus = 5, @reviewStatus="All"  } )'>@Model.ClaimsPK83["OPTIONALVERIFICATION_ASSIGNED"]</a>
+                                        </div>
+                                    </div>
+                                    <div class="row">
+                                        <div class="col-xs-7">
+                                            <h5 class="rightAlignmentForText">Completed :</h5>
+                                        </div>
+                                        <div class="col-xs-5" style="padding-top:8px;">
+                                            <a style="cursor:pointer;font-weight:bold;text-decoration:underline;" href='@Url.Action("FullList", "Home",new { @claimType ="PK83", @reviewerId ="reviewerid1", @parserStatus = 5, @reviewStatus="Completed"  } )'>@Model.ClaimsPK83["OPTIONALVERIFICATION_REVIEWED"]</a>
+                                        </div>
+                                    </div>
+                                    <div class="row">
+                                        <div class="col-xs-7">
+                                            <h5 class="rightAlignmentForText">Pending :</h5>
+                                        </div>
+                                        <div class="col-xs-5" style="padding-top:8px;">
+                                            <a style="cursor:pointer;font-weight:bold;text-decoration:underline;" href='@Url.Action("FullList", "Home",new { @claimType ="PK83", @reviewerId ="reviewerid1", @parserStatus = 5, @reviewStatus="Pending"  } )'>@Model.ClaimsPK83["OPTIONALVERIFICATION_PENDING"]</a>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-xs-12 col-sm-12 col-md-12 col-lg-4">
+                <div class="row">
+                    <div class="col-xs-12">
+                        <h6 class="centerAlignmentForText">MY PERFORMANCE</h6>
+                    </div>
+
+                    <div id="allocatedVsCompletedContainer" class="col-xs-12 metricChartRow">
+                        <script>
+                            loadChartsInDashboard('13', dashboardData, $(window).height())
+                        </script>
+                    </div>
+
+                    <div class="col-xs-12">
+                        <h4 class="centerAlignmentForText">Important Links</h4>
+                    </div>
+                    <div class="col-xs-12">
+                        <div id="importantLinksContainer" class="col-xs-12 metricLinkRow" style="border-radius:10px;background-color:#F0F0F0;height:100%;">
+                            <br />https://www.unitedstateszipcodes.org/
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

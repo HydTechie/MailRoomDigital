@@ -1,0 +1,1 @@
+print("Tesseract Program is initiated !!!")

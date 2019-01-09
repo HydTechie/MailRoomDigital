@@ -1,0 +1,2079 @@
+﻿@using MailRoom.Model
+@model MailRoom.Model.StagingClaimCms1500
+
+@{
+    ViewData["Title"] = "Validation";
+    Layout = "~/Views/Shared/MasterLayout.cshtml";
+    var errorItems = Newtonsoft.Json.JsonConvert
+                .DeserializeObject<List<Error>>(@Model.ParserErrorCsv);
+}
+<style type="text/css">
+    * {
+        border-radius: 0 !important;
+        /*text-transform: uppercase;*/
+        font-size: 0.97em;
+    }
+
+    .forms .row {
+        /*border: 1px solid rgba(0,0,0,0.5);*/
+        display: inline-flex;
+        width: 100%;
+        margin-bottom: -16px;
+    }
+
+        .forms .row .row {
+            display: unset;
+            margin: unset;
+            width: unset;
+        }
+
+    .forms [class*='col-'] {
+        border: 1px solid rgba(0,0,0,0.5);
+        display: grid;
+    }
+
+        .forms [class*='col-'] [class*='col-'] {
+            border: transparent;
+        }
+
+    .smallBoxes {
+        max-width: 100px;
+        width: 100%;
+    }
+
+        .smallBoxes .box {
+            width: 20%;
+            height: 20px;
+            border: 1px solid rgba(0,0,0,0.5);
+            /*float: left;*/
+            margin-bottom: 5px;
+        }
+
+        .smallBoxes .label {
+            width: 20%;
+            /*height: 20px;
+            border: 1px solid rgba(0,0,0,0.5);*/
+            /*float: left;*/
+            /*margin-bottom: 5px;*/
+        }
+
+    input[type="radio"], input[type="checkbox"] {
+        width: 14px;
+        height: 14px;
+    }
+
+    .table > tbody > tr > td {
+        padding: 0;
+        line-height: 1em;
+    }
+
+    small {
+        font-size: 10.5px;
+        /*color: red;*/
+    }
+
+    .DOB sup {
+        /*top: 2px;*/
+    }
+
+    .DOB .col-md-4 {
+        border-right: 1.2px dashed red !important;
+        height: 30px;
+    }
+
+    .smallTop {
+        position: absolute;
+        right: 5px;
+    }
+
+    label {
+        margin-bottom: 1px;
+    }
+
+    input[type=radio] {
+        border: 1px solid #000;
+        padding: 0.5em;
+        -webkit-appearance: none;
+    }
+
+        input[type=radio]:checked {
+            box-shadow: inset 2px 2px 0px 2px #fff;
+            position: relative;
+        }
+
+        input[type=radio]:focus {
+            outline-color: transparent;
+            outline: thin dotted;
+            outline: 0px auto black;
+            outline-offset: -2px;
+            box-shadow: inset 2px 2px 0px 2px #fff;
+            position: relative;
+        }
+
+            input[type=radio]:focus:after, input[type=radio]:checked:after {
+                content: '?';
+                position: absolute;
+                color: blue;
+                top: -1px;
+                left: 3px;
+                display: table-row-group;
+                font-weight: bold;
+            }
+
+    .textBoxStyle {
+        width: 60px;
+        height: 20px;
+        /*border-color: red;*/
+        border-width: thin;
+    }
+
+    .textBoxStyleError {
+        width: 60px;
+        height: 20px;
+        border-color: red;
+        border-width: thin;
+    }
+
+    .textBoxStyleForDOB {
+        width: 20px;
+        height: 20px;
+        /*border-color: red;*/
+        border-width: thin;
+    }
+
+
+    .relationship label {
+        margin-bottom: 1px;
+        margin: 0 -20px;
+    }
+
+    .borderLeft {
+        border-left: 1px solid rgba(0,0,0,0.5) !important;
+    }
+
+    .border {
+        border: 1px solid rgba(0,0,0,0.5) !important;
+    }
+
+    .height100 {
+        height: 100%;
+    }
+
+    .bigText {
+        font-size: 20px;
+    }
+
+    .absolute {
+        position: absolute;
+    }
+
+    .borderBottom {
+        border-bottom: 1px solid rgba(0,0,0,0.5);
+    }
+
+    .fullWidth {
+        width: 110%;
+        height: 2px;
+        left: -5%;
+        position: relative;
+    }
+
+    .height50px {
+        min-height: 50px;
+        height: auto;
+    }
+
+    .height30px {
+        min-height: 30px;
+        height: auto;
+    }
+
+    .height40px {
+        min-height: 40px;
+        height: auto;
+    }
+
+    .noBorder {
+        border: 0 !important;
+    }
+
+    .height90px {
+        min-height: 90px;
+        height: auto;
+    }
+
+    .height100px {
+        min-height: 100px;
+        height: auto;
+    }
+
+    .height80px {
+        min-height: 80px;
+        height: auto;
+    }
+
+    .height70px {
+        min-height: 70px;
+        height: auto;
+    }
+
+    .height142px {
+        min-height: 142px;
+        height: auto;
+    }
+
+    .noGrid {
+        display: unset !important;
+    }
+
+    .arrowLeft {
+        width: 0px;
+        height: 0px;
+        border-top: 22px solid transparent;
+        border-bottom: 22px solid transparent;
+        border-right: 15px solid black;
+        margin-top: 4px;
+    }
+
+    .lighBg {
+        background: rgba(0,0,0,0.2);
+    }
+
+    .boxed {
+        border: 1px solid rgba(0,0,0,.5);
+        padding: 5px;
+        height: -webkit-fill-available;
+        width: 45px;
+        float: left;
+    }
+
+    .lighBgMargin {
+        margin: 0 -4.34%;
+        height: 35px;
+    }
+
+    .borderBottomDashed {
+        border-bottom: 2px dashed #000;
+    }
+
+    .padding5px {
+        padding: 5px;
+    }
+
+    .labelClassInSections {
+        min-height: 20px;
+        /*color: red;*/
+    }
+
+    .singleTextBoxStyle {
+        width: 130px;
+        height: 20px;
+        /*border-color: red;*/
+        border-width: thin;
+    }
+
+    .singleTextBoxStyleError {
+        width: 130px;
+        height: 20px;
+        border-color: red;
+        border-width: thin;
+    }
+</style>
+
+@*<form asp-controller="Home" asp-action="SaveClaim" asp-route-model="@Model" method="post">*@
+@using (Html.BeginForm("SaveClaim", "Home", FormMethod.Post))
+{
+    <div class="container-fluid forms">
+        <br>
+        <div class="row">
+            <div class="col-lg-6 col-md-12 col-sm-12 col-xs-12 validationform" style="overflow-x:scroll;overflow-y:scroll;">
+                <div class="row">
+                    <div class="col-lg-6 col-md-6 col-sm-6" style="border:none;">
+                        <h4 style="font-weight:bold;">Health Insurance Claim Form</h4>
+                        <small>APPROVED BY NATIONAL UNIFORM CLAIM COMMITTEE 08/05</small>
+                        @Html.HiddenFor(m => m.ClaimId)
+                        @Html.HiddenFor(m => m.ConfidenceLevel)
+                        @Html.HiddenFor(m => m.CreatedDate)
+                        @Html.HiddenFor(m => m.ModifiedDate)
+                        @Html.HiddenFor(m => m.ParserErrorCsv)
+                        @Html.HiddenFor(m => m.ParserStatus)
+                        @Html.HiddenFor(m => m.ReviewerId)
+                        @Html.HiddenFor(m => m.ReviewStatus)
+                        @Html.HiddenFor(m => m.SourceId)
+                        @Html.HiddenFor(m => m._21IcdIndicator)
+                    </div>
+
+                    <div class="col-lg-6 col-md-6 col-sm-6" style="border:none;">
+                        @*@Html.TextBoxFor(c => c.IaPayerName, new { Class = "textBoxStyle", placeholder = "Payer Name" })*@
+                        @Html.TextBoxFor(c => c.IaPayerName, errorItems.Where(x => x.Field == "IaPayerName").FirstOrDefault() != null ? (object)new { Class = "singleTextBoxStyleError", title = errorItems.Where(x => x.Field == "IaPayerName").FirstOrDefault().Message, placeholder = "Payer Name" } : new { Class = "singleTextBoxStyle", placeholder = "Payer Name" })
+
+                        @Html.TextBoxFor(c => c.IbPayerAddress1, new { Class = "singleTextBoxStyle", placeholder = "Payer Address 1" })
+                        @Html.TextBoxFor(c => c.IcPayerAddress2, new { Class = "singleTextBoxStyle", placeholder = "Payer Address 2" })
+                        @Html.TextBoxFor(c => c.IdPayerCityStateZipcode, new { Class = "singleTextBoxStyle", placeholder = "Payer Zipcode" })
+                        @*<script>console.log(@Model.ParserErrorCsv)</script>*@
+                        @*<input type="text" class="textBoxStyle" placeholder="Payer Address 1" value="@(Model.IbPayerAddress1 ?? string.Empty)" />*@
+                    </div>
+
+                </div>
+
+
+                <div class="row">
+                    <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 noBorder noGrid">
+                        <div class="row">
+                            <div class="smallBoxes col-lg-6 col-md-6 col-sm-6 col-xs-6">
+                                <div class="row">
+                                    <div class="box" style="float:left;">
+
+                                    </div>
+                                    <div class="box" style="float:left;">
+
+                                    </div>
+                                    <div class="box" style="float:left;">
+
+                                    </div>
+                                    @*<div style="text-align:left;">
+                                    *@
+                                    <label>PICA</label>
+                                    @*
+                                        </div>*@
+                                </div>
+                            </div>
+                            <div class="smallBoxes col-lg-6 col-md-6 col-sm-6 col-xs-6" style="float:right;">
+                                <div class="row">
+                                    <label>PICA</label>
+                                    <div class="box" style="float:right;">
+
+                                    </div>
+                                    <div class="box" style="float:right;">
+
+                                    </div>
+                                    <div class="box" style="float:right;">
+
+                                    </div>
+                                    @*<div style="text-align:left;">
+                                    *@
+
+                                    @*
+                                        </div>*@
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="row">
+                    <div class="col-sm-12 col-md-12 col-lg-8 height80px" style="border:0.5px solid black;padding-left:0px;">
+                        <table class="table">
+                            <tr>
+                                <td>
+                                    <label class="labelClassInSections">1.</label>
+                                </td>
+                                <td style="padding-left:5px;">
+                                    <div class="row">
+                                        <label class="labelClassInSections">MEDICARE</label>
+                                    </div>
+                                    <div class="row">
+                                        @Html.RadioButtonFor(c => c._1PayerType, "medicare", new { Name = "HealthPlan" })
+                                        <small>(Medicare#)</small>
+                                    </div>
+                                </td>
+                                <td>
+                                    <div class="row">
+                                        <label class="labelClassInSections">MEDICAID</label>
+                                    </div>
+                                    <div class="row">
+                                        @Html.RadioButtonFor(c => c._1PayerType, "medicaid", new { Name = "HealthPlan" })
+                                        <small>(Medicaid#)</small>
+                                    </div>
+                                </td>
+                                <td>
+                                    <div class="row">
+                                        <label class="labelClassInSections">TRICARE</label>
+                                    </div>
+                                    <div class="row">
+                                        @Html.RadioButtonFor(c => c._1PayerType, "tricare", new { Name = "HealthPlan" })
+                                        <small> (ID#/DoD#)</small>
+                                    </div>
+                                </td>
+                                <td>
+                                    <div class="row">
+                                        <label class="labelClassInSections">CHAMPVA</label>
+                                    </div>
+                                    <div class="row">
+                                        @Html.RadioButtonFor(c => c._1PayerType, "champva", new { Name = "HealthPlan" })
+                                        <small>(Member ID#)</small>
+                                    </div>
+                                </td>
+                                <td>
+                                    <div class="row">
+                                        <label class="labelClassInSections">GROUP HEALTH PLAN</label>
+                                    </div>
+                                    <div class="row">
+                                        @Html.RadioButtonFor(c => c._1PayerType, "ghp", new { Name = "HealthPlan" })
+                                        <small>(ID#)</small>
+                                    </div>
+                                </td>
+                                <td>
+                                    <div class="row">
+                                        <label class="labelClassInSections">FECA BLK LUNG</label>
+                                    </div>
+                                    <div class="row">
+                                        @Html.RadioButtonFor(c => c._1PayerType, "fbl", new { Name = "HealthPlan" })
+                                        <small>(ID#)</small>
+                                    </div>
+                                </td>
+                                <td>
+                                    <div class="row">
+                                        <label class="labelClassInSections">OTHER</label>
+                                    </div>
+                                    <div class="row">
+                                        @Html.RadioButtonFor(c => c._1PayerType, "other", new { Name = "HealthPlan" })
+                                        <small>(ID#)</small>
+                                    </div>
+                                </td>
+                            </tr>
+                        </table>
+                    </div>
+                    <div class="col-sm-12 col-md-12 col-lg-4 height80px" style="border:0.5px solid black;border-left:0.5px;">
+                        <div class="row">
+                            @*<div class="col-xs-1" style="padding-left:0px;">
+                                    <label class="labelClassInSections" style="text-align:left;">
+                                        1a.
+                                    </label>
+                                </div>*@
+                            <div class="col-md-6 col-sm-6 col-xs-6" style="padding-left:0px;">
+                                <label class="labelClassInSections" style="text-align:left;">
+                                    1a. INSURED'S ID NUMBER
+                                </label>
+                            </div>
+                            <div class="col-md-6 col-sm-6 col-xs-6" style="padding-right:0px;">
+                                <small>(For Program in Item 1)</small>
+                            </div>
+                        </div>
+                        <div class="row">
+                            @Html.TextBoxFor(c => c._1aInsuredIdNumber, errorItems.Where(x => x.Field == "_1aInsuredIdNumber").FirstOrDefault() != null ? (object)new { Class = "singleTextBoxStyleError", title = errorItems.Where(x => x.Field == "_1aInsuredIdNumber").FirstOrDefault().Message } : new { Class = "singleTextBoxStyle" })
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-xs-12 col-sm-12 col-md-6 height80px" style="border:0.5px solid black;border-top:none;padding-left:0px;">
+                        <div class="row">
+                            <label class="labelClassInSections"> 2. PATIENT’S NAME</label>
+                            <small>(Last Name, Suffix, First Name, Middle Name)</small>
+                        </div>
+                        <div class="row">
+                            <div class="col-xs-12 col-sm-6 col-md-6">
+                                @Html.TextBoxFor(c => c._2aLastName, new { Class = "textBoxStyle", placeholder = "Last Name" })
+                                @Html.TextBoxFor(c => c._2bSuffix, new { Class = "textBoxStyle", placeholder = "Suffix" })
+                            </div>
+                            <div class="col-xs-12 col-sm-6 col-md-6">
+                                @Html.TextBoxFor(c => c._2cFirstName, new { Class = "textBoxStyle", placeholder = "First Name" })
+                                @Html.TextBoxFor(c => c._2dMiddleName, new { Class = "textBoxStyle", placeholder = "Middle Name" })
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-xs-12 col-sm-12 col-md-6 height80px" style="border:0.5px solid black;border-top:none;border-left:none;padding-left:0px;">
+                        <div class="row">
+                            <div class="col-lg-7 col-md-7 col-sm-7 col-xs-7" style="padding-left:1px;">
+                                <div class="row">
+                                    <label class="labelClassInSections">
+                                        3. PATIENT’S BIRTH Date
+                                    </label>
+                                </div>
+                                <div class="row">
+                                    <div class="col-md-4 col-sm-4 col-xs-4" style="padding-left:0px;">
+                                        <div class="row">
+                                            <small>MM</small>
+                                        </div>
+                                        <div class="row">
+                                            @Html.TextBoxFor(c => c._3aMm, new { Class = "textBoxStyleForDOB" })
+                                        </div>
+                                    </div>
+                                    <div class="col-md-4 col-sm-4 col-xs-4" style="padding-left:0px;">
+                                        <div class="row">
+                                            <small>DD</small>
+                                        </div>
+                                        <div class="row">
+                                            @Html.TextBoxFor(c => c._3bDd, new { Class = "textBoxStyleForDOB" })
+                                        </div>
+                                    </div>
+                                    <div class="col-md-4 col-sm-4 col-xs-4" style="padding-left:0px;">
+                                        <div class="row">
+                                            <small>YY</small>
+                                        </div>
+                                        <div class="row">
+                                            @Html.TextBoxFor(c => c._3cYyyy, new { Class = "textBoxStyleForDOB" })
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-lg-5 col-md-5 col-sm-5 col-xs-5" style="padding-left:0px;">
+                                <div class="row">
+                                    <label class="labelClassInSections">
+                                        Sex
+                                    </label>
+                                </div>
+                                <div class="row">
+
+                                    <div class="col-lg-3 col-md-3 col-sm-3 col-xs-3" style="padding-left:0px;">
+                                        <label class="labelClassInSections">
+                                            M
+                                        </label>
+                                    </div>
+                                    <div class="col-lg-3 col-md-3 col-sm-3 col-xs-3" style="padding-left:0px;">
+                                        @Html.RadioButtonFor(c => c._3dGender, "male", new { Name = "gender" })
+                                    </div>
+                                    <div class="col-lg-3 col-md-3 col-sm-3 col-xs-3" style="padding-left:0px;">
+                                        <label class="labelClassInSections">
+                                            F
+                                        </label>
+                                    </div>
+                                    <div class="col-lg-3 col-md-3 col-sm-3 col-xs-3" style="padding-left:0px;">
+                                        @Html.RadioButtonFor(c => c._3dGender, "female", new { Name = "gender" })
+                                    </div>
+
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-xs-12 col-sm-12 col-md-12 height80px" style="border:0.5px solid black;border-top:none;border-left:0.5px solid black;padding-left:0px;">
+                        <div class="row">
+                            <label class="labelClassInSections"> 4. INSURED’S NAME</label>
+                            <small>(Last Name, Suffix, First Name, Middle Name)</small>
+                        </div>
+                        <div class="row">
+                            <div class="col-xs-12 col-sm-6 col-md-6">
+                                @Html.TextBoxFor(c => c._4aLastName, new { Class = "textBoxStyle", placeholder = "Last Name" })
+                                @Html.TextBoxFor(c => c._4bSuffix, new { Class = "textBoxStyle", placeholder = "Suffix" })
+                            </div>
+                            <div class="col-xs-12 col-sm-6 col-md-6">
+                                @Html.TextBoxFor(c => c._4cFirstName, new { Class = "textBoxStyle", placeholder = "First Name" })
+                                @Html.TextBoxFor(c => c._4dMiddleName, new { Class = "textBoxStyle", placeholder = "Middle Name" })
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-xs-12 col-sm-4 col-md-6" style="border:0.5px solid black;border-top:none;padding-left:0px;padding-right:0px;">
+                        <div class="row height70px">
+                            <div class="row">
+                                <label class="labelClassInSections"> 5. PATIENT'S ADDRESS</label>
+                                <small>(No., Street)</small>
+                            </div>
+                            <div class="row">
+                                @Html.TextBoxFor(c => c._5aStreetAddress, new { Class = "singleTextBoxStyle", placeholder = "Street Address" })
+                            </div>
+                        </div>
+
+                        <div class="row" style="border-top:0.5px solid black;">
+                            <div class="col-xs-8 col-sm-8 col-md-8 height70px" style="border-right:0.5px solid black;">
+                                <div class="row">
+                                    <label class="labelClassInSections">CITY</label>
+                                </div>
+                                <div class="row">
+                                    @Html.TextBoxFor(c => c._5bCity, new { Class = "textBoxStyle", placeholder = "City" })
+                                </div>
+                            </div>
+                            <div class="col-xs-4 col-sm-4 col-md-4 height70px">
+                                <div class="row">
+                                    <label class="labelClassInSections">STATE</label>
+                                </div>
+                                <div class="row">
+                                    @Html.TextBoxFor(c => c._5cState, new { Class = "textBoxStyle", placeholder = "State" })
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row height70px" style="border-top:0.5px solid black;">
+                            <div class="col-xs-6 col-sm-6 col-md-6 height70px" style="border-right:0.5px solid black;">
+                                <div class="row">
+                                    <label class="labelClassInSections">ZIP CODE</label>
+                                </div>
+                                <div class="row">
+                                    @Html.TextBoxFor(c => c._5dZipcode, new { Class = "textBoxStyle", placeholder = "Zip Code" })
+                                </div>
+                            </div>
+                            <div class="col-xs-6 col-sm-6 col-md-6 height70px">
+                                <div class="row">
+                                    <label class="labelClassInSections">TELEPHONE</label>
+                                </div>
+                                <div class="row">
+                                    <div class="col-xs-4 col-sm-4 col-md-4 col-lg-4">
+                                        @Html.TextBoxFor(c => c._5eTelephoneAreacode, new { Class = "textBoxStyleForDOB", placeholder = "Area Code" })
+                                    </div>
+                                    <div class="col-xs-8 col-sm-8 col-md-8 col-lg-8">
+                                        @Html.TextBoxFor(c => c._5fTelephonePhoneNumber, new { Class = "textBoxStyle", placeholder = "Phone Number" })
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="col-xs-12 col-sm-4 col-md-6" style="border:0.5px solid black;border-top:none;border-left:none;padding-left:0px;padding-right:0px;">
+                        <div class="row height70px">
+                            <div class="row">
+                                <label class="labelClassInSections">
+                                    6. PATIENT RELATIONSHIP TO INSUREDATE
+                                </label>
+                            </div>
+                            <div class="row">
+                                <div class="col-xs-3 col-sm-3 col-md-3">
+                                    <label class="labelClassInSections">
+                                        Self
+                                    </label>
+                                    @Html.RadioButtonFor(c => c._6PatientRelationshipToInsured, "self", new { Name = "relationship" })
+                                </div>
+                                <div class="col-xs-3 col-sm-3 col-md-3">
+                                    <label class="labelClassInSections">
+                                        Spouse
+                                    </label>
+                                    @Html.RadioButtonFor(c => c._6PatientRelationshipToInsured, "spouse", new { Name = "relationship" })
+                                </div>
+                                <div class="col-xs-3 col-sm-3 col-md-3">
+                                    <label class="labelClassInSections">
+                                        Child
+                                    </label>
+                                    @Html.RadioButtonFor(c => c._6PatientRelationshipToInsured, "child", new { Name = "relationship" })
+                                </div>
+                                <div class="col-xs-3 col-sm-3 col-md-3">
+                                    <label class="labelClassInSections">
+                                        Other
+                                    </label>
+                                    @Html.RadioButtonFor(c => c._6PatientRelationshipToInsured, "others", new { Name = "relationship" })
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row height142px" style="border-top:0.5px solid black;">
+                            <div class="col-xs-12" style="padding-left:0px;padding-right:0px;">
+                                <div class="row">
+                                    <label class="labelClassInSections">8. RESERVED FOR NUCC USE</label>
+                                </div>
+                                <div class="row">
+                                    @Html.TextBoxFor(c => c._8ReservedForNuccUse, new { Class = "singleTextBoxStyle" })
+                                </div>
+                            </div>
+                        </div>
+
+                    </div>
+                    <div class="col-xs-12 col-sm-4 col-md-12" style="border:0.5px solid black;border-top:none;padding-left:0px;padding-right:0px;">
+                        <div class="row height70px">
+                            <div class="row">
+                                <label class="labelClassInSections"> 7. INSURED'S ADDRESS</label>
+                                <small>(No., Street)</small>
+                            </div>
+                            <div class="row">
+                                @Html.TextBoxFor(c => c._7aStreetAddress, new { Class = "singleTextBoxStyle", placeholder = "Street Address" })
+                            </div>
+                        </div>
+
+                        <div class="row" style="border-top:0.5px solid black;">
+                            <div class="col-xs-8 col-sm-8 col-md-8 height70px" style="border-right:0.5px solid black;">
+                                <div class="row">
+                                    <label class="labelClassInSections">CITY</label>
+                                </div>
+                                <div class="row">
+                                    @Html.TextBoxFor(c => c._7bCity, new { Class = "textBoxStyle", placeholder = "City" })
+                                </div>
+                            </div>
+                            <div class="col-xs-4 col-sm-4 col-md-4 height70px">
+                                <div class="row">
+                                    <label class="labelClassInSections">STATE</label>
+                                </div>
+                                <div class="row">
+                                    @Html.TextBoxFor(c => c._7cState, new { Class = "textBoxStyle", placeholder = "State" })
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row height70px" style="border-top:0.5px solid black;">
+                            <div class="col-xs-6 col-sm-6 col-md-6 height70px" style="border-right:0.5px solid black;">
+                                <div class="row">
+                                    <label class="labelClassInSections">ZIP CODE</label>
+                                </div>
+                                <div class="row">
+                                    @Html.TextBoxFor(c => c._7dZipCode, new { Class = "textBoxStyle", placeholder = "Zip Code" })
+                                </div>
+                            </div>
+                            <div class="col-xs-6 col-sm-6 col-md-6 height70px">
+                                <div class="row">
+                                    <label class="labelClassInSections">TELEPHONE</label>
+                                </div>
+                                <div class="row">
+                                    <div class="col-xs-4 col-sm-4 col-md-4 col-lg-4">
+                                        @Html.TextBoxFor(c => c._7eTelephoneAreacode, new { Class = "textBoxStyleForDOB", placeholder = "Area Code" })
+                                    </div>
+                                    <div class="col-xs-8 col-sm-8 col-md-8 col-lg-8">
+                                        @Html.TextBoxFor(c => c._7fTelephonePhonenumber, new { Class = "textBoxStyle", placeholder = "Phone Number" })
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="row">
+                    <div class="col-xs-12 col-sm-4 col-md-6" style="padding-left:0px;padding-right:0px;">
+                        <div class="row height80px" style="border:0.5px solid black;border-top:none;">
+                            <div class="row">
+                                <label class="labelClassInSections">
+                                    9. OTHER INSURED'S NAME
+                                </label><small>(Last Name, First Name, Middle Initial)</small>
+                            </div>
+                            <div class="row">
+                                <div class="col-xs-12 col-sm-6 col-md-6">
+                                    @Html.TextBoxFor(c => c._9ALastName, new { Class = "textBoxStyle", placeholder = "Last Name" })
+                                    @Html.TextBoxFor(c => c._9BSuffix, new { Class = "textBoxStyle", placeholder = "Suffix" })
+                                </div>
+                                <div class="col-xs-12 col-sm-6 col-md-6">
+                                    @Html.TextBoxFor(c => c._9CFirstName, new { Class = "textBoxStyle", placeholder = "First Name" })
+                                    @Html.TextBoxFor(c => c._9DMiddleName, new { Class = "textBoxStyle", placeholder = "Middle Name" })
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="row height70px" style="border:0.5px solid black;border-top:none;">
+                            <div class="row">
+                                <label class="labelClassInSections">
+                                    a. OTHER INSURED'S POLICY OR GROUP NUMBER
+                                </label>
+                            </div>
+                            <div class="row">
+                                @Html.TextBoxFor(c => c._9aOtherPoliciesNumber, new { Class = "singleTextBoxStyle" })
+                            </div>
+                        </div>
+                        <div class="row height70px" style="border:0.5px solid black;border-top:none;">
+                            <div class="row">
+                                <label class="labelClassInSections">
+                                    b. RESERVED FOR NUCC USE
+                                </label>
+                            </div>
+                            <div class="row">
+                                @Html.TextBoxFor(c => c._9bReservedForNuccUse, new { Class = "singleTextBoxStyle" })
+                            </div>
+                        </div>
+                        <div class="row height70px" style="border:0.5px solid black;border-top:none;">
+                            <div class="row">
+                                <label class="labelClassInSections">
+                                    c. RESERVED FOR NUCC USE
+                                </label>
+                            </div>
+                            <div class="row">
+                                @Html.TextBoxFor(c => c._9cReservedForNuccUse, new { Class = "singleTextBoxStyle" })
+                            </div>
+                        </div>
+                        <div class="row height70px" style="border:0.5px solid black;border-top:none;">
+                            <div class="row">
+                                <label class="labelClassInSections">
+                                    d. INSURANCE PLAN NAME OR PROGRAM NAME
+                                </label>
+                            </div>
+                            <div class="row">
+                                @Html.TextBoxFor(c => c._9dInsuranceplanName, new { Class = "singleTextBoxStyle" })
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-xs-12 col-sm-4 col-md-6" style="padding-left:0px;padding-right:0px;">
+                        <div class="row height80px" style="border-bottom:none;">
+                            <label class="labelClassInSections">
+                                10. IS PATIENT'S CONDITION RELATED TO:
+                            </label>
+                        </div>
+                        <div class="row height70px">
+                            <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12" style="padding-left:0px;padding-right:0px;">
+                                <div class="row">
+                                    <div class="col-xs-6" style="padding-left:0px;padding-right:0px;">
+                                        <label class="labelClassInSections">EMPLOYMENT?</label>
+                                    </div>
+                                    <div class="col-xs-6" style="padding-left:0px;padding-right:0px;">
+                                        <small>(Current or Previous)</small>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-lg-6 col-md-6 col-sm-6 col-xs-6">
+                                <div class="row">
+                                    <div class="col-xs-6" style="padding-left:0px;padding-right:0px;">
+                                        @Html.RadioButtonFor(c => c._10aEmployment, "yes", new { Name = "employment" })
+                                    </div>
+                                    <div class="col-xs-6" style="padding-left:0px;padding-right:0px;">
+                                        <label class="labelClassInSections">
+                                            YES
+                                        </label>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-lg-6 col-md-6 col-sm-6 col-xs-6">
+                                <div class="row">
+                                    <div class="col-xs-6" style="padding-left:0px;padding-right:0px;">
+                                        @Html.RadioButtonFor(c => c._10aEmployment, "no", new { Name = "employment" })
+                                    </div>
+                                    <div class="col-xs-6" style="padding-left:0px;padding-right:0px;">
+                                        <label class="labelClassInSections">
+                                            NO
+                                        </label>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row height70px">
+                            <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12" style="padding-left:0px;padding-right:0px;">
+                                <div class="row">
+                                    <div class="col-xs-6" style="padding-left:0px;padding-right:0px;">
+                                        <label class="labelClassInSections">AUTO ACCIDENT?</label>
+                                    </div>
+                                    <div class="col-xs-6" style="padding-left:0px;padding-right:0px;">
+                                        <small>(Current or Previous)</small>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-lg-4 col-md-4 col-sm-4 col-xs-4">
+                                <div class="row">
+                                    <div class="col-xs-6" style="padding-left:0px;padding-right:0px;">
+                                        @Html.RadioButtonFor(c => c._10bAutoAccident, "yes", new { Name = "autoaccident" })
+                                    </div>
+                                    <div class="col-xs-6" style="padding-left:0px;padding-right:0px;">
+                                        <label class="labelClassInSections">
+                                            YES
+                                        </label>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-lg-4 col-md-4 col-sm-4 col-xs-4">
+                                <div class="row">
+                                    <div class="col-xs-6" style="padding-left:0px;padding-right:0px;">
+                                        @Html.RadioButtonFor(c => c._10bAutoAccident, "no", new { Name = "autoaccident" })
+                                    </div>
+                                    <div class="col-xs-6" style="padding-left:0px;padding-right:0px;">
+                                        <label class="labelClassInSections">
+                                            NO
+                                        </label>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-lg-4 col-md-4 col-sm-4 col-xs-4">
+                                <div class="row">
+                                    <div class="col-xs-12" style="padding-left:0px;padding-right:0px;">
+                                        <label class="labelClassInSections">
+                                            PLACE(State)
+                                        </label>
+                                    </div>
+                                    <div class="col-xs-12" style="padding-left:0px;padding-right:0px;">
+                                        @Html.TextBoxFor(c => c._10bAAutoAccidentPlace, new { Class = "textBoxStyleForDOB" })
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row height70px" style="border-bottom:0.5px solid black;">
+                            <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12" style="padding-left:0px;padding-right:0px;">
+                                <div class="row">
+                                    <div class="col-xs-6" style="padding-left:0px;padding-right:0px;">
+                                        <label class="labelClassInSections">OTHER ACCIDENT?</label>
+                                    </div>
+                                    <div class="col-xs-6" style="padding-left:0px;padding-right:0px;">
+                                        <small>(Current or Previous)</small>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-lg-6 col-md-6 col-sm-6 col-xs-6">
+                                <div class="row">
+                                    <div class="col-xs-6" style="padding-left:0px;padding-right:0px;">
+                                        @Html.RadioButtonFor(c => c._10cOtherAccident, "yes", new { Name = "otheraccident" })
+                                    </div>
+                                    <div class="col-xs-6" style="padding-left:0px;padding-right:0px;">
+                                        <label class="labelClassInSections">
+                                            YES
+                                        </label>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-lg-6 col-md-6 col-sm-6 col-xs-6">
+                                <div class="row">
+                                    <div class="col-xs-6" style="padding-left:0px;padding-right:0px;">
+                                        @Html.RadioButtonFor(c => c._10cOtherAccident, "no", new { Name = "otheraccident" })
+                                    </div>
+                                    <div class="col-xs-6" style="padding-left:0px;padding-right:0px;">
+                                        <label class="labelClassInSections">
+                                            NO
+                                        </label>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row height70px" style="border-bottom:0.5px solid black;">
+                            <div class="row">
+                                <label class="labelClassInSections">
+                                    10d. CLAIM CODES (Designated by NUCC)
+                                </label>
+                            </div>
+                            <div class="row">
+                                @*@Html.TextBoxFor(c => c._10dClaimCodes, new { Class = "singleTextBoxStyle" })*@
+                                @Html.TextBoxFor(c => c._10dClaimCodes, errorItems.Where(x => x.Field == "_10dClaimCodes").FirstOrDefault() != null ? (object)new { Class = "singleTextBoxStyleError", title = errorItems.Where(x => x.Field == "_10dClaimCodes").FirstOrDefault().Message } : new { Class = "singleTextBoxStyle" })
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-xs-12 col-sm-4 col-md-12" style="padding-left:0px;padding-right:0px;">
+                        <div class="row height80px" style="border:0.5px solid black;border-top:none;">
+                            <div class="row">
+                                <label class="labelClassInSections">
+                                    11. INSURED'S POLICY GROUP OR FECA NUMBER
+                                </label>
+                            </div>
+                            <div class="row">
+                                @Html.TextBoxFor(c => c._11InsuredsPolicyNumber, new { Class = "singleTextBoxStyle" })
+                            </div>
+                        </div>
+                        <div class="row height70px" style="border:0.5px solid black;border-top:none;">
+                            <div class="col-lg-7 col-md-7 col-sm-7 col-xs-7" style="padding-left:1px;">
+                                <div class="row">
+                                    <label class="labelClassInSections">
+                                        a. INSURED'S DATE OF BIRTH
+                                    </label>
+                                </div>
+                                <div class="row">
+                                    <div class="col-md-4 col-sm-4 col-xs-4" style="padding-left:0px;border-right:1px dashed black;">
+                                        <div class="row">
+                                            <small>MM</small>
+                                        </div>
+                                        <div class="row">
+                                            @Html.TextBoxFor(c => c._11aAMm, new { Class = "textBoxStyleForDOB" })
+                                        </div>
+                                    </div>
+                                    <div class="col-md-4 col-sm-4 col-xs-4" style="padding-left:0px;border-right:1px dashed black;">
+                                        <div class="row">
+                                            <small>DD</small>
+                                        </div>
+                                        <div class="row">
+                                            @Html.TextBoxFor(c => c._11aBDd, new { Class = "textBoxStyleForDOB" })
+                                        </div>
+                                    </div>
+                                    <div class="col-md-4 col-sm-4 col-xs-4" style="padding-left:0px;">
+                                        <div class="row">
+                                            <small>YY</small>
+                                        </div>
+                                        <div class="row">
+                                            @Html.TextBoxFor(c => c._11aCYyyy, new { Class = "textBoxStyleForDOB" })
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-lg-5 col-md-5 col-sm-5 col-xs-5" style="padding-left:0px;">
+                                <div class="row">
+                                    <label class="labelClassInSections">
+                                        Sex
+                                    </label>
+                                </div>
+                                <div class="row">
+
+                                    <div class="col-lg-3 col-md-3 col-sm-3 col-xs-3" style="padding-left:0px;">
+                                        <label class="labelClassInSections">
+                                            M
+                                        </label>
+                                    </div>
+                                    <div class="col-lg-3 col-md-3 col-sm-3 col-xs-3" style="padding-left:0px;">
+                                        @Html.RadioButtonFor(c => c._11aDGender, "male", new { Name = "11gender" })
+                                    </div>
+                                    <div class="col-lg-3 col-md-3 col-sm-3 col-xs-3" style="padding-left:0px;">
+                                        <label class="labelClassInSections">
+                                            F
+                                        </label>
+                                    </div>
+                                    <div class="col-lg-3 col-md-3 col-sm-3 col-xs-3" style="padding-left:0px;">
+                                        @Html.RadioButtonFor(c => c._11aDGender, "female", new { Name = "11gender" })
+                                    </div>
+
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="row height70px" style="border:0.5px solid black;border-top:none;">
+                            <div class="row">
+                                <label class="labelClassInSections">
+                                    b. OTHER CLAIM ID (Designated By NUCC)
+                                </label>
+                            </div>
+                            <div class="row">
+                                <div class="col-lg-6 col-md-6 col-sm-6 col-xs-6">
+                                    @Html.TextBoxFor(c => c._11bAQualifier, new { Class = "textBoxStyle", placeholder = "Qualifier" })
+                                </div>
+                                <div class="col-lg-6 col-md-6 col-sm-6 col-xs-6">
+                                    @Html.TextBoxFor(c => c._11bBClaimId, new { Class = "textBoxStyle", placeholder = "Claim ID" })
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="row height70px" style="border:0.5px solid black;border-top:none;">
+                            <div class="row">
+                                <label class="labelClassInSections">
+                                    c. INSURANCE PLAN NAME OR PROGRAM NAME
+                                </label>
+                            </div>
+                            <div class="row">
+                                @Html.TextBoxFor(c => c._11cInsurancePlanName, new { Class = "singleTextBoxStyle" })
+                            </div>
+                        </div>
+                        <div class="row height70px" style="border:0.5px solid black;border-top:none;">
+                            <div class="row">
+                                <label class="labelClassInSections">
+                                    d. IS THERE ANOTHER HEALTH BENEFIT PLAN?
+                                </label>
+                            </div>
+                            <div class="row">
+                                <div class="col-lg-3 col-md-3 col-sm-3 col-xs-3">
+                                    <div class="row">
+                                        <div class="col-xs-6" style="padding-left:0px;padding-right:0px;">
+                                            @Html.RadioButtonFor(c => c._11dAnotherHealthBenefitPlan, "yes", new { Name = "anotherhealthplan" })
+                                        </div>
+                                        <div class="col-xs-6" style="padding-left:0px;padding-right:0px;">
+                                            <label class="labelClassInSections">
+                                                YES
+                                            </label>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-lg-3 col-md-3 col-sm-3 col-xs-3">
+                                    <div class="row">
+                                        <div class="col-xs-6" style="padding-left:0px;padding-right:0px;">
+                                            @Html.RadioButtonFor(c => c._11dAnotherHealthBenefitPlan, "no", new { Name = "anotherhealthplan" })
+                                        </div>
+                                        <div class="col-xs-6" style="padding-left:0px;padding-right:0px;">
+                                            <label class="labelClassInSections">
+                                                NO
+                                            </label>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-lg-6 col-md-6 col-sm-6 col-xs-6">
+                                    <label class="labelClassInSections">
+                                        If yes, complete items 9, 9a and 9d.
+                                    </label>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="row" style="border:0.5px solid black;border-top:none;">
+                    <div class="col-lg-8 col-md-12 col-sm-8 col-xs-12" style="border-right:0.5px solid black;padding-left:0px;padding-right:0px;">
+                        <div class="row">
+                            <label class="labelClassInSections" style="text-align:center;">
+                                READ BACK OF FORM BEFORE COMPLETING & SIGNING THIS FORM.
+                            </label>
+                        </div>
+                        <div class="row">
+                            <label class="labelClassInSections">
+                                12. PATIENT'S OR AUTHORIZED PERSON'S SIGNATURE I authorize the release of any medical or other information necessary
+                                to process this claim. I also request payment of government benefits either to myself or to the party who accepts assignment below.
+                            </label>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-8">
+                                <div class="row">
+                                    <label class="labelClassInSections">
+                                        SIGNED
+                                    </label>
+                                    <div class="borderBottom fullWidths">
+                                        @Html.TextBoxFor(c => c._12ASignatureUrl, new { Class = "singleTextBoxStyle" })
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-md-4">
+                                <div class="row">
+                                    <div class="col-md-3 col-sm-3 col-xs-3" style="padding-left:0px;">
+                                        <label class="labelClassInSections">
+                                            DATE
+                                        </label>
+                                    </div>
+                                    <div class="col-md-3 col-sm-3 col-xs-3" style="padding-left:0px;">
+                                        <div class="row">
+                                            <small>MM</small>
+                                        </div>
+                                        <div class="row">
+                                            @Html.TextBoxFor(c => c._12BAMm, new { Class = "textBoxStyleForDOB" })
+                                        </div>
+                                    </div>
+                                    <div class="col-md-3 col-sm-3 col-xs-3" style="padding-left:0px;">
+                                        <div class="row">
+                                            <small>DD</small>
+                                        </div>
+                                        <div class="row">
+                                            @Html.TextBoxFor(c => c._12BBDd, new { Class = "textBoxStyleForDOB" })
+                                        </div>
+                                    </div>
+                                    <div class="col-md-3 col-sm-3 col-xs-3" style="padding-left:0px;">
+                                        <div class="row">
+                                            <small>YY</small>
+                                        </div>
+                                        <div class="row">
+                                            @Html.TextBoxFor(c => c._12BCYyyy, new { Class = "textBoxStyleForDOB" })
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-lg-4 col-md-12 col-sm-4 col-xs-12" style="padding-left:0px;padding-right:0px;">
+                        <div class="row">
+                            <label class="labelClassInSections">
+                                13. INSURED'S OR AUTHORIZED PERSON'S SIGNATURE I authorize payment of medical benefits to the undersigned physician
+                                or supplier for services described below.
+                            </label>
+                        </div>
+                        <div class="row">
+
+                            <div class="row">
+                                <label class="labelClassInSections">
+                                    SIGNED
+                                </label>
+                                <div class="borderBottom fullWidths">
+                                    @Html.TextBoxFor(c => c._13InsuredsAuthorizedSignatureUrl, new { Class = "singleTextBoxStyle" })
+                                </div>
+                            </div>
+
+
+                        </div>
+                    </div>
+                </div>
+                <div class="row" style="padding-left:0px;padding-right:0px;border:0.5px solid black;border-top:none;">
+                    <div class="col-xs-12 col-sm-12 col-md-6 col-lg-6 height90px" style="border-right:0.5px solid black;border-bottom:0.5px solid black;padding-left:0px;padding-right:0px;">
+                        <div class="row">
+                            <label class="labelClassInSections">
+                                14. DATE OF CURRENT ILLNESS, INJURY, or PREGNANCY (LMP)
+                            </label>
+                        </div>
+                        <div class="row">
+
+                            <div class="col-md-3 col-sm-3 col-xs-3" style="padding-left:0px;">
+                                <div class="row">
+                                    <small>MM</small>
+                                </div>
+                                <div class="row">
+                                    @Html.TextBoxFor(c => c._14AMm, new { Class = "textBoxStyleForDOB" })
+                                </div>
+                            </div>
+                            <div class="col-md-3 col-sm-3 col-xs-3" style="padding-left:0px;">
+                                <div class="row">
+                                    <small>DD</small>
+                                </div>
+                                <div class="row">
+                                    @Html.TextBoxFor(c => c._14BDd, new { Class = "textBoxStyleForDOB" })
+                                </div>
+                            </div>
+                            <div class="col-md-3 col-sm-3 col-xs-3" style="padding-left:0px;">
+                                <div class="row">
+                                    <small>YY</small>
+                                </div>
+                                <div class="row">
+                                    @Html.TextBoxFor(c => c._14CYyyy, new { Class = "textBoxStyleForDOB" })
+                                </div>
+                            </div>
+                            <div class="col-md-3 col-sm-3 col-xs-3" style="padding-left:0px;">
+                                <div class="row">
+                                    <small>QUAL.</small>
+                                </div>
+                                <div class="row">
+                                    @Html.TextBoxFor(c => c._14DQualifier, new { Class = "textBoxStyle" })
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="col-xs-12 col-sm-12 col-md-6 col-lg-6 height90px" style="border-right:0.5px solid black;border-bottom:0.5px solid black;padding-left:0px;padding-right:0px;">
+                        <div class="row">
+                            <label class="labelClassInSections">
+                                15. OTHER DATE
+                            </label>
+                        </div>
+
+                        <div class="row">
+                            <div class="col-md-3 col-sm-3 col-xs-3" style="padding-left:0px;">
+                                <div class="row">
+                                    <small>MM</small>
+                                </div>
+                                <div class="row">
+                                    @Html.TextBoxFor(c => c._15AMm, new { Class = "textBoxStyleForDOB" })
+                                </div>
+                            </div>
+                            <div class="col-md-3 col-sm-3 col-xs-3" style="padding-left:0px;">
+                                <div class="row">
+                                    <small>DD</small>
+                                </div>
+                                <div class="row">
+                                    @Html.TextBoxFor(c => c._15BDd, new { Class = "textBoxStyleForDOB" })
+                                </div>
+                            </div>
+                            <div class="col-md-3 col-sm-3 col-xs-3" style="padding-left:0px;">
+                                <div class="row">
+                                    <small>YY</small>
+                                </div>
+                                <div class="row">
+                                    @Html.TextBoxFor(c => c._15CYyyy, new { Class = "textBoxStyleForDOB" })
+                                </div>
+                            </div>
+                            <div class="col-md-3 col-sm-3 col-xs-3" style="padding-left:0px;">
+                                <div class="row">
+                                    <small>QUAL.</small>
+                                </div>
+                                <div class="row">
+                                    @*@if (errorItems.Where(x => x.Field == "_15DQualifier").FirstOrDefault() != null)
+                                        {
+                                            @Html.TextBoxFor(c => c._15DQualifier, new { Class = "textBoxStyleError", title = errorItems.Where(x => x.Field == "_15DQualifier").FirstOrDefault().Message })
+                                        }
+                                        else
+                                        {*@
+                                    @Html.TextBoxFor(c => c._15DQualifier, errorItems.Where(x => x.Field == "_15DQualifier").FirstOrDefault() != null ? (object)new { Class = "textBoxStyleError", title = errorItems.Where(x => x.Field == "_15DQualifier").FirstOrDefault().Message } : new { Class = "textBoxStyle" })
+                                    @*}*@
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12" style="height:auto;padding-left:0px;padding-right:0px;">
+                        <div class="row">
+                            <label class="labelClassInSections">
+                                16. DATES PATIENT UNABLE TO WORK IN CURRENT OCCUPATION
+                            </label>
+                        </div>
+                        <div class="row" style="padding-bottom:5px;">
+                            <div class="col-xs-6 col-sm-6 col-md-6" style="padding-left:0px;">
+                                <div class="row">
+                                    <div class="col-md-12 col-sm-12 col-xs-12" style="padding-left:0px;">
+                                        <div class="row">
+                                            <label class="labelClassInSections">FROM</label>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-3 col-sm-3 col-xs-3" style="padding-left:5px;">
+                                        <div class="row">
+                                            <small>MM</small>
+                                        </div>
+                                        <div class="row">
+                                            @Html.TextBoxFor(c => c._16AMm, new { Class = "textBoxStyleForDOB" })
+                                        </div>
+                                    </div>
+                                    <div class="col-md-3 col-sm-3 col-xs-3" style="padding-left:5px;">
+                                        <div class="row">
+                                            <small>DD</small>
+                                        </div>
+                                        <div class="row">
+                                            @Html.TextBoxFor(c => c._16BDd, new { Class = "textBoxStyleForDOB" })
+                                        </div>
+                                    </div>
+                                    <div class="col-md-3 col-sm-3 col-xs-3" style="padding-left:5px;">
+                                        <div class="row">
+                                            <small>YY</small>
+                                        </div>
+                                        <div class="row">
+                                            @Html.TextBoxFor(c => c._16CYyyy, new { Class = "textBoxStyleForDOB" })
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-xs-6 col-sm-6 col-md-6">
+                                <div class="row">
+                                    <div class="col-md-12 col-sm-12 col-xs-12" style="padding-left:0px;">
+                                        <div class="row">
+                                            <label class="labelClassInSections">TO</label>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-3 col-sm-3 col-xs-3" style="padding-left:0px;">
+                                        <div class="row">
+                                            <small>MM</small>
+                                        </div>
+                                        <div class="row">
+                                            @Html.TextBoxFor(c => c._16AAMm, new { Class = "textBoxStyleForDOB" })
+                                        </div>
+                                    </div>
+                                    <div class="col-md-3 col-sm-3 col-xs-3" style="padding-left:0px;">
+                                        <div class="row">
+                                            <small>DD</small>
+                                        </div>
+                                        <div class="row">
+                                            @Html.TextBoxFor(c => c._16ABDd, new { Class = "textBoxStyleForDOB" })
+                                        </div>
+                                    </div>
+                                    <div class="col-md-3 col-sm-3 col-xs-3" style="padding-left:0px;">
+                                        <div class="row">
+                                            <small>YY</small>
+                                        </div>
+                                        <div class="row">
+                                            @Html.TextBoxFor(c => c._16ACYyyy, new { Class = "textBoxStyleForDOB" })
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="row" style="padding-left:0px;padding-right:0px;border:0.5px solid black;border-top:none;">
+                    <div class="col-xs-12 col-sm-6 col-md-6 col-lg-6 height90px" style="border-right:0.5px solid black;border-bottom:0.5px solid black;padding-left:0px;padding-right:0px;">
+                        <div class="row">
+                            <label class="labelClassInSections">
+                                17. NAME OF REFERRING PROVIDER OR OTHER SOURCE
+                            </label>
+                        </div>
+                        <div class="row">
+                            @*@Html.TextBoxFor(c => c._17Qualifier, new { Class = "singleTextBoxStyle", placeholder = "Qualifier" })*@
+                            @Html.TextBoxFor(c => c._17Qualifier, errorItems.Where(x => x.Field == "_17Qualifier").FirstOrDefault() != null ? (object)new { Class = "singleTextBoxStyleError", title = errorItems.Where(x => x.Field == "_17Qualifier").FirstOrDefault().Message, placeholder = "Qualifier" } : new { Class = "singleTextBoxStyle", placeholder = "Qualifier" })
+                        </div>
+                    </div>
+                    <div class="col-xs-12 col-sm-6 col-md-6 col-lg-6 height90px" style="border-right:0.5px solid black;border-bottom:0.5px solid black;padding-left:0px;padding-right:0px;">
+                        <div class="row">
+                            <div class="col-xs-1">
+                                <label class="labelClassInSections">
+                                    17a.
+                                </label>
+                            </div>
+                            <div class="col-xs-3">
+                                @Html.TextBoxFor(c => c._17AName, new { Class = "textBoxStyle", placeholder = "Name" })
+                            </div>
+                            <div class="col-xs-3">
+                                @Html.TextBoxFor(c => c._17aAQualifier, new { Class = "textBoxStyle", placeholder = "Qualifier" })
+                            </div>
+                            <div class="col-xs-3">
+                                @Html.TextBoxFor(c => c._17aBIdNumber, new { Class = "textBoxStyle", placeholder = "ID Number" })
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-xs-1 col-sm-1 col-md-1 col-lg-1">
+                                <label class="labelClassInSections">
+                                    17b.
+                                </label>
+                            </div>
+                            <div class="col-xs-4 col-sm-4 col-md-4 col-lg-4">
+                                @Html.TextBoxFor(c => c._17bIdNumber, new { Class = "textBoxStyle", placeholder = "ID Number" })
+                            </div>
+
+                        </div>
+                    </div>
+                    <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12 height80px" style="padding-left:0px;padding-right:0px;">
+                        <div class="row">
+                            <label class="labelClassInSections">
+                                18. HOSPITALIZATION DATES RELATED TO CURRENT SERVICES
+                            </label>
+                        </div>
+                        <div class="row">
+                            <div class="col-xs-6 col-sm-6 col-md-6" style="padding-left:0px;">
+                                <div class="row">
+                                    <div class="col-md-12 col-sm-12 col-xs-12" style="padding-left:0px;">
+                                        <div class="row">
+                                            <label class="labelClassInSections">FROM</label>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-3 col-sm-3 col-xs-3" style="padding-left:5px;">
+                                        <div class="row">
+                                            <small>MM</small>
+                                        </div>
+                                        <div class="row">
+                                            @Html.TextBoxFor(c => c._18AMm, new { Class = "textBoxStyleForDOB" })
+                                        </div>
+                                    </div>
+                                    <div class="col-md-3 col-sm-3 col-xs-3" style="padding-left:5px;">
+                                        <div class="row">
+                                            <small>DD</small>
+                                        </div>
+                                        <div class="row">
+                                            @Html.TextBoxFor(c => c._18BDd, new { Class = "textBoxStyleForDOB" })
+                                        </div>
+                                    </div>
+                                    <div class="col-md-3 col-sm-3 col-xs-3" style="padding-left:5px;">
+                                        <div class="row">
+                                            <small>YY</small>
+                                        </div>
+                                        <div class="row">
+                                            @Html.TextBoxFor(c => c._18CYyyy, new { Class = "textBoxStyleForDOB" })
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-xs-6 col-sm-6 col-md-6">
+                                <div class="row">
+                                    <div class="col-md-12 col-sm-12 col-xs-12" style="padding-left:0px;">
+                                        <div class="row">
+                                            <label class="labelClassInSections">TO</label>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-3 col-sm-3 col-xs-3" style="padding-left:0px;">
+                                        <div class="row">
+                                            <small>MM</small>
+                                        </div>
+                                        <div class="row">
+                                            @Html.TextBoxFor(c => c._18AAMm, new { Class = "textBoxStyleForDOB" })
+                                        </div>
+                                    </div>
+                                    <div class="col-md-3 col-sm-3 col-xs-3" style="padding-left:0px;">
+                                        <div class="row">
+                                            <small>DD</small>
+                                        </div>
+                                        <div class="row">
+                                            @Html.TextBoxFor(c => c._18ABDd, new { Class = "textBoxStyleForDOB" })
+                                        </div>
+                                    </div>
+                                    <div class="col-md-3 col-sm-3 col-xs-3" style="padding-left:0px;">
+                                        <div class="row">
+                                            <small>YY</small>
+                                        </div>
+                                        <div class="row">
+                                            @Html.TextBoxFor(c => c._18ACYyyy, new { Class = "textBoxStyleForDOB" })
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="row" style="padding-left:0px;padding-right:0px;border:0.5px solid black;border-top:none;">
+                    <div class="col-lg-6 col-md-12 col-sm-12 col-xs-12 height80px" style="border-right:0.5px solid black;padding-left:0px;padding-right:0px;">
+                        <div class="row">
+                            <label class="labelClassInSections">
+                                19. ADDITIONAL CLAIM INFORMATION (Designated by NUCC)
+                            </label>
+                        </div>
+                        <div class="row">
+                            @Html.TextBoxFor(c => c._19AdditionalClaimInformation, new { Class = "singleTextBoxStyle" })
+                        </div>
+                    </div>
+                    <div class="col-lg-6 col-md-12 col-sm-12 col-xs-12 height80px" style="padding-left:0px;padding-right:0px;">
+                        <div class="row">
+                            <div class="col-lg-6 col-md-6 col-sm-6 col-xs-6" style="padding-left:0px;padding-right:0px;">
+                                <div class="row">
+                                    <label class="labelClassInSections">
+                                        20. OUTSIDE LAB?
+                                    </label>
+                                </div>
+                                <div class="row">
+                                    <div class="col-lg-6 col-md-6 col-sm-6 col-xs-6">
+                                        <div class="row">
+                                            <div class="col-xs-6 col-sm-6 col-md-6 col-lg-6" style="padding-left:0px;padding-right:0px;">
+                                                @Html.RadioButtonFor(c => c._20YesOrNo, "yes", new { Name = "outsidelab" })
+                                            </div>
+                                            <div class="col-xs-6 col-sm-6 col-md-6 col-lg-6" style="padding-left:10px;padding-right:0px;">
+                                                <label class="labelClassInSections">
+                                                    YES
+                                                </label>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-lg-6 col-md-6 col-sm-6 col-xs-6">
+                                        <div class="row">
+                                            <div class="col-xs-6 col-sm-6 col-md-6 col-lg-6" style="padding-left:10px;padding-right:0px;">
+                                                @Html.RadioButtonFor(c => c._20YesOrNo, "no", new { Name = "outsidelab" })
+                                            </div>
+                                            <div class="col-xs-6 col-sm-6 col-md-6 col-lg-6" style="padding-left:10px;padding-right:0px;">
+                                                <label class="labelClassInSections">
+                                                    NO
+                                                </label>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-lg-6 col-md-6 col-sm-6 col-xs-6">
+                                <div class="row">
+                                    <label class="labelClassInSections">
+                                        CHARGES
+                                    </label>
+                                </div>
+                                <div class="row">
+                                    <div class="col-lg-6 col-md-6 col-sm-6 col-xs-6">
+                                        @Html.TextBoxFor(c => c._20AChargesDollars, new { Class = "textBoxStyleForDOB", placeholder = "Dollars" })
+                                    </div>
+                                    <div class="col-lg-6 col-md-6 col-sm-6 col-xs-6">
+                                        @Html.TextBoxFor(c => c._20BChargesCents, new { Class = "textBoxStyleForDOB", placeholder = "Cents" })
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="row" style="padding-left:0px;padding-right:0px;border:0.5px solid black;border-top:none;">
+                    <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 height100px" style="padding-left:0px;padding-right:0px;">
+                        <div class="row">
+                            <label class="labelClassInSections">
+                                21. DIAGNOSIS OR NATURE OF ILLNESS OR INJURY Relate A-L to service line below (24E)
+                            </label>
+                        </div>
+                        <div class="row">
+                            <table>
+                                <tr>
+                                    <td>
+                                        <div class="col-xs-3">
+                                            <div class="row">
+                                                <div class="col-xs-2" style="padding-left:0px;">
+                                                    <label class="labelClassInSections">
+                                                        A.
+                                                    </label>
+                                                </div>
+                                                <div class="col-xs-10">
+                                                    @Html.TextBoxFor(c => c._21aNatureOfIllnes, new { Class = "textBoxStyle" })
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </td>
+                                    <td>
+                                        <div class="col-xs-3">
+                                            <div class="row">
+                                                <div class="col-xs-2" style="padding-left:0px;">
+                                                    <label class="labelClassInSections">
+                                                        B.
+                                                    </label>
+                                                </div>
+                                                <div class="col-xs-10">
+                                                    @Html.TextBoxFor(c => c._21bNatureOfIllnes, new { Class = "textBoxStyle" })
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </td>
+                                    <td>
+                                        <div class="col-xs-3">
+                                            <div class="row">
+                                                <div class="col-xs-2" style="padding-left:0px;">
+                                                    <label class="labelClassInSections">
+                                                        C.
+                                                    </label>
+                                                </div>
+                                                <div class="col-xs-10">
+                                                    @Html.TextBoxFor(c => c._21cNatureOfIllnes, new { Class = "textBoxStyle" })
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </td>
+                                    <td>
+                                        <div class="col-xs-3">
+                                            <div class="row">
+                                                <div class="col-xs-2" style="padding-left:0px;">
+                                                    <label class="labelClassInSections">
+                                                        D.
+                                                    </label>
+                                                </div>
+                                                <div class="col-xs-10">
+                                                    @Html.TextBoxFor(c => c._21dNatureOfIllnes, new { Class = "textBoxStyle" })
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>
+                                        <div class="col-xs-3">
+                                            <div class="row">
+                                                <div class="col-xs-2" style="padding-left:0px;">
+                                                    <label class="labelClassInSections">
+                                                        E.
+                                                    </label>
+                                                </div>
+                                                <div class="col-xs-10">
+                                                    @Html.TextBoxFor(c => c._21eNatureOfIllnes, new { Class = "textBoxStyle" })
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </td>
+                                    <td>
+                                        <div class="col-xs-3">
+                                            <div class="row">
+                                                <div class="col-xs-2" style="padding-left:0px;">
+                                                    <label class="labelClassInSections">
+                                                        F.
+                                                    </label>
+                                                </div>
+                                                <div class="col-xs-10">
+                                                    @Html.TextBoxFor(c => c._21fNatureOfIllnes, new { Class = "textBoxStyle" })
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </td>
+                                    <td>
+                                        <div class="col-xs-3">
+                                            <div class="row">
+                                                <div class="col-xs-2" style="padding-left:0px;">
+                                                    <label class="labelClassInSections">
+                                                        G.
+                                                    </label>
+                                                </div>
+                                                <div class="col-xs-10">
+                                                    @Html.TextBoxFor(c => c._21gNatureOfIllnes, new { Class = "textBoxStyle" })
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </td>
+                                    <td>
+                                        <div class="col-xs-3">
+                                            <div class="row">
+                                                <div class="col-xs-2" style="padding-left:0px;">
+                                                    <label class="labelClassInSections">
+                                                        H.
+                                                    </label>
+                                                </div>
+                                                <div class="col-xs-10">
+                                                    @Html.TextBoxFor(c => c._21hNatureOfIllnes, new { Class = "textBoxStyle" })
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>
+                                        <div class="col-xs-3">
+                                            <div class="row">
+                                                <div class="col-xs-2" style="padding-left:0px;">
+                                                    <label class="labelClassInSections">
+                                                        I.
+                                                    </label>
+                                                </div>
+                                                <div class="col-xs-10">
+                                                    @Html.TextBoxFor(c => c._21iNatureOfIllnes, new { Class = "textBoxStyle" })
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </td>
+                                    <td>
+                                        <div class="col-xs-3">
+                                            <div class="row">
+                                                <div class="col-xs-2" style="padding-left:0px;">
+                                                    <label class="labelClassInSections">
+                                                        J.
+                                                    </label>
+                                                </div>
+                                                <div class="col-xs-10">
+                                                    @Html.TextBoxFor(c => c._21jNatureOfIllnes, new { Class = "textBoxStyle" })
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </td>
+                                    <td>
+                                        <div class="col-xs-3">
+                                            <div class="row">
+                                                <div class="col-xs-2" style="padding-left:0px;">
+                                                    <label class="labelClassInSections">
+                                                        K.
+                                                    </label>
+                                                </div>
+                                                <div class="col-xs-10">
+                                                    @Html.TextBoxFor(c => c._21kNatureOfIllnes, new { Class = "textBoxStyle" })
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </td>
+                                    <td>
+                                        <div class="col-xs-3">
+                                            <div class="row">
+                                                <div class="col-xs-2" style="padding-left:0px;">
+                                                    <label class="labelClassInSections">
+                                                        L.
+                                                    </label>
+                                                </div>
+                                                <div class="col-xs-10">
+                                                    @Html.TextBoxFor(c => c._21lNatureOfIllnes, new { Class = "textBoxStyle" })
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </td>
+                                </tr>
+                            </table>
+                        </div>
+                    </div>
+                    <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12" style="padding-left:0px;padding-right:0px;">
+                        <div class="row height50px" style="border-top:0.5px solid black;">
+                            <div class="row">
+                                <label class="labelClassInSections">
+                                    22. RESUBMISSION CODE
+                                </label>
+                            </div>
+                            <div class="row">
+                                <div class="col-xs-6">
+                                    @Html.TextBoxFor(c => c._22AReSubmissionCodeQualifier, new { Class = "textBoxStyle", placeholder = "Qualifier" })
+                                </div>
+                                <div class="col-xs-6">
+                                    @Html.TextBoxFor(c => c._22BOriginalRefNo, new { Class = "textBoxStyle", placeholder = "Original Ref No." })
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row height50px" style="border-top:0.5px solid black;">
+                            <div class="row">
+                                <label class="labelClassInSections">
+                                    23. PRIOR AUTHORIZATION NUMBER
+                                </label>
+                            </div>
+                            <div class="row">
+                                @Html.TextBoxFor(c => c._23PriorAuthorizationNumber, new { Class = "singleTextBoxStyle" })
+
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="row" style="padding-left:0px;padding-right:0px;border:0.5px solid black;border-top:none;">
+                    <table>
+                        <tr>
+                            <th colspan="6" style="border-right:0.5px solid black;" class="labelClassInSections">24. A. DATES(S) OF SERVICE</th>
+                            <th style="border-right:0.5px solid black;" rowspan="3" class="labelClassInSections">B. PLACE OF SERVICE</th>
+                            <th style="border-right:0.5px solid black;" rowspan="3" class="labelClassInSections">C. EMG</th>
+                            <th colspan="2" style="border-right:0.5px solid black;" class="labelClassInSections">D. PROCEDURES, SERVICES, OR SUPPLIES</th>
+                            <th style="border-right:0.5px solid black;" rowspan="3" class="labelClassInSections">E. DIAGNOSIS POINTER</th>
+                            <th colspan="2" style="border-right:0.5px solid black;" rowspan="3" class="labelClassInSections">F. $ CHARGES</th>
+                            <th style="border-right:0.5px solid black;" rowspan="3" class="labelClassInSections">G. DAYS OR UNITS</th>
+                            <th colspan="2" style="border-right:0.5px solid black;" rowspan="2" class="labelClassInSections">H. EPSDT Family Plan</th>
+                            <th style="border-right:0.5px solid black;" rowspan="3" class="labelClassInSections">I. QUAL</th>
+                            <th colspan="2" style="border-right:0.5px solid black;" rowspan="3" class="labelClassInSections">J. RENDERING PROVIDER ID. #</th>
+                        </tr>
+                        <tr>
+                            <th colspan="3" style="border-right:0.5px solid black;border-top:0.5px solid black;border-bottom:0.5px solid black;" class="labelClassInSections">From</th>
+                            <th colspan="3" style="border-right:0.5px solid black;border-top:0.5px solid black;border-bottom:0.5px solid black;" class="labelClassInSections">To</th>
+                            <th colspan="2" style="border-right:0.5px solid black;" class="labelClassInSections">(Explain Unusual Circumstances)</th>
+                        </tr>
+                        <tr>
+                            <th class="labelClassInSections">MM</th>
+                            <th class="labelClassInSections">DD</th>
+                            <th class="labelClassInSections">YY</th>
+                            <th class="labelClassInSections">MM</th>
+                            <th class="labelClassInSections">DD</th>
+                            <th class="labelClassInSections">YY</th>
+                            <th style="border-right:0.5px solid black;border-top:0.5px solid black;" class="labelClassInSections">CPT/HCPCS</th>
+                            <th style="border-right:0.5px solid black;border-top:0.5px solid black;" class="labelClassInSections">MODIFIER</th>
+                            <th style="border-right:0.5px solid black;border-top:0.5px solid black;" class="labelClassInSections">
+                                EPSDT code
+                            </th>
+                            <th style="border-right:0.5px solid black;border-top:0.5px solid black;" class="labelClassInSections">
+                                YES OR NO
+                            </th>
+                        </tr>
+                        @{
+                            for (int i = 0; i < Model.StagingClaimCms1500Detail.Count(); i++)
+                            {
+                                @Html.HiddenFor(m => m.StagingClaimCms1500Detail[i].ClaimId)
+                                @Html.HiddenFor(m => m.StagingClaimCms1500Detail[i].Id)
+                                @Html.HiddenFor(m => m.StagingClaimCms1500Detail[i].CreatedDate)
+                                @Html.HiddenFor(m => m.StagingClaimCms1500Detail[i].ModifiedDate)
+                                <tr>
+                                    <td>
+
+                                        @Html.TextBoxFor(c => c.StagingClaimCms1500Detail[i]._24aAMm, new { Class = "textBoxStyleForDOB" })
+                                    </td>
+                                    <td>
+                                        @Html.TextBoxFor(c => c.StagingClaimCms1500Detail[i]._24aBDd, new { Class = "textBoxStyleForDOB" })
+                                    </td>
+                                    <td>
+                                        @Html.TextBoxFor(c => c.StagingClaimCms1500Detail[i]._24aCYyyy, new { Class = "textBoxStyleForDOB" })
+                                    </td>
+                                    <td>
+                                        @Html.TextBoxFor(c => c.StagingClaimCms1500Detail[i]._24aDMm, new { Class = "textBoxStyleForDOB" })
+                                    </td>
+                                    <td>
+
+                                        @Html.TextBoxFor(c => c.StagingClaimCms1500Detail[i]._24aEDd, new { Class = "textBoxStyleForDOB" })
+                                    </td>
+                                    <td>
+
+                                        @Html.TextBoxFor(c => c.StagingClaimCms1500Detail[i]._24aFYyyy, new { Class = "textBoxStyleForDOB" })
+                                    </td>
+                                    <td>
+
+                                        @Html.TextBoxFor(c => c.StagingClaimCms1500Detail[i]._24bPlaceOfService, new { Class = "textBoxStyle" })
+                                    </td>
+                                    <td>
+
+                                        @Html.TextBoxFor(c => c.StagingClaimCms1500Detail[i]._24cEmg, new { Class = "textBoxStyle" })
+                                    </td>
+                                    <td>
+
+                                        @Html.TextBoxFor(c => c.StagingClaimCms1500Detail[i]._24dACptHcpcs, new { Class = "textBoxStyle" })
+                                    </td>
+                                    <td>
+
+                                        @Html.TextBoxFor(c => c.StagingClaimCms1500Detail[i]._24dBModifier, new { Class = "textBoxStyle" })
+                                    </td>
+                                    <td>
+
+                                        @Html.TextBoxFor(c => c.StagingClaimCms1500Detail[i]._24eDiagnosticPointer, new { Class = "textBoxStyle" })
+                                    </td>
+                                    <td>
+
+                                        @Html.TextBoxFor(c => c.StagingClaimCms1500Detail[i]._24fCharges, new { Class = "textBoxStyle" })
+                                    </td>
+                                    <td>
+
+                                        @Html.TextBoxFor(c => c.StagingClaimCms1500Detail[i]._24fFCharges, new { Class = "textBoxStyle" })
+                                    </td>
+                                    <td>
+
+                                        @Html.TextBoxFor(c => c.StagingClaimCms1500Detail[i]._24gDaysOrUnits, new { Class = "textBoxStyle" })
+                                    </td>
+                                    <td>
+
+                                        @Html.TextBoxFor(c => c.StagingClaimCms1500Detail[i]._24hAEpsdtCode, new { Class = "textBoxStyle" })
+                                    </td>
+                                    <td>
+
+                                        @Html.TextBoxFor(c => c.StagingClaimCms1500Detail[i]._24hBYesOrNo, new { Class = "textBoxStyle" })
+                                    </td>
+                                    <td>
+
+                                        @Html.TextBoxFor(c => c.StagingClaimCms1500Detail[i]._24iQual, new { Class = "textBoxStyle" })
+                                    </td>
+                                    <td>
+
+                                        @Html.TextBoxFor(c => c.StagingClaimCms1500Detail[i]._24jARenderingProviderId, new { Class = "textBoxStyle" })
+                                    </td>
+                                    <td>
+
+                                        @Html.TextBoxFor(c => c.StagingClaimCms1500Detail[i]._24jBRenderingProviderId, new { Class = "textBoxStyle" })
+                                    </td>
+                                </tr>
+                            }
+                        }
+                    </table>
+                </div>
+                <div class="row" style="padding-left:0px;padding-right:0px;border:0.5px solid black;border-top:none;">
+                    <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12" style="padding-left:0px;padding-right:0px;">
+                        <div class="row height50px" style="border-top:0.5px solid black;">
+                            <div class="row">
+                                <label class="labelClassInSections">
+                                    25. FEDERAL TAX I.D. NUMBER
+                                </label>
+                            </div>
+                            <div class="row">
+                                <div class="col-xs-6">
+                                    @Html.TextBoxFor(c => c._25AType, new { Class = "textBoxStyle", placeholder = "Type" })
+                                </div>
+                                <div class="col-xs-6">
+                                    @Html.TextBoxFor(c => c._25BIdNumber, new { Class = "textBoxStyle", placeholder = "ID Number" })
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row height50px" style="border-top:0.5px solid black;">
+                            <div class="row">
+                                <label class="labelClassInSections">
+                                    26. PATIENT'S ACCOUNT NO.
+                                </label>
+                            </div>
+                            <div class="row">
+                                @Html.TextBoxFor(c => c._26PatientAccNumber, new { Class = "singleTextBoxStyle" })
+                            </div>
+                        </div>
+                        <div class="row height50px" style="border-top:0.5px solid black;">
+                            <div class="row">
+                                <label class="labelClassInSections">
+                                    27. ACCEPT ASSIGNMENT?
+                                </label>
+                            </div>
+                            <div class="row">
+                                <label class="labelClassInSections">
+                                    (For govt. claims, see back)
+                                </label>
+                            </div>
+                            <div class="row">
+                                <div class="col-lg-6 col-md-6 col-sm-6 col-xs-6">
+                                    <div class="row">
+                                        <div class="col-xs-3 col-sm-3 col-md-3 col-lg-3">
+                                            @Html.RadioButtonFor(c => c._27AcceptAssignment, "yes", new { Name = "acceptassignment" })
+                                        </div>
+                                        <div class="col-xs-3 col-sm-3 col-md-3 col-lg-3">
+                                            <label class="labelClassInSections">
+                                                YES
+                                            </label>
+                                        </div>
+
+
+                                        <div class="col-xs-3 col-sm-3 col-md-3 col-lg-3">
+                                            @Html.RadioButtonFor(c => c._27AcceptAssignment, "no", new { Name = "acceptassignment" })
+                                        </div>
+                                        <div class="col-xs-3 col-sm-3 col-md-3 col-lg-3">
+                                            <label class="labelClassInSections">
+                                                NO
+                                            </label>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row height50px" style="border-top:0.5px solid black;">
+                            <div class="row">
+                                <label class="labelClassInSections">
+                                    28. TOTAL CHARGE
+                                </label>
+                            </div>
+                            <div class="row">
+                                <div class="col-xs-6 col-sm-6 col-md-6 col-lg-6" style="padding-left:10px;padding-right:0px;">
+                                    @Html.TextBoxFor(c => c._28ADollars, new { Class = "singleTextBoxStyle", placeholder = "Dollars" })
+                                </div>
+                                <div class="col-xs-6 col-sm-6 col-md-6 col-lg-6" style="padding-left:10px;padding-right:0px;">
+                                    @Html.TextBoxFor(c => c._28BCents, new { Class = "singleTextBoxStyle", placeholder = "Cents" })
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row height50px" style="border-top:0.5px solid black;">
+                            <div class="row">
+                                <label class="labelClassInSections">
+                                    29. AMOUNT PAID
+                                </label>
+                            </div>
+                            <div class="row">
+                                <div class="col-xs-6 col-sm-6 col-md-6 col-lg-6" style="padding-left:10px;padding-right:0px;">
+                                    @Html.TextBoxFor(c => c._29ADollars, new { Class = "singleTextBoxStyle", placeholder = "Dollars" })
+                                </div>
+                                <div class="col-xs-6 col-sm-6 col-md-6 col-lg-6" style="padding-left:10px;padding-right:0px;">
+                                    @Html.TextBoxFor(c => c._29BCents, new { Class = "singleTextBoxStyle", placeholder = "Cents" })
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row height50px" style="border-top:0.5px solid black;">
+                            <div class="row">
+                                <label class="labelClassInSections">
+                                    30. Rsvd for NUCC Use
+                                </label>
+                            </div>
+                            <div class="row">
+                                <div class="col-xs-6 col-sm-6 col-md-6 col-lg-6" style="padding-left:10px;padding-right:0px;">
+                                    @Html.TextBoxFor(c => c._30ACode, new { Class = "singleTextBoxStyle", placeholder = "Code" })
+                                </div>
+                                <div class="col-xs-6 col-sm-6 col-md-6 col-lg-6" style="padding-left:10px;padding-right:0px;">
+                                    @Html.TextBoxFor(c => c._30BQualifier, new { Class = "singleTextBoxStyle", placeholder = "Qualifier" })
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="row" style="padding-left:0px;padding-right:0px;border:0.5px solid black;border-top:none;">
+                    <div class="col-lg-4 col-md-12 col-sm-12 col-xs-12 height100px" style="padding-left:0px;padding-right:0px;border-right:0.5px solid black;">
+                        <div class="row">
+                            <label class="labelClassInSections" style="text-align:center;">
+                                31. SIGNATURE OF PHYSICIAN OR SUPPLIER INCLUDING DEGREES OR CREDENTIALS
+                            </label>
+                        </div>
+                        <div class="row">
+                            <label class="labelClassInSections">
+                                (I certify that the statements on the reverse apply to this bill and are made a part thereof.)
+                            </label>
+                        </div>
+                        <div class="row">
+                            <div class="col-lg-7 col-md-7 col-sm-7 col-xs-12">
+                                <div class="row">
+                                    <label class="labelClassInSections">
+                                        SIGNED
+                                    </label>
+                                    <div class="borderBottom fullWidths">
+                                        <div class="row">
+                                            @Html.TextBoxFor(c => c._31ASignature, new { Class = "textBoxStyle" })
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-md-5 col-md-5 col-sm-5 col-xs-12">
+                                <div class="row">
+                                    <div class="col-md-3 col-sm-3 col-xs-3" style="padding-left:0px;">
+                                        <label class="labelClassInSections">
+                                            DATE
+                                        </label>
+                                    </div>
+                                    <div class="col-md-3 col-sm-3 col-xs-3" style="padding-left:0px;">
+                                        <div class="row">
+                                            <small>MM</small>
+                                        </div>
+                                        <div class="row">
+                                            @Html.TextBoxFor(c => c._31BAMm, new { Class = "textBoxStyleForDOB" })
+                                        </div>
+                                    </div>
+                                    <div class="col-md-3 col-sm-3 col-xs-3" style="padding-left:0px;">
+                                        <div class="row">
+                                            <small>DD</small>
+                                        </div>
+                                        <div class="row">
+                                            @Html.TextBoxFor(c => c._31BBDd, new { Class = "textBoxStyleForDOB" })
+                                        </div>
+                                    </div>
+                                    <div class="col-md-3 col-sm-3 col-xs-3" style="padding-left:0px;">
+                                        <div class="row">
+                                            <small>YY</small>
+                                        </div>
+                                        <div class="row">
+                                            @Html.TextBoxFor(c => c._31BCYyyy, new { Class = "textBoxStyleForDOB" })
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-lg-4 col-md-12 col-sm-12 col-xs-12 height100px" style="border-right:0.5px solid black;padding-right:0px;padding-left:0px;">
+                        <div class="row">
+                            <label class="labelClassInSections" style="text-align:center;">
+                                32. SERVICE FACILITY LOCATION INFORMATION
+                            </label>
+                        </div>
+                        <div class="row">
+                            <div class="col-lg-4 col-md-4 col-sm-4 col-xs-4" style="padding-left:10px;padding-right:0px;">
+                                @Html.TextBoxFor(c => c._32AProviderName, new { Class = "textBoxStyle", placeholder = "Provider Name" })
+                            </div>
+                            <div class="col-lg-4 col-md-4 col-sm-4 col-xs-4" style="padding-left:10px;padding-right:0px;">
+                                @Html.TextBoxFor(c => c._32BProviderAddress, new { Class = "textBoxStyle", placeholder = "Provider Address" })
+                            </div>
+                            <div class="col-lg-4 col-md-4 col-sm-4 col-xs-4" style="padding-left:10px;padding-right:0px;">
+                                @Html.TextBoxFor(c => c._32CCityStateZipcode, new { Class = "textBoxStyle", placeholder = "City State Zipcode" })
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-lg-6 col-md-6 col-sm-6 col-xs-6" style="padding-left:10px;padding-right:0px;">
+                                @Html.TextBoxFor(c => c._32aNationalProviderIdentifierNumber, new { Class = "textBoxStyle", placeholder = "NPI" })
+                            </div>
+                            <div class="col-lg-6 col-md-6 col-sm-6 col-xs-6" style="padding-left:10px;padding-right:0px;">
+                                @Html.TextBoxFor(c => c._32bPayerAssignedIdentifierOfBillingProvider, new { Class = "textBoxStyle", placeholder = "Payer assigned Id for billing provider" })
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-lg-4 col-md-12 col-sm-12 col-xs-12 height100px" style="padding-right:0px;padding-left:0px;">
+                        <div class="row">
+                            <label class="labelClassInSections" style="text-align:center;">
+                                33. BILLING PROVIDER INFO & PH #
+                            </label>
+                        </div>
+                        <div class="row">
+                            <div class="col-lg-4 col-md-4 col-sm-4 col-xs-4" style="padding-left:10px;padding-right:0px;">
+                                @Html.TextBoxFor(c => c._33AAreaCode, new { Class = "textBoxStyle", placeholder = "Area Code" })
+                            </div>
+                            <div class="col-lg-4 col-md-4 col-sm-4 col-xs-4" style="padding-left:10px;padding-right:0px;">
+                                @Html.TextBoxFor(c => c._33BPhoneNumber, new { Class = "textBoxStyle", placeholder = "Phone Number" })
+                            </div>
+                            <div class="col-lg-4 col-md-4 col-sm-4 col-xs-4" style="padding-left:10px;padding-right:0px;">
+                                @Html.TextBoxFor(c => c._33CBillingProviderName, new { Class = "textBoxStyle", placeholder = "Billing Provider Name" })
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-lg-6 col-md-6 col-sm-6 col-xs-6" style="padding-left:10px;padding-right:0px;">
+                                @Html.TextBoxFor(c => c._33DBillingProviderAddress, new { Class = "textBoxStyle", placeholder = "Billing Provider Address" })
+                            </div>
+                            <div class="col-lg-6 col-md-6 col-sm-6 col-xs-6" style="padding-left:10px;padding-right:0px;">
+                                @Html.TextBoxFor(c => c._33EBillingproviderCityStateZipcode, new { Class = "textBoxStyle", placeholder = "City State Zip code" })
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-lg-6 col-md-6 col-sm-6 col-xs-6" style="padding-left:10px;padding-right:0px;">
+                                @Html.TextBoxFor(c => c._33aNationalProviderIdentifierNumber, new { Class = "textBoxStyle", placeholder = "NPI" })
+                            </div>
+                            <div class="col-lg-6 col-md-6 col-sm-6 col-xs-6" style="padding-left:10px;padding-right:0px;">
+                                @Html.TextBoxFor(c => c._33bPayerAssignedIdentifierOfBillingProvider, new { Class = "textBoxStyle", placeholder = "Payer assigned Id for billing provider" })
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-6 col-md-12 col-sm-12 col-xs-12 validationimage" style="overflow-x:scroll;overflow-y:scroll;">
+                <img src="~/images/dmr_new_1.jpg" style="width:800px;height:1000px;" />
+            </div>
+
+        </div>
+        <div class="row buttonsRow" style="padding-top:20px;">
+            <div class="col-xs-1" style="border:none;">
+                <div class="row">
+                    <input class="button" type="submit" name="validateButton" value="Validate" asp-controller="Home" asp-action="ValidateClaim" />
+                    <label class="labelClassInSections" style="text-align:center;color:red;">
+                        @ViewBag.ValidationStatus
+                    </label>
+                </div>
+            </div>
+            <div class="col-xs-8" style="border:none;"></div>
+            <div class="col-xs-3" style="border:none;">
+                <div class="row">
+                    <div class="col-xs-6" style="float:right;">
+                        <input class="button" type="submit" name="saveButton" value="Save" />
+                    </div>
+                    <div class="col-xs-6" style="float:right;">
+                        <input class="button" type="submit" name="cancelButton" value="Cancel" asp-controller="Home" asp-action="Dashboard" />
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+}
+@*</form>*@
